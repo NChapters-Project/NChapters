@@ -1,0 +1,33 @@
+// git commands 
+
+1. git to local repository
+    -got to the file path by (cd folder_name)
+    -after modifing  (git status)
+    -if any files left then staging the all files (git add .) or for specific file (git add fileName)
+    -after staging commit (git commit -m "message")
+    -to view log/commit history (git log) 
+    -to checkout commit (git checkout logid)
+    -to reverse the commit (git revert logid)
+    -to reset commit (git reset logid) // recommend
+    -to delete permemnantly (git reset logid --hard)
+
+2.  branches in local repository
+    -creating branch (git branch branch_Name)
+    -view available branches (git branch -a)
+    -switching branches (git checkout branch_name)
+    -create branch and swiitch to branch (git checkout -b branch_name)
+    -delete branch (git -D branch_name)
+    -merge branches (git merge branch_name)
+
+// git_hub commands in local repository
+
+1.  push local repository
+    -view commits verify(git status)
+    -push repository (git push github_RepoLink branch_name)
+    -another way (git remote add origin github_RepoLink) after (git push origin branch_name)
+
+2.  clone repository
+    -after seleting file path (cd fileName)
+    -cloning repository (git clone repo_link) doesn't need repolink after cloned for verfication
+    -verification (git remote -v) options (-fetch) (-push) after verification push (git push origin branch_name)
+    -downloading changes (git merge) or (git pull) or (git pull origin branch_name)

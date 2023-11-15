@@ -6,7 +6,7 @@ export default function Header() {
     <header className="shadow-md bg-slate-200">
       <div className="flex items-center justify-between max-w-6xl p-3 mx-auto">
         <Link to="/">
-          <h1 className="flex flex-wrap font-bold cursor-pointer fletext-sm sm:text-lg">
+          <h1 className="flex flex-wrap font-bold cursor-pointer fletext-sm sm:text-lg ">
             <span className="text-green-600">N</span>
             <span className="text-green-900">Chapters</span>
           </h1>

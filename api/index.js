@@ -18,7 +18,6 @@ mongoose
 
 const app = express();
 
-//Middleware
 //this is going to allow JSON as a input in the sarver
 app.use(express.json());
 
@@ -28,3 +27,14 @@ app.listen(3000, () => {
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+
+//create midleware to handle possible errors
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal server error!";
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});

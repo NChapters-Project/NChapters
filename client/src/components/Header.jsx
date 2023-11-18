@@ -11,14 +11,16 @@ export default function Header() {
             <span className="text-green-900">Chapters</span>
           </h1>
         </Link>
-        <form className="flex items-center p-3 rounded-lg bg-slate-100">
+
+        {/* <form className="flex items-center p-3 rounded-lg bg-slate-100">
           <input
             type="text"
             placeholder="Search..."
             className="w-24 bg-transparent focus:outline-none sm:w-64"
           />
           <FaSearch className="text-slate-500" />
-        </form>
+        </form> */}
+
         <ul className="flex gap-4">
           <Link to="/">
             <li className="hidden sm:inline text-slate-700 hover:underline">

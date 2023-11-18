@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-//Create the rure(Schema)
+//Create the rule(Schema)
 const userSchema = new mongoose.Schema(
   {
     indexno: {

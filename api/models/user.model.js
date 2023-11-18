@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema(
   {
     indexno: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },

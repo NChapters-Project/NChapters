@@ -27,7 +27,7 @@ export default function SignUp() {
   return (
     <div className="max-w-lg p-3 mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">SignUp</h1>
-      <form onSubmit={handleSubmit} action="" className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           placeholder="Index Number"

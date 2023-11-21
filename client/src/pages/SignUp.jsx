@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 export default function SignUp() {
   //keep track the all data
   const [formData, setFormData] = useState({});
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -11,19 +13,31 @@ export default function SignUp() {
     });
   };
   const handleSubmit = async (e) => {
-    //prevent refreshing the page when we submit
     e.preventDefault();
-    const res = await fetch("/api/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await res.json();
-    console.log(data);
+    try {
+      setLoading(true);
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success == false) {
+        setLoading(false);
+        setError(data.message);
+        return;
+      }
+      setLoading(false);
+      setError(null);
+      // navigate("/signin");
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
+    }
   };
-  console.log(formData);
+
   return (
     <div className="max-w-lg p-3 mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">SignUp</h1>
@@ -59,8 +73,11 @@ export default function SignUp() {
           id="password"
           onChange={handleChange}
         />
-        <button className="p-3 text-white uppercase rounded-lg cursor-pointer bg-slate-700 hover:opacity-95 disabled:opacity-80">
-          Sign up
+        <button
+          disabled={loading}
+          className="p-3 text-white uppercase rounded-lg cursor-pointer bg-slate-700 hover:opacity-95 disabled:opacity-80"
+        >
+          {loading ? "loading..." : "Sign Up"}
         </button>
       </form>
       <div className="flex m-5 gap">
@@ -69,6 +86,7 @@ export default function SignUp() {
           <span className="text-blue-700">Sign in</span>
         </Link>
       </div>
+      {error && <p className="text-red-500 ">{error}</p>}
     </div>
   );
 }

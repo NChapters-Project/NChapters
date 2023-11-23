@@ -79,7 +79,11 @@ export default function SignUp() {
           disabled={loading}
           className="p-3 text-white uppercase rounded-lg cursor-pointer bg-slate-700 hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "loading..." : "Sign Up"}
+          {loading ? (
+            <i className="mr-2 fas fa-spinner fa-spin"></i>
+          ) : (
+            "Sign Up"
+          )}
         </button>
       </form>
       <div className="flex m-5 gap">

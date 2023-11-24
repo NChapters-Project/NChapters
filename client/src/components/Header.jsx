@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <header className="shadow-md bg-slate-200">
-      <div className="flex items-center justify-between max-w-6xl p-3 mx-auto">
+      <div className="flex items-center justify-between max-w-6xl p-4 mx-auto">
         <Link to="/">
           <h1 className="flex flex-wrap font-bold cursor-pointer fletext-sm sm:text-lg ">
             <span className="text-green-600">N</span>
@@ -37,9 +37,9 @@ export default function Header() {
               Sign in
             </li>
           </Link>
-          <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 sm:s">
-            Sign
-          </button>
+          <Link to="/profile" className="flex items-center ">
+            <i className="mr-2 text-xl fas fa-user-circle"></i>{" "}
+          </Link>
         </ul>
       </div>
     </header>

@@ -6,11 +6,18 @@ export default function Header() {
     <header className="shadow-md bg-slate-200">
       <div className="flex items-center justify-between max-w-6xl p-4 mx-auto ">
         <Link to="/">
-          <h1 className="flex flex-wrap font-bold cursor-pointer fletext-sm sm:text-lg ">
+          {/* Increased font size by adding 'text-lg' class */}
+          <h1 className="flex flex-wrap text-xl font-bold cursor-pointer sm:text-2xl md:text-3xl">
             <span className="text-green-600">N</span>
             <span className="text-green-900">Chapters</span>
           </h1>
         </Link>
+        {/* <Link to="/">
+          <h1 className="flex flex-wrap font-bold cursor-pointer fletext-sm sm:text-lg ">
+            <span className="text-green-600">N</span>
+            <span className="text-green-900">Chapters</span>
+          </h1>
+        </Link> */}
 
         {/* <form className="flex items-center p-3 rounded-lg bg-slate-100">
           <input
@@ -22,6 +29,12 @@ export default function Header() {
         </form> */}
 
         <ul className="flex gap-4">
+          <Link to="/create-listing">
+            {/* Add text to the "List Your Event" button */}
+            <li className="px-4 py-2 text-white bg-blue-500 rounded cursor-pointer sm:inline hover:text-blue-700">
+              List Your Event
+            </li>
+          </Link>
           <Link to="/">
             <li className="hidden sm:inline text-slate-700 hover:underline">
               Home

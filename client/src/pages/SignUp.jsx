@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 export default function SignUp() {
   //keep track the all data
@@ -85,6 +86,7 @@ export default function SignUp() {
             "Sign Up"
           )}
         </button>
+        <OAuth />
       </form>
       <div className="flex m-5 gap">
         <p>Have an account? </p>

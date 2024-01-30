@@ -33,7 +33,8 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (data.success == false) {
+      console.log(data);
+      if (data.success === false) {
         dispatch(signInFailure(data.message));
         return;
       }
@@ -48,25 +49,16 @@ export default function SignIn() {
     <div className="max-w-lg p-3 mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Sign In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        {/* <input
-          type="text"
-          placeholder="Username"
-          className="p-3 border rounded-lg"
-          id="username"
-          onChange={handleChange}
-        /> */}
-
         <input
-          type="text"
-          placeholder="University Email"
+          type="email"
+          placeholder="Email"
           className="p-3 border rounded-lg"
           id="email"
           onChange={handleChange}
         />
-
         <input
-          type="text"
-          placeholder="Passsword"
+          type="password"
+          placeholder="Password"
           className="p-3 border rounded-lg"
           id="password"
           onChange={handleChange}
@@ -83,13 +75,13 @@ export default function SignIn() {
         </button>
         <OAuth />
       </form>
-      <div className="flex m-5 gap">
-        <p>Do not have an account? </p>
-        <Link to={"/sign-up"}>
-          <span className="text-blue-700">Sign Up</span>
+      <div className="flex gap-2 mt-5">
+        <p>Do not have an account?</p>
+        <Link to={"/signUp"}>
+          <span className="text-blue-700">Sign up</span>
         </Link>
       </div>
-      {error && <p className="text-red-500 ">{error}</p>}
+      {error && <p className="mt-5 text-red-500">{error}</p>}
     </div>
   );
 }

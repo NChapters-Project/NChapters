@@ -13,8 +13,8 @@ export default function OAuth() {
       const auth = getAuth(app);
 
       const result = await signInWithPopup(auth, provider);
-
-      const res = await fetch("api/auth/google", {
+      //console.log(result);
+      const res = await fetch("/api/auth/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export default function OAuth() {
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
-      console.log("Could not signin with google", error);
+      console.log("could not sign in with google", error);
     }
   };
   return (
@@ -38,7 +38,7 @@ export default function OAuth() {
       type="button"
       className="p-3 text-white uppercase bg-red-700 rounded-lg hover:opacity-95"
     >
-      Continue With Google
+      Continue with google
     </button>
   );
 }

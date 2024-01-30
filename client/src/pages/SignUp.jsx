@@ -27,14 +27,14 @@ export default function SignUp() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (data.success == false) {
+      if (data.success === false) {
         setLoading(false);
         setError(data.message);
         return;
       }
       setLoading(false);
       setError(null);
-      navigate("/sign-in");
+      navigate("/signIn");
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -47,31 +47,21 @@ export default function SignUp() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
-          placeholder="Index Number"
-          className="p-3 border rounded-lg"
-          id="indexno"
-          onChange={handleChange}
-        />
-
-        <input
-          type="text"
           placeholder="Username"
           className="p-3 border rounded-lg"
           id="username"
           onChange={handleChange}
         />
-
         <input
-          type="text"
-          placeholder="University Email"
+          type="email"
+          placeholder="Email"
           className="p-3 border rounded-lg"
           id="email"
           onChange={handleChange}
         />
-
         <input
-          type="text"
-          placeholder="Passsword"
+          type="password"
+          placeholder="Password"
           className="p-3 border rounded-lg"
           id="password"
           onChange={handleChange}
@@ -88,13 +78,13 @@ export default function SignUp() {
         </button>
         <OAuth />
       </form>
-      <div className="flex m-5 gap">
-        <p>Have an account? </p>
-        <Link to={"/sign-in"}>
+      <div className="flex gap-2 mt-5">
+        <p>Have an account?</p>
+        <Link to={"/signIn"}>
           <span className="text-blue-700">Sign in</span>
         </Link>
       </div>
-      {error && <p className="text-red-500 ">{error}</p>}
+      {error && <p className="mt-5 text-red-500">{error}</p>}
     </div>
   );
 }

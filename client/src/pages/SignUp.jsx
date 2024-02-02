@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
 
 export default function SignUp() {
-  //keep track the all data
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -15,6 +14,7 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -57,13 +57,6 @@ export default function SignUp() {
           placeholder="Email"
           className="p-3 border rounded-lg"
           id="email"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="p-3 border rounded-lg"
-          id="password"
           onChange={handleChange}
         />
         <button

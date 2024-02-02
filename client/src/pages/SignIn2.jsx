@@ -19,15 +19,11 @@ export default function SignIn() {
       ...formData,
       [e.target.id]: e.target.value,
     });
-    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData);
     e.preventDefault();
-    const { email, otp } = formData;
-    console.log(otp);
-    console.log(email);
+    const { email, password, otpverification } = formData;
 
     try {
       dispatch(signInStart());
@@ -36,10 +32,10 @@ export default function SignIn() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, otp }),
+        body: JSON.stringify({ email, password, otpverification }),
       });
       const data = await res.json();
-      if (res.status !== 200) {
+      if (data.success === false) {
         dispatch(signInFailure(data.message));
         return;
       }
@@ -59,14 +55,21 @@ export default function SignIn() {
           placeholder="Email"
           className="p-3 border rounded-lg"
           id="email"
-          onChange={async (e) => await handleChange(e)}
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className="p-3 border rounded-lg"
+          id="password"
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="OTP Verification"
           className="p-3 border rounded-lg"
-          id="otp"
-          onChange={async (e) => await handleChange(e)}
+          id="otpverification"
+          onChange={handleChange}
         />
         <button
           disabled={loading}
@@ -90,3 +93,5 @@ export default function SignIn() {
     </div>
   );
 }
+
+

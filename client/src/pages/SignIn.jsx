@@ -78,7 +78,7 @@ export default function SignIn() {
             "Sign In"
           )}
         </button>
-        <OAuth />
+        {/* <OAuth /> */}
       </form>
       <div className="flex gap-2 mt-5">
         <p>Do not have an account?</p>

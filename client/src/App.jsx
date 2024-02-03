@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
-import SignIn2 from "./pages/SignIn2";
 import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
@@ -19,7 +18,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signIn" element={<SignIn />} />
-        <Route path="/signIn2" element={<SignIn2 />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/about" element={<About />} />
         <Route path="/otpverification" element={<OTPVerificationForm />} />

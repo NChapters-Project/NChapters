@@ -228,16 +228,16 @@ const Header = () => {
                       >
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton4">
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">AIESEC</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white">AIESEC</a>
                           </li>
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Other</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white">Other</a>
                           </li>
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Other 2</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white">Other 2</a>
                           </li>
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Other 3</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white">Other 3</a>
                           </li>
                         </ul>
                       </div>

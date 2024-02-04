@@ -9,7 +9,6 @@ import {
 import OAuth from "../components/OAuth";
 
 export default function SignIn() {
-  //keep track the all data
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -20,9 +19,16 @@ export default function SignIn() {
       ...formData,
       [e.target.id]: e.target.value,
     });
+    console.log(formData);
   };
+
   const handleSubmit = async (e) => {
+    console.log(formData);
     e.preventDefault();
+    const { email, otp } = formData;
+    console.log(otp);
+    console.log(email);
+
     try {
       dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
@@ -30,10 +36,10 @@ export default function SignIn() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ email, otp }),
       });
       const data = await res.json();
-      if (data.success == false) {
+      if (res.status !== 200) {
         dispatch(signInFailure(data.message));
         return;
       }
@@ -48,28 +54,19 @@ export default function SignIn() {
     <div className="max-w-lg p-3 mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Sign In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        {/* <input
-          type="text"
-          placeholder="Username"
-          className="p-3 border rounded-lg"
-          id="username"
-          onChange={handleChange}
-        /> */}
-
         <input
-          type="text"
-          placeholder="University Email"
+          type="email"
+          placeholder="Email"
           className="p-3 border rounded-lg"
           id="email"
-          onChange={handleChange}
+          onChange={async (e) => await handleChange(e)}
         />
-
         <input
           type="text"
-          placeholder="Passsword"
+          placeholder="OTP Verification"
           className="p-3 border rounded-lg"
-          id="password"
-          onChange={handleChange}
+          id="otp"
+          onChange={async (e) => await handleChange(e)}
         />
         <button
           disabled={loading}
@@ -81,15 +78,15 @@ export default function SignIn() {
             "Sign In"
           )}
         </button>
-        <OAuth />
+        {/* <OAuth /> */}
       </form>
-      <div className="flex m-5 gap">
-        <p>Do not have an account? </p>
-        <Link to={"/sign-up"}>
-          <span className="text-blue-700">Sign Up</span>
+      <div className="flex gap-2 mt-5">
+        <p>Do not have an account?</p>
+        <Link to={"/signUp"}>
+          <span className="text-blue-700">Sign up</span>
         </Link>
       </div>
-      {error && <p className="text-red-500 ">{error}</p>}
+      {error && <p className="mt-5 text-red-500">{error}</p>}
     </div>
   );
 }

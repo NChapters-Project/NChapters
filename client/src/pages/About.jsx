@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDom drom 'react-dom'
+
 
 export default function About() {
   return (

@@ -9,8 +9,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
-import OTPVerificationForm from "./components/OTPVerificationForm";
-
+import Otp from "./pages/Otp";
 export default function App() {
   return (
     <BrowserRouter>
@@ -20,7 +19,7 @@ export default function App() {
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        <Route path="/otpverification" element={<OTPVerificationForm />} />
+        <Route path="/otp" element={<Otp />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-listing" element={<CreateListing />} />

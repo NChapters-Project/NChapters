@@ -258,17 +258,30 @@ const Header = () => {
               </li>
               
               <li class="mr-0">
-              <a href="/Sign-in"><button type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-0">
+              <a href="/SignIn"><button type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-0">
                 Login
               </button></a>
 
               </li>
               <li class="ml-auto">
-    <button type="button" class="flex text-sm bg-gray-800 rounded-full hidden md:flex focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ml-auto mr-0" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-        <span class="sr-only"></span>
-        <a href="/profile"><img class="w-8 h-8 rounded-full" src="src/images/user.svg" alt="user photo"/></a>
-    </button>
-</li>
+                <button
+                  type="button"
+                  class="flex text-sm bg-gray-800 rounded-full hidden md:flex focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ml-auto mr-0"
+                  id="user-menu-button"
+                  aria-expanded="false"
+                  data-dropdown-toggle="user-dropdown"
+                  data-dropdown-placement="bottom"
+                >
+                  <span class="sr-only"></span>
+                  <a href="/profile">
+                    {/* <img
+                      className="object-cover rounded-full h-7 w-7"
+                      src={currentUser.avatar}
+                      alt="profile"
+                    /> */}
+                  </a>
+                </button>
+              </li>
 
             </ul>
           </div>

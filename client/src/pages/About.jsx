@@ -50,7 +50,29 @@ export default function About() {
       <div className="nsbm mt-10 mb-5 flex justify-center items-center">
         <h1 className="text-3xl txt-col">Our Team</h1>
      </div>
-    
+
+     <div className="mainContainer " >
+          {
+            data.map((d) => (
+              <div className="box" >
+                <div className="card">
+                  <div className="image flex justify-center items-center" >
+                    <img src={d.img} alt="" className="rounded-full "  />
+                  </div>
+                  <div className="desc">
+                  <h1 className="text-xl font-semibold">{d.name}</h1>
+                  <p>{d.review}</p><br></br>
+                  <div className="px-6 g-4" dangerouslySetInnerHTML={{ __html: `${d.icon1} ${d.icon2} ${d.icon3}` }} />
+                  </div>
+                </div>
+                <br></br>
+              </div>
+
+
+            ))
+          }
+      </div>
+      
 
 
     </div>

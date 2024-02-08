@@ -93,6 +93,10 @@ export default function About() {
           }
       </div>
 
+      <div className="mt-20">
+          <h1 hidden></h1>
+      </div> 
+
 
 
     </div>

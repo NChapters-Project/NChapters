@@ -1,7 +1,23 @@
-import React from 'react'
+import React from "react";
+import Footer from "../components/Footer.jsx"
 
+import "./about/abo.css";
+import "./about/about.js";
+import pro1 from "./about/th.jpg";
+import pro2 from "./about/onaliy.jpg";
+import pro3 from "./about/avish.jpg";
+import pro4 from "./about/rash.jpg";
+import pro5 from "./about/th.jpg";
+import pro6 from "./about/th.jpg";
+
+import s1 from "../images/img1.jpg";
+import s2 from "../images/img2.jpg";
+import s3 from "../images/img3.jpg";
+import s4 from "../images/img4.jpg";
 
 export default function About() {
+
+
   return (
     <div class="bod">
       <div className="nsbm mt-10 flex justify-center items-center">
@@ -47,11 +63,16 @@ export default function About() {
         </div>
       </section>
 
-      <div className="nsbm mt-10 mb-5 flex justify-center items-center">
+
+
+
+
+     <div className="nsbm mt-10 mb-5 flex justify-center items-center">
         <h1 className="text-3xl txt-col">Our Team</h1>
      </div>
 
-     <div className="mainContainer " >
+      
+      <div className="mainContainer " >
           {
             data.map((d) => (
               <div className="box" >
@@ -92,14 +113,15 @@ export default function About() {
             ))
           }
       </div>
-
       <div className="mt-20">
           <h1 hidden></h1>
-      </div> 
-
+      </div>    
+      
     </div>
+    
   )
 }
+
 
 const data=[{
   name:`Avish Madushanka`,
@@ -129,6 +151,7 @@ const data=[{
 }
 ]
 
+
 const data2=[{
   name:`Geeth Induware`,
   img:pro5,
@@ -147,4 +170,3 @@ const data2=[{
   icon3:'<i onclick="window.open(\'www.linkedin.com/in/onaliyvinukiy-jayawardana\', \'_blank\')" class="fa-brands fa-linkedin fa-2x colour"><a href="" ></i>'
 
 }]
-

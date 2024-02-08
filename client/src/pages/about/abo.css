@@ -135,3 +135,47 @@ i:hover{
         width:90%;
     }
 }
+
+
+/* about us section */
+
+
+
+
+.nsbm .txt-col{
+    color:#0a6c57;
+    font-weight: 600;
+}
+.nsbm .txt-col2{
+    color:#000000;
+    font-weight: 400;
+}
+.nsbm .txt-d{
+    align-items: center;
+}
+.nsbm-txt{
+    background: #ffffff  ;
+}
+
+.icons{
+    color: #0a6c57;
+}
+.nsbm-head{
+    color: #0a6c57;
+    font-weight: 600;
+}
+
+
+@media screen and (max-width:500px){
+    .bod .p-20{
+        padding:50%;
+    }
+    .nsbm-txt .nsbm-head{
+        text-align: center;
+    }
+    .nsbm .txt-col2{
+       font-size: small;
+    }
+}
+
+

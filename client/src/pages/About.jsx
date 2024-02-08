@@ -72,7 +72,27 @@ export default function About() {
             ))
           }
       </div>
-      
+      <div className="mContainer" >
+          {
+            data2.map((d) => (
+              <div className="box2" >
+                <div className="card2">
+                  <div className="image2 flex justify-center items-center" >
+                    <img src={d.img} alt="" className="rounded-full "  />
+                  </div>
+                  <div className="2desc">
+                    <h1 className="text-xl font-semibold icons">{d.name}</h1><br></br>
+                  <p>{d.review}</p><br></br>
+                  <div className="px-6 g-4" dangerouslySetInnerHTML={{ __html: `${d.icon1} ${d.icon2} ${d.icon3}` }} />
+                  </div>
+                </div>
+                <br></br>
+              </div>
+
+            ))
+          }
+      </div>
+
 
 
     </div>

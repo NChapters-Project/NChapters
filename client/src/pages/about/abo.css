@@ -91,3 +91,11 @@
     margin:10px 0 0;
     
 }
+
+i{
+    margin:0 3px;
+}
+i:hover{
+    transform: scale(1.1);
+    transition: .3s ease-in-out;
+}

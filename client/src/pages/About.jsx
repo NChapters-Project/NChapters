@@ -19,8 +19,8 @@ export default function About() {
 
 
   return (
-    <div class="bod">
-      <div className="nsbm mt-10 flex justify-center items-center">
+    <div class="bod mb-10">
+      <div className="nsbm mt-20 flex justify-center items-center">
         <div className="">
           <h1 className="text-5xl txt-col">About Us</h1>
         </div>
@@ -113,9 +113,9 @@ export default function About() {
             ))
           }
       </div>
-      <div className="mt-20">
+      <div className="mt-20 mb-10">
           <h1 hidden></h1>
-      </div>    
+      </div>   
       
     </div>
     

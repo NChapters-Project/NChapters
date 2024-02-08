@@ -25,3 +25,16 @@
     align-items: center;
     padding:0 10rem;
 }
+
+.mainContainer .box{
+    background: #fff;
+    height: 60vh;
+    text-align: center;
+    transition:.3s ease-in-out;
+    
+}
+.mainContainer .box:hover{
+   box-shadow: rgba(17,12,46,0.15) 0px 48px 100px 0px;
+   transform:scale(1.1);
+    
+}

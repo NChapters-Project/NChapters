@@ -38,3 +38,56 @@
    transform:scale(1.1);
     
 }
+.mainContainer .card{
+    padding: 15px 15px 0;
+}
+
+.card .image{
+    width:80%;
+    /*background:#f9f9f9f9;*/
+    margin:10px auto 25px;
+    position:relative;
+}
+
+.card .image::before{
+   content:"";
+   position:absolute;
+   width:10px;
+   height:10px;
+   bottom:8px;
+   left:10px;
+   border-radius: 50%;
+   
+}
+.card .image img{
+    width:180px;
+    transition: .3s ease-in-out;
+}
+
+.card .image:hover img{
+    transform:scale(1.1);
+    overflow: hidden;
+}
+.card .desc{
+    width:80%;
+    margin:auto ;
+    margin-bottom:20px;
+}
+
+.card .desc h1{
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    color:#0a6c57;
+}
+
+.colour{
+    color:#0a6c57;
+}
+
+.card .desc p{
+    font-size: 14px;
+    margin:10px 0 0;
+    
+}

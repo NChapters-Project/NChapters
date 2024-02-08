@@ -30,6 +30,24 @@ export default function About() {
           </div>
           
       </div>
+      <section class="container">
+        <div class="slider-wrapper">
+          <div class="slider">
+            <img id="slide-1" src={s1} alt="NSBM front gate" />
+            <img id="slide-2" src={s2}alt="nsbm front" />
+            <img id="slide-3" src={s3} alt="nsbm swimming pool" />
+            <img id="slide-4" src={s4} alt="nsbm ground 1" />
+          </div>
+          <div class="slider-nav">
+            <a href="#slide-1"></a>
+            <a href="#slide-2"></a>
+            <a href="#slide-3"></a>
+            <a href="#slide-4"></a>
+          </div>
+        </div>
+      </section>
+
+      
 
 
     </div>

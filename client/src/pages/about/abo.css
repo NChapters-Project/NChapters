@@ -19,7 +19,8 @@
 .mainContainer{
     width:100%;
     min-height: 70vh;
-    background:rgba(242, 242, 242,255);
+    /* background:rgba(242, 242, 242,255); */
+    background: #fff;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap:40px;
@@ -29,13 +30,15 @@
 
 .mainContainer .box{
     background: #fff;
+    /* background:rgba(242, 242, 242,255); */
     height: 60vh;
     text-align: center;
     transition:.3s ease-in-out;
+    box-shadow: rgba(17, 12, 46, 0.09) 0px 48px 100px 0px;
     
 }
 .mainContainer .box:hover{
-   box-shadow: rgba(17,12,46,0.15) 0px 48px 100px 0px;
+   box-shadow: rgba(17, 12, 46, 0.215) 0px 48px 100px 0px;
    transform:scale(1.1);
     
 }
@@ -188,7 +191,8 @@ i:hover{
 .mContainer{
     width:100%;
     min-height: 50vh;
-    background:rgba(242, 242, 242,255);
+    /* background:rgba(242, 242, 242,255); */
+    background: #fff;
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap:40px;
@@ -199,9 +203,11 @@ i:hover{
 
 .mContainer .box2{
     background: #fff;
+    /* background:rgba(242, 242, 242,255); */
     height: 60vh;
     text-align: center;
     transition:.3s ease-in-out;
+    box-shadow: rgba(17, 12, 46, 0.088) 0px 48px 100px 0px;
     
 }
 .mContainer .box2:hover{

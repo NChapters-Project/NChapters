@@ -4,7 +4,7 @@
 
 body {
   background-color: rgb(255, 255, 255);
-  font-family: 'Comfortaa', sans-serif;
+  font-family: 'Literata', serif;
 }
 .flowbite-carousel img {
   border-radius: 0 !important;
@@ -25,16 +25,17 @@ body {
 .flowbite-carousel img {
   border-radius: 0 !important;
 }
-/* Add this to your existing styles or create a new CSS file */
-#dropdownNavbar,
-#doubleDropdown1,
-#doubleDropdown2,
-#doubleDropdown3,
-#doubleDropdown4 {
-  z-index: 1000; /* Adjust the value as needed */
-}
-/* Add this to your existing styles or create a new CSS file */
-#default-carousel {
-  position: relative;
-  z-index: 1; /* Set a value higher than the dropdown's z-index */
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -47,7 +47,10 @@ export default function About() {
         </div>
       </section>
 
-      
+      <div className="nsbm mt-10 mb-5 flex justify-center items-center">
+        <h1 className="text-3xl txt-col">Our Team</h1>
+     </div>
+    
 
 
     </div>

@@ -99,3 +99,39 @@ i:hover{
     transform: scale(1.1);
     transition: .3s ease-in-out;
 }
+
+/* media queries */
+
+@media screen and (max-width:998px){
+    .mainContainer{
+        padding: 0 3rem;
+
+    }
+    .card .image{
+        width:90%;
+    }
+}
+
+@media screen and (max-width:800px){
+    .mainContainer{
+       grid-template-columns: repeat(2,1fr);
+       padding:5rem 3rem ;
+
+    }
+    .card .image{
+        width:90%;
+    }
+}
+@media screen and (max-width:500px){
+    .mainContainer{
+       grid-template-columns: repeat(1,1fr);
+       padding:3rem 2rem ;
+
+    }
+    .card .image{
+        width:90%;
+    }
+    .card .desc{
+        width:90%;
+    }
+}

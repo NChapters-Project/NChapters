@@ -7,3 +7,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bod{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.mainContainer{
+    width:100%;
+    min-height: 70vh;
+    background:rgba(242, 242, 242,255);
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:40px;
+    align-items: center;
+    padding:0 10rem;
+}

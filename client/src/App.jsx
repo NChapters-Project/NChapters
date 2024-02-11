@@ -5,6 +5,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
+import FOC from "./pages/clubs/FOC";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/about" element={<About />} />
+        <Route path="/foc" element={<FOC />} />
         <Route path="/otp" element={<Otp />} />
         <Route path="/Contact" element={<Contact />} />
         <Route element={<PrivateRoute />}>

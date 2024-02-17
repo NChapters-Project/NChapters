@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
 import Otp from "./pages/Otp";
 import Contact from "./pages/Contact";
+import ContactList from "./pages/ContactList";
 export default function App() {
   return (
     <BrowserRouter>
@@ -26,6 +27,8 @@ export default function App() {
         <Route path="/foc" element={<FOC />} />
         <Route path="/otp" element={<Otp />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/ContactList" element={<ContactList />} />
+  
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-listing" element={<CreateListing />} />

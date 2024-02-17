@@ -24,7 +24,7 @@ useEffect(() => {
       };
   return (
     <div className="relative">
-      <div className="relative z-0 mt-16" style={getHeightStyle()}>{/* Set a lower z-index for the carousel */}
+      <div className="relative z-0 mt-14" style={getHeightStyle()}>{/* Set a lower z-index for the carousel */}
         <Carousel slideInterval={5000} theme={{
           "item": {
             "base": "absolute top-1/2 left-1/2 block w-full -translate-x-1/2 -translate-y-1/2",
@@ -39,8 +39,8 @@ useEffect(() => {
           }
         }}>
           <img src="src/images/emotion.png" alt="..." style={{ width: '100%', height: '100%' }} />
-          <img src="src/images/spandana.jpeg" alt="..." style={{ width: '100%', height: '100%' }} />
-          <img src="src/images/safe.jpeg" alt="..." style={{ width: '100%', height: '100%' }} />
+          <img src="src/images/spandana.png" alt="..." style={{ width: '100%', height: '100%' }} />
+          <img src="src/images/safe.png" alt="..." style={{ width: '100%', height: '100%' }} />
         </Carousel>
       </div>
       <section class="bg-white dark:bg-gray-900">

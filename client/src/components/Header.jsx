@@ -1,35 +1,101 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux'; // Import useSelector from react-redux
 import { useNavigate } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa'; // Import FaSearch from react-icons/fa
-import { useLocation } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { PublicClientApplication } from '@azure/msal-browser';
+import { signInStart, signInSuccess, signInFailure, signOutUserStart, signOutUserSuccess } from '../redux/user/userSlice';
+import { initialState } from '../redux/user/userSlice';
 const Header = () => {
+  const { loading, error, currentUser } = useSelector((state) => state.user);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const msalConfig = {
+    auth: {
+      clientId: '7888a1dc-f295-424f-88dc-5028e8e3e2b3',
+      authority: 'https://login.microsoftonline.com/nsbm.ac.lk',
+      redirectUri: 'http://localhost:5173/create-listing',
+    },
+    cache: {
+      cacheLocation: 'localStorage',
+      storeAuthStateInCookie: true,
+    },
+  };
+  const msalInstance = new PublicClientApplication(msalConfig);
+
+  useEffect(() => {
+    const initializeMsal = async () => {
+      await msalInstance.initialize(); // Initialize MSAL instance
+    };
+    initializeMsal();
+  }, [msalInstance]);
+
+  const handleMicrosoftLogin = async () => {
+    try {
+      dispatch(signInStart());
+      await msalInstance.handleRedirectPromise();
+      const loginResponse = await msalInstance.loginPopup();
+      dispatch(signInSuccess(loginResponse.account.username));
+      navigate("/");
+    } catch (error) {
+      dispatch(signInFailure(error.message));
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      dispatch(signOutUserStart()); // Dispatch signOutUserStart
+      await msalInstance.logout(); // Logout using MSAL instance
+      dispatch(signOutUserSuccess()); // Dispatch signOutUserSuccess
+  
+      // Reset currentUser to null after logout
+      dispatch(signOutUserSuccess()); // Dispatch signOutUserSuccess
+      console.log(initialState);
+      navigate("/login");
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+  
+  
+  
+  
+  
+
+  
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     dispatch(signInStart());
+  //     const res = await fetch("/api/auth/signin", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+  //     const data = await res.json();
+  //     if (data.success === false) {
+  //       dispatch(signInFailure(data.message));
+  //       return;
+  //     }
+  //     dispatch(signInSuccess(data));
+  //     navigate("/");
+  //   } catch (error) {
+  //     dispatch(signInFailure(error.message));
+  //   }
+  // };
 
   const handleDropdownToggle = () => {
     setIsDropdownVisible(!isDropdownVisible);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set("searchTerm", searchTerm);
-    const searchQuery = urlParams.toString();
-    navigate(`/search?${searchQuery}`);
-  };
-
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get("searchTerm");
-    if (searchTermFromUrl) {
-      setSearchTerm(searchTermFromUrl);
-    }
-  }, [location.search]);
   return (
     <div>
    
@@ -58,9 +124,8 @@ const Header = () => {
 </form>
 </div> */}
 
-      <nav class="bg-white border-gray-600 fixed w-full z-20 top-0 start-0 border-gray-600 bg-white mt-0">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
-         
+<nav class="bg-white border-gray-600 fixed w-full z-20 top-0 start-0 border-gray-600 bg-white mt-0 shadow-md">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3 ">
             <h1 class="flex flex-wrap text-xl font-bold cursor-pointer sm:text-2xl md:text-3xl">
               <span class="text-green-600">N</span>
               <span class="text-blue-800">Chapters</span>
@@ -256,33 +321,17 @@ const Header = () => {
               <li class="flex items-center mr-0">
                 <a href="/Event" class="block py-2 px-3 text-black text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">Events</a>
               </li>
-              
-              <li class="mr-0">
-              <a href="/SignIn"><button type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-0">
-                Login
-              </button></a>
-
-              </li>
-              <li class="ml-auto">
-                <button
-                  type="button"
-                  class="flex text-sm bg-gray-800 rounded-full hidden md:flex focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ml-auto mr-0"
-                  id="user-menu-button"
-                  aria-expanded="false"
-                  data-dropdown-toggle="user-dropdown"
-                  data-dropdown-placement="bottom"
-                >
-                  <span class="sr-only"></span>
-                  <a href="/profile">
-                    {/* <img
-                      className="object-cover rounded-full h-7 w-7"
-                      src={currentUser.avatar}
-                      alt="profile"
-                    /> */}
-                  </a>
-                </button>
-              </li>
-
+              {/* <form onSubmit={handleSubmit} className="flex flex-col gap-4"> */}
+        <li className="mr-0">
+        <button
+        type="button"
+        onClick={currentUser ? handleLogout : handleMicrosoftLogin}
+        className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-0"
+      >
+        {currentUser ? "Logout" : "Login"}
+      </button>
+        </li>
+      {/* </form> */}
             </ul>
           </div>
         </div>

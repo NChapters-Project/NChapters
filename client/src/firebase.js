@@ -11,7 +11,9 @@ const firebaseConfig = {
   storageBucket: "nchapters-35c6b.appspot.com",
   messagingSenderId: "828195514420",
   appId: "1:828195514420:web:3768c278853e80c3230261",
+  databaseURL: "https://nchapters-af71f-default-rtdb.firebaseio.com/"
 };
+
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);

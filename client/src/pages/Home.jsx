@@ -24,7 +24,7 @@ useEffect(() => {
       };
   return (
     <div className="relative">
-      <div className="relative z-0 mt-16" style={getHeightStyle()}>{/* Set a lower z-index for the carousel */}
+      <div className="relative z-0 mt-14" style={getHeightStyle()}>{/* Set a lower z-index for the carousel */}
         <Carousel slideInterval={5000} theme={{
           "item": {
             "base": "absolute top-1/2 left-1/2 block w-full -translate-x-1/2 -translate-y-1/2",

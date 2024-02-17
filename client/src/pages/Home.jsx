@@ -39,8 +39,8 @@ useEffect(() => {
           }
         }}>
           <img src="src/images/emotion.png" alt="..." style={{ width: '100%', height: '100%' }} />
-          <img src="src/images/spandana.jpeg" alt="..." style={{ width: '100%', height: '100%' }} />
-          <img src="src/images/safe.jpeg" alt="..." style={{ width: '100%', height: '100%' }} />
+          <img src="src/images/spandana.png" alt="..." style={{ width: '100%', height: '100%' }} />
+          <img src="src/images/safe.png" alt="..." style={{ width: '100%', height: '100%' }} />
         </Carousel>
       </div>
       <section class="bg-white dark:bg-gray-900">

@@ -28,10 +28,10 @@ export default function App() {
         <Route path="/otp" element={<Otp />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/ContactList" element={<ContactList />} />
-  
+        <Route path="/createListing" element={<CreateListing />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/create-listing" element={<CreateListing />} />
+          {/* <Route path="/createListing" element={<CreateListing />} /> */}
         </Route>
       </Routes>
       <Footer />

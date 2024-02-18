@@ -23,12 +23,12 @@ export default function About() {
 
         <section class="bg-center bg-no-repeat bg-[url(src/images/com.jpg)] bg-gray-700 bg-blend-multiply mt-12">
             <div class="px-4 mx-auto max-w-screen-xl md:h-[20rem] sm:h-[15rem] text-center py-12 lg:py-20">
-                <h3 class="mt-8 text-2xl font-extrabold tracking-tight leading-none text-white md:text-2xl lg:text-5xl">About Us</h3>
+                <h3 class="mt-8 text-3xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">About Us</h3>
                 
             </div>
         </section>
 
-      <div className="nsbm mt-20 flex justify-center items-center">
+      <div className="nsbm mt-5 flex justify-center items-center">
       </div>
       <div className="nsbm  pt-10 mt-3 mb-5 flex justify-center items-center" >
           <div className="nsbm-txt  p-10  ml-20 mr-20">

@@ -86,7 +86,7 @@ useEffect(() => {
         </a>
         <div class="p-5">
             <a href="/clubs">
-                <h5 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">FOC Clubs & Societies</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOC Clubs & Societies</h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
             <a href="/FOC" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
@@ -104,7 +104,7 @@ useEffect(() => {
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">FOB Clubs & Societies</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOB Clubs & Societies</h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
             <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
@@ -121,7 +121,7 @@ useEffect(() => {
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">FOE Clubs & Societies</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOE Clubs & Societies</h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
             <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">

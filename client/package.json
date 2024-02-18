@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@azure/msal-browser": "^3.10.0",
     "@reduxjs/toolkit": "^1.9.7",
     "firebase": "^10.7.2",
     "flowbite": "^2.2.1",

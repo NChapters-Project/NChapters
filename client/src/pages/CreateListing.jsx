@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, get } from 'firebase/database';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const CreateListing = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const CreateListing = () => {
     clubName: '' // Initialize club name state
   });
 
-  const clubNames = ['FOSS', 'IEEE', 'CSSL', 'ISACA'];
+   const clubNames = ['FOSS', 'IEEE', 'CSSL', 'ISACA'];// State to hold club names
 
   useEffect(() => {
     // Fetch club names from the database when component mounts
@@ -30,7 +31,6 @@ const CreateListing = () => {
       });
   }, []);
 
-
   const handleChange = (e) => {
     if (e.target.type === 'file') {
       setFormData({ ...formData, image: e.target.files[0] }); // Store the selected file
@@ -41,26 +41,25 @@ const CreateListing = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log("Form submitted!"); // Check if form submission is triggered
+  
     const database = getDatabase();
-
-    // Create a storage reference to store the image file
-    const storageRef = storage.ref(`images/${formData.image.name}`);
-    // Upload the image file to Firebase Storage
-    storageRef.put(formData.image)
+    const storage = getStorage();
+  
+    const imagesRef = storageRef(storage, 'images/' + formData.image.name);
+  
+    uploadBytes(imagesRef, formData.image)
       .then((snapshot) => {
-        // Get the download URL for the image
-        return snapshot.ref.getDownloadURL();
+        return getDownloadURL(snapshot.ref);
       })
       .then((imageUrl) => {
-        // Push data to the 'events' node in the Realtime Database
         return push(ref(database, 'events'), {
           eventName: formData.eventName,
           time: formData.time,
           date: formData.date,
           description: formData.description,
-          imageUrl: imageUrl, // Store the image URL in the database
-          clubName: formData.clubName // Store the selected club name
+          imageUrl: imageUrl,
+          clubName: formData.clubName
         });
       })
       .then(() => {
@@ -72,8 +71,6 @@ const CreateListing = () => {
       });
   };
 
-
-  
   return (
     <div
       style={{

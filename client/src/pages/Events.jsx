@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
-function Event() {
+function Events() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -71,4 +71,4 @@ function Event() {
   );
 }
 
-export default Event;
+export default Events;

@@ -22,7 +22,7 @@ function Event() {
     <div>
       <section className="bg-center bg-no-repeat bg-[url(src/images/uni.jpg)] bg-gray-700 bg-blend-multiply mt-12">
         <div className="px-4 mx-auto max-w-screen-xl md:h-[20rem] sm:h-[15rem] text-center py-12 lg:py-20">
-          <h3 className="mt-8 text-3xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Event</h3>
+          <h3 className="mt-8 text-3xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Events</h3>
         </div>
       </section>
       <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">

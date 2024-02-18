@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { getDatabase, ref, push } from 'firebase/database';
+import React, { useState, useEffect } from 'react';
+import { getDatabase, ref, push, get } from 'firebase/database';
 
 const CreateListing = () => {
   const [formData, setFormData] = useState({
@@ -7,8 +7,29 @@ const CreateListing = () => {
     time: '',
     date: '',
     description: '',
-    image: null // Initialize image state to null
+    image: null, // Initialize image state to null
+    clubName: '' // Initialize club name state
   });
+
+  const clubNames = ['FOSS', 'IEEE', 'CSSL', 'ISACA'];
+
+  useEffect(() => {
+    // Fetch club names from the database when component mounts
+    const database = getDatabase();
+    const clubNamesRef = ref(database, 'clubNames');
+    get(clubNamesRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const clubNamesData = snapshot.val();
+          const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key]);
+          setClubNames(clubNamesList);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching club names: ', error);
+      });
+  }, []);
+
 
   const handleChange = (e) => {
     if (e.target.type === 'file') {
@@ -38,12 +59,13 @@ const CreateListing = () => {
           time: formData.time,
           date: formData.date,
           description: formData.description,
-          imageUrl: imageUrl // Store the image URL in the database
+          imageUrl: imageUrl, // Store the image URL in the database
+          clubName: formData.clubName // Store the selected club name
         });
       })
       .then(() => {
         console.log('Data successfully submitted!');
-        setFormData({ eventName: '', time: '', date: '', description: '', image: null });
+        setFormData({ eventName: '', time: '', date: '', description: '', image: null, clubName: '' });
       })
       .catch((error) => {
         console.error('Error submitting data: ', error);
@@ -51,6 +73,7 @@ const CreateListing = () => {
   };
 
 
+  
   return (
     <div
       style={{
@@ -80,9 +103,23 @@ const CreateListing = () => {
             />
           </div>
           <div>
+          <label htmlFor="clubName" class="m-3">Club Name</label>
+          <select
+            id="clubName"
+            value={formData.clubName}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Club</option>
+            {clubNames.map((clubName, index) => (
+              <option key={index} value={clubName}>{clubName}</option>
+            ))}
+          </select>
+        </div>
+          <div>
             <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">Time</label>
             <input
-              type="text"
+              type="time"
               id="time"  
               value={formData.time}
               onChange={handleChange}
@@ -95,7 +132,7 @@ const CreateListing = () => {
           <div>
             <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Date</label>
             <input
-              type="text"
+              type="date"
               id="date"  
               value={formData.date}
               onChange={handleChange}

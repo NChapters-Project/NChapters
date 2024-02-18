@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@azure/msal-browser": "^3.9.0",
     "@azure/msal-react": "^2.0.12",
+=======
+    "@azure/msal-browser": "^3.10.0",
+>>>>>>> c7d48b8915a7de44cfa45034a3f01286082854db
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.7",
     "body-parser": "^1.20.2",

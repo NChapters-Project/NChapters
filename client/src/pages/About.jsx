@@ -20,10 +20,15 @@ export default function About() {
 
   return (
     <div class="bod mb-10">
-      <div className="nsbm mt-20 flex justify-center items-center">
-        <div className="">
-          <h1 className="text-5xl txt-col">About Us</h1>
-        </div>
+
+        <section class="bg-center bg-no-repeat bg-[url(src/images/aboutslider.jpg)] bg-gray-700 bg-blend-multiply mt-12">
+            <div class="px-4 mx-auto max-w-screen-xl md:h-[20rem] sm:h-[15rem] text-center py-12 lg:py-20">
+                <h3 class="mt-8 text-3xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">About Us</h3>
+                
+            </div>
+        </section>
+
+      <div className="nsbm mt-5 flex justify-center items-center">
       </div>
       <div className="nsbm  pt-10 mt-3 mb-5 flex justify-center items-center" >
           <div className="nsbm-txt  p-10  ml-20 mr-20">

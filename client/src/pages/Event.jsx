@@ -3,11 +3,16 @@ import React from 'react';
 function Event() {
   return (
     <div>
+        <section class="bg-center bg-no-repeat bg-[url(src/images/uni.jpg)] bg-gray-700 bg-blend-multiply mt-12">
+    <div class="px-4 mx-auto max-w-screen-xl md:h-[20rem] sm:h-[15rem] text-center py-12 lg:py-20">
+        <h3 class="mt-8 text-3xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Events</h3>
+        
+    </div>
+</section>
       <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
 
 <div class="border-b mb-5 flex justify-between text-sm">
 </div>
-
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
 

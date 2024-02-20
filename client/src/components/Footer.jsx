@@ -36,7 +36,7 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href="#" className="mr-4 hover:underline md:mr-6">
+              <a href="Events" className="mr-4 hover:underline md:mr-6">
                 Events
               </a>
             </li>

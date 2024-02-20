@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PublicClientApplication } from '@azure/msal-browser';
 import { signInStart, signInSuccess, signInFailure, signOutUserStart, signOutUserSuccess } from '../redux/user/userSlice';
 import { initialState } from '../redux/user/userSlice';
+import { persistStore } from 'redux-persist';
 const Header = () => {
   const { loading, error, currentUser } = useSelector((state) => state.user);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -14,10 +15,11 @@ const Header = () => {
       clientId: '7888a1dc-f295-424f-88dc-5028e8e3e2b3',
       authority: 'https://login.microsoftonline.com/nsbm.ac.lk',
       redirectUri: 'http://localhost:5173/create-listing',
+      postLogoutRedirectUri: 'http://localhost:5173',
     },
     cache: {
       cacheLocation: 'localStorage',
-      storeAuthStateInCookie: true,
+      storeAuthStateInCookie: false,
     },
   };
   const msalInstance = new PublicClientApplication(msalConfig);
@@ -34,26 +36,27 @@ const Header = () => {
       dispatch(signInStart());
       await msalInstance.handleRedirectPromise();
       const loginResponse = await msalInstance.loginPopup();
-      dispatch(signInSuccess(loginResponse.account.username));
+      // Assuming loginResponse contains user's email and name
+      const { email, name } = loginResponse.account;
+      // Dispatch signInSuccess with both email and name
+      dispatch(signInSuccess({ email, name }));
       navigate("/");
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
   };
+  
 
   const handleLogout = async () => {
     try {
-      dispatch(signOutUserStart()); // Dispatch signOutUserStart
-      await msalInstance.logout(); // Logout using MSAL instance
-      dispatch(signOutUserSuccess()); // Dispatch signOutUserSuccess
-  
-      // Reset currentUser to null after logout
-      dispatch(signOutUserSuccess()); // Dispatch signOutUserSuccess
-      console.log(initialState);
-      navigate("/login");
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
+      dispatch(signOutUserStart());
+    await msalInstance.logout();
+    await persistStore(store).purge(); // Purge persisted state
+    dispatch(signOutUserSuccess());
+    navigate("/login");
+  } catch (error) {
+    console.error('Error logging out:', error);
+  }
   };
   
   
@@ -192,20 +195,18 @@ const Header = () => {
                       >
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton1">
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">IEEE</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Computing</a>
                           </li>
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">FOSS Community</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Business</a>
                           </li>
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">CSSL</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Engineering</a>
                           </li>
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">ISACA</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Science</a>
                           </li>
-                          <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Department of Software Engineering Circle</a>
-                          </li>
+                          
                         </ul>
                       </div>
                     </li>
@@ -294,16 +295,16 @@ const Header = () => {
                       >
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton4">
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white">AIESEC</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">AIESEC</a>
                           </li>
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white">Other</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Other</a>
                           </li>
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white">Other 2</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Other 2</a>
                           </li>
                           <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white">Other 3</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Other 3</a>
                           </li>
                         </ul>
                       </div>
@@ -321,16 +322,22 @@ const Header = () => {
               <li class="flex items-center mr-0">
                 <a href="/Events" class="block py-2 px-3 text-black text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">Events</a>
               </li>
+              <li class="flex items-center mr-0">
+                {currentUser && (
+                  <span className="block py-2 px-3 text-black text-black md:text-m rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">Welcome, {currentUser.name}</span>
+                )}
+              </li>
               {/* <form onSubmit={handleSubmit} className="flex flex-col gap-4"> */}
         <li className="mr-0">
         <button
-        type="button"
-        onClick={currentUser ? handleLogout : handleMicrosoftLogin}
-        className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-0"
-      >
-        {currentUser ? "Logout" : "Login"}
-      </button>
+                  type="button"
+                  onClick={currentUser ? handleLogout : handleMicrosoftLogin}
+                  className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-0"
+                >
+                   {currentUser ? "Logout" : "Login"}
+                </button>
         </li>
+        
       {/* </form> */}
             </ul>
           </div>

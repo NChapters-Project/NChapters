@@ -10,12 +10,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "@azure/msal-browser": "^3.9.0",
+    "@azure/msal-react": "^2.0.12",
+=======
     "@azure/msal-browser": "^3.10.0",
+>>>>>>> c7d48b8915a7de44cfa45034a3f01286082854db
     "@reduxjs/toolkit": "^1.9.7",
-    "firebase": "^10.7.2",
+    "axios": "^1.6.7",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "firebase": "^10.8.0",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
     "install": "^0.13.0",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.2",
+    "nodemon": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",

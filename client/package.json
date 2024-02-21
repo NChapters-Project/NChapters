@@ -10,12 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@azure/msal-browser": "^3.9.0",
     "@azure/msal-react": "^2.0.12",
-=======
-    "@azure/msal-browser": "^3.10.0",
->>>>>>> c7d48b8915a7de44cfa45034a3f01286082854db
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.7",
     "body-parser": "^1.20.2",
@@ -32,7 +28,8 @@
     "react-icons": "^4.12.0",
     "react-redux": "^8.1.3",
     "react-router-dom": "^6.18.0",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

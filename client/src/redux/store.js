@@ -10,7 +10,7 @@ const rootReducer = combineReducers({ user: userReducer });
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['user'] // Exclude the 'user' slice from being persisted
+  
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

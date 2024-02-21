@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { PublicClientApplication } from '@azure/msal-browser';
-import { signInStart, signInSuccess, signInFailure, signOutUserStart, signOutUserSuccess } from '../redux/user/userSlice';
+import { signInStart, signInSuccess, signInFailure, signOutUserStart, signOutUserSuccess} from '../redux/user/userSlice';
 import { initialState } from '../redux/user/userSlice';
 import { persistStore } from 'redux-persist';
+import { persistor } from '../redux/store';
+import store from '../redux/store';
+
 const Header = () => {
   const { loading, error, currentUser } = useSelector((state) => state.user);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -14,12 +17,12 @@ const Header = () => {
     auth: {
       clientId: '7888a1dc-f295-424f-88dc-5028e8e3e2b3',
       authority: 'https://login.microsoftonline.com/nsbm.ac.lk',
-      redirectUri: 'http://localhost:5173/create-listing',
+      redirectUri: 'http://localhost:5173/',
       postLogoutRedirectUri: 'http://localhost:5173',
     },
     cache: {
-      cacheLocation: 'localStorage',
-      storeAuthStateInCookie: false,
+      cacheLocation: 'LocalStorage',
+      storeAuthStateInCookie: true,
     },
   };
   const msalInstance = new PublicClientApplication(msalConfig);
@@ -49,14 +52,15 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      dispatch(signOutUserStart());
-    await msalInstance.logout();
-    await persistStore(store).purge(); // Purge persisted state
-    dispatch(signOutUserSuccess());
-    navigate("/login");
-  } catch (error) {
-    console.error('Error logging out:', error);
-  }
+      dispatch(signOutUserSuccess());
+     await msalInstance.logout();
+    localStorage.removeItem('user'); // Replace with specific keys if needed
+    dispatch({ type: 'USER_LOGOUT_SUCCESS' });
+      navigate("/"); // Navigate to home or login page
+    } catch (error) {
+      console.error('Error logging out:', error);
+      // Optionally, dispatch failure action or handle the error
+    }
   };
   
   

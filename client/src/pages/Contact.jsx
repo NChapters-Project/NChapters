@@ -94,11 +94,7 @@ const Contact = () => {
           </button>
         </form>
 
-        {/* Contact info */}
-        <div className="mt-6 text-gray-700 text-center">
-          <p className="text-sm">Email: <a href="mailto:info@company.com" className="hover:text-green-600">info@company.com</a></p>
-          <p className="text-sm">Phone: <a href="tel:212-456-7890" className="hover:text-green-600">212-456-7890</a></p>
-        </div>
+        
       </div>
     </div>
   );

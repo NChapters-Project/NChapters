@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, remove, update } from 'firebase/database';
 import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
-
+import ConfirmationModal from '../components/ConfirmationModel';
 function EventEdit() {
   const [events, setEvents] = useState([]);
   const [editEvent, setEditEvent] = useState(null);
+  const [deleteEventId, setDeleteEventId] = useState(null);
   const [formData, setFormData] = useState({
     eventName: '',
     time: '',
@@ -29,19 +30,25 @@ function EventEdit() {
   }, []);
 
   const handleDelete = (id) => {
-    const confirmation = window.confirm("Are you sure you want to delete this event?");
-    if (confirmation) {
-      const database = getDatabase();
-      const eventRef = ref(database, `events/${id}`);
-      remove(eventRef)
-        .then(() => {
-          // Remove the deleted event from the state
-          setEvents(events.filter(event => event.id !== id));
-        })
-        .catch((error) => {
-          console.error('Error deleting event: ', error);
-        });
-    }
+    setDeleteEventId(id);
+  };
+  const confirmDelete = () => {
+    // Perform deletion logic here
+    const database = getDatabase();
+    const eventRef = ref(database, `events/${deleteEventId}`);
+    remove(eventRef)
+      .then(() => {
+        // Remove the deleted event from the state
+        setEvents(events.filter(event => event.id !== deleteEventId));
+        setDeleteEventId(null); // Reset deleteEventId state
+      })
+      .catch((error) => {
+        console.error('Error deleting event: ', error);
+        setDeleteEventId(null); // Reset deleteEventId state
+      });
+  };
+  const cancelDelete = () => {
+    setDeleteEventId(null); // Reset deleteEventId state
   };
   
 
@@ -174,12 +181,20 @@ function EventEdit() {
                 <button onClick={() => handleEdit(event)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
               </td>
               <td className="px-6 py-4">
+                {/* Delete Button */}
                 <button onClick={() => handleDelete(event.id)} className="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
-                </td>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <ConfirmationModal
+        isOpen={!!deleteEventId}
+        title="Delete Event"
+        message="Are you sure you want to delete this event?"
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+      />
       {editEvent && (
         <form onSubmit={handleSubmit} className="mt-4">
           <input type="text" className="m-3" id="eventName" value={formData.eventName} onChange={handleChange} placeholder="Event Name" required />

@@ -40,16 +40,6 @@ export default function Footer() {
                 Events
               </a>
             </li>
-            <li>
-              <a href="/SignIn" className="mr-4 hover:underline md:mr-6">
-                Sign In
-              </a>
-            </li>
-            <li>
-              <a href="/SignUp" className="mr-4 hover:underline md:mr-6">
-                Sign Up
-              </a>
-            </li>
           </ul>
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-700">
             © 2024 <a href="#" className="hover:underline">NChapters</a>. All Rights Reserved.

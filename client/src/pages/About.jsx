@@ -152,7 +152,7 @@ const data=[{
   review:`Software Engineering Undergraduate`,
   icon1:'<i onclick="window.open(\'https://github.com/Rashminda121\', \'_blank\')" class="fa-brands fa-github fa-2x colour"></i>',
   icon2:'<i onclick="window.open(\'https://www.instagram.com/rashminda123/\', \'_blank\')" class="fa-brands fa-instagram fa-2x colour"></i>',
-  icon3:'<i onclick="window.open(\'www.linkedin.com/in/chamindu-rashminda-42565828a\', \'_blank\')" class="fa-brands fa-linkedin fa-2x colour"><a href="" ></i>'
+  icon3:'<i onclick="window.open(\'https://www.linkedin.com/in/chamindu-rashminda-42565828a\', \'_blank\')" class="fa-brands fa-linkedin fa-2x colour"><a href="" ></i>'
 }
 ]
 

@@ -47,18 +47,22 @@ function Events() {
               </div>
               <div className="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
                 <span className="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
-                  <svg className="h-6 mr-3" version="1.1" id="Capa_1" viewBox="0 0 455.005 455.005" style={{ enableBackground: "new 0 0 455.005 455.005" }} xmlSpace="preserve">
+                  <svg className="h-6 mr-3" version="1.1" id="Capa_1" viewBox="0 0 512 512" style={{ enableBackground: "new 0 0 455.005 455.005" }} xmlSpace="preserve">
                     <g>
                       <g>
-                        <path d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z"></path>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192h80v56H48V192zm0 104h80v64H48V296zm128 0h96v64H176V296zm144 0h80v64H320V296zm80-48H320V192h80v56zm0 160v40c0 8.8-7.2 16-16 16H320V408h80zm-128 0v56H176V408h96zm-144 0v56H64c-8.8 0-16-7.2-16-16V408h80zM272 248H176V192h96v56z"/></svg>
                       </g>
                     </g>
                   </svg>
                   <span className="ml-1">{event.date}</span>
                 </span>
                 <span className="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
-                  <svg className="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                <svg className="h-6 mr-3" version="1.1" id="Capa_1" viewBox="0 0 512 512" style={{ enableBackground: "new 0 0 455.005 455.005" }} xmlSpace="preserve">
+                    <g>
+                      <g>
+                        <path d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z"></path>
+                      </g>
+                    </g>
                   </svg>
                   <span className="ml-1">{event.time}</span>
                 </span>

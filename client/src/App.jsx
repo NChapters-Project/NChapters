@@ -9,6 +9,8 @@ import Events from "./pages/Events";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import FOC from "./pages/clubs/FOC";
+import EventEdit from "./pages/EventEdit";
+
 import CreateListing from "./pages/CreateListing";
 import Otp from "./pages/Otp";
 import Contact from "./pages/Contact";
@@ -28,6 +30,7 @@ export default function App() {
         <Route path="/foc" element={<FOC />} />
         <Route path="/otp" element={<Otp />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/EventEdit" element={<EventEdit />} />
         <Route path="/ContactList" element={<ContactList />} />
         <Route path="/createListing" element={<CreateListing />} />
         <Route element={<PrivateRoute />}>

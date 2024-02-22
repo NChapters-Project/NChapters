@@ -3,12 +3,12 @@ import Footer from "../components/Footer.jsx"
 
 import "./about/abo.css";
 import "./about/about.js";
-import pro1 from "./about/th.jpg";
+
 import pro2 from "./about/onaliy.jpg";
 import pro3 from "./about/avish.jpg";
 import pro4 from "./about/rash.jpg";
-import pro5 from "./about/th.jpg";
-import pro6 from "./about/th.jpg";
+import pro5 from "./about/geeth.jpg";
+import pro6 from "./about/kalidu.jpg";
 
 import s1 from "../images/img1.jpg";
 import s2 from "../images/img2.jpg";
@@ -158,20 +158,20 @@ const data=[{
 
 
 const data2=[{
-  name:`Geeth Induware`,
+  name:`GEETH INDUWARE`,
   img:pro5,
   review:`Software Engineering Undergraduate`,
-  icon1:'<i onclick="window.open(\'https://github.com/Rashminda121\', \'_blank\')" class="fa-brands fa-github fa-2x colour"></i>',
-  icon2:'<i onclick="window.open(\'https://www.instagram.com/rashminda123/\', \'_blank\')" class="fa-brands fa-instagram fa-2x colour"></i>',
-  icon3:'<i onclick="window.open(\'www.linkedin.com/in/chamindu-rashminda-42565828a\', \'_blank\')" class="fa-brands fa-linkedin fa-2x colour"><a href="" ></i>'
+  icon1:'<i onclick="window.open( \'_blank\')" class="fa-brands fa-github fa-2x colour"></i>',
+  icon2:'<i onclick="window.open( \'_blank\')" class="fa-brands fa-instagram fa-2x colour"></i>',
+  icon3:'<i onclick="window.open( \'_blank\')" class="fa-brands fa-linkedin fa-2x colour"><a href="" ></i>'
 
 },
 {
-  name:`Kalindu Perera`,
+  name:`KALINDU PERERA`,
   img:pro6,
   review:`Software Engineering Undergraduate`,
-  icon1:'<i onclick="window.open(\'https://github.com/OnaliyVinukiy\', \'_blank\')" class="fa-brands fa-github fa-2x colour"></i>',
-  icon2:'<i onclick="window.open(\'https://www.instagram.com/_onaliy_vinu_?igsh=dXU3eGpyNHg4ajFo\', \'_blank\')" class="fa-brands fa-instagram fa-2x colour"></i>',
-  icon3:'<i onclick="window.open(\'www.linkedin.com/in/onaliyvinukiy-jayawardana\', \'_blank\')" class="fa-brands fa-linkedin fa-2x colour"><a href="" ></i>'
+  icon1:'<i onclick="window.open( \'_blank\')" class="fa-brands fa-github fa-2x colour"></i>',
+  icon2:'<i onclick="window.open( \'_blank\')" class="fa-brands fa-instagram fa-2x colour"></i>',
+  icon3:'<i onclick="window.open( \'_blank\')" class="fa-brands fa-linkedin fa-2x colour"><a href="" ></i>'
 
 }]

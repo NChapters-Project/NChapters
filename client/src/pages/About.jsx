@@ -3,12 +3,12 @@ import Footer from "../components/Footer.jsx"
 
 import "./about/abo.css";
 import "./about/about.js";
-import pro1 from "./about/th.jpg";
+
 import pro2 from "./about/onaliy.jpg";
 import pro3 from "./about/avish.jpg";
 import pro4 from "./about/rash.jpg";
-import pro5 from "./about/th.jpg";
-import pro6 from "./about/th.jpg";
+import pro5 from "./about/geeth.jpg";
+import pro6 from "./about/kalidu.jpg";
 
 import s1 from "../images/img1.jpg";
 import s2 from "../images/img2.jpg";

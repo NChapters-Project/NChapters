@@ -158,7 +158,7 @@ const data=[{
 
 
 const data2=[{
-  name:`Geeth Induware`,
+  name:`GEETH INDUWARE`,
   img:pro5,
   review:`Software Engineering Undergraduate`,
   icon1:'<i onclick="window.open(\'https://github.com/Rashminda121\', \'_blank\')" class="fa-brands fa-github fa-2x colour"></i>',
@@ -167,7 +167,7 @@ const data2=[{
 
 },
 {
-  name:`Kalindu Perera`,
+  name:`KALINDU PERERA`,
   img:pro6,
   review:`Software Engineering Undergraduate`,
   icon1:'<i onclick="window.open(\'https://github.com/OnaliyVinukiy\', \'_blank\')" class="fa-brands fa-github fa-2x colour"></i>',

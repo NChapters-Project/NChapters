@@ -62,7 +62,12 @@ const Header = () => {
       // Optionally, dispatch failure action or handle the error
     }
   };
-  
+  const handleEventEdit = () => {
+    navigate("/EventEdit");
+  };
+  const handleCreateListing = () => {
+    navigate("/CreateListing");
+  };
   
   
   
@@ -154,7 +159,7 @@ const Header = () => {
             } w-full md:block md:w-auto flex justify-center`}
           >
             <ul class="flex flex-col p-4 md:p-0 mt-4 ml-auto border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  justify-center">
-              {/* Your menu items go here */}{/* Added justify-center */}
+              {/* Your menu items go here /}{/ Added justify-center */}
               <li class="flex items-center mr-0">
                 <a
                   href="/"
@@ -327,10 +332,40 @@ const Header = () => {
                 <a href="/Events" class="block py-2 px-3 text-black text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">Events</a>
               </li>
               <li class="flex items-center mr-0">
-                {currentUser && (
-                  <span className="block py-2 px-3 text-black text-black md:text-m rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">Welcome, {currentUser.name}</span>
-                )}
-              </li>
+              {currentUser && currentUser.name !== 'AKM Perera' && (
+  <span className="block py-2 px-3 text-black text-black md:text-m rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">
+    Welcome, {currentUser.name}
+  </span>
+)}
+
+              </li> 
+              
+              {currentUser?.name === 'AKM Perera' && (
+                 
+        <>       <button
+                  onClick={handleEventEdit}
+                  className="block py-2 px-3 text-white md:text-base rounded hover:bg-blue-900 md:hover:bg-transparent md:hover:text-green-600 md:p-0 bg-blue-800 hover:bg-blue-900"
+                  
+
+                >
+                  Edit Events
+                </button>
+                <button
+                  onClick={handleCreateListing}
+                  className="block py-2 px-3 text-white md:text-base rounded hover:bg-blue-900 md:hover:bg-transparent md:hover:text-green-600 md:p-0 bg-blue-800 hover:bg-blue-900"
+                  
+
+                >
+                    Add Events
+                  </button></>
+                  
+
+        
+        
+        
+        
+
+      )}
               {/* <form onSubmit={handleSubmit} className="flex flex-col gap-4"> */}
         <li className="mr-0">
         <button

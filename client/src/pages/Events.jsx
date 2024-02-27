@@ -44,6 +44,7 @@ function Events() {
               <div className="px-6 py-4 mb-auto">
                 <a href="#" className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{event.eventName}</a>
                 <p className="text-gray-500 text-sm">{event.description}</p>
+                <a href="#" className="text-indigo-600 hover:underline">See more details...</a>
               </div>
               
               <div className="flex justify-center mb-2"> {/* Container to center buttons */}

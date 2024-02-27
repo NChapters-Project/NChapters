@@ -14,7 +14,7 @@ function FOC() {
     </div>
 </section>
 
-<a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 ml-3 mr-3">
+<a href="/Foss" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 ml-3 mr-3">
     <img class="object-cover w-full rounded-t-lg h-96 md:h-[20rem] md:w-[35rem] md:rounded-none md:rounded-s-lg" src="src/images/clubs/nmc.jpg" alt=""/>
     <div class="flex flex-col justify-between p-4 leading-normal">
         <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">FOSS Community</h5>
@@ -26,8 +26,7 @@ function FOC() {
     </div>
 </a>
 
-
-<a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 md:ml-auto ml-3 mr-3">
+<a href="/IEEE" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 md:ml-auto ml-3 mr-3">
     
     <div class="flex flex-col justify-between p-4 leading-normal">
         <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">IEEE Student Branch</h5>
@@ -40,7 +39,7 @@ function FOC() {
     <img class="object-cover w-full h-96 md:h-[20rem] md:w-[35rem]" src="src/images/clubs/iee.jpg" alt=""/>
 </a>
 
-<a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 ml-3 mr-3">
+<a href="/CSSL" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 ml-3 mr-3">
     <img class="object-cover w-full rounded-t-lg h-96 md:h-[20rem] md:w-[35rem] md:rounded-none md:rounded-s-lg" src="src/images/clubs/cssl.jpeg" alt=""/>
     <div class="flex flex-col justify-between p-4 leading-normal">
         <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">CSSL Genz Chapter</h5>
@@ -51,7 +50,7 @@ function FOC() {
         </div>
     </div>
 </a>
-<a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 md:ml-auto ml-3 mr-3">
+<a href="/ISACA" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 md:ml-auto ml-3 mr-3">
     
     <div class="flex flex-col justify-between p-4 leading-normal">
         <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">ISACA</h5>

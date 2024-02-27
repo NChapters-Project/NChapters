@@ -332,7 +332,11 @@ const Header = () => {
                 <a href="/Events" class="block py-2 px-3 text-black text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">Events</a>
               </li>
               <li class="flex items-center mr-0">
+<<<<<<< HEAD
               {currentUser && currentUser.name !== 'OV Jayawardana' && (
+=======
+              {currentUser && currentUser.name !== 'AKM Perera' && (
+>>>>>>> 6de418d1187d361fa82ffc9b88d217cc05ed9d16
   <span className="block py-2 px-3 text-black text-black md:text-m rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">
     Welcome, {currentUser.name}
   </span>
@@ -340,11 +344,19 @@ const Header = () => {
 
               </li> 
               
+<<<<<<< HEAD
               {currentUser?.name === 'OV Jayawardana' && (
                  
         <>       <button
                   onClick={handleEventEdit}
                   className="block py-2 px-3 text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600"
+=======
+              {currentUser?.name === 'AKM Perera' && (
+                 
+        <>       <button
+                  onClick={handleEventEdit}
+                  className="block py-2 px-3 text-white md:text-base rounded hover:bg-blue-900 md:hover:bg-transparent md:hover:text-green-600 md:p-0 bg-blue-800 hover:bg-blue-900"
+>>>>>>> 6de418d1187d361fa82ffc9b88d217cc05ed9d16
                   
 
                 >
@@ -352,7 +364,11 @@ const Header = () => {
                 </button>
                 <button
                   onClick={handleCreateListing}
+<<<<<<< HEAD
                   className="block py-2 px-3 text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600"
+=======
+                  className="block py-2 px-3 text-white md:text-base rounded hover:bg-blue-900 md:hover:bg-transparent md:hover:text-green-600 md:p-0 bg-blue-800 hover:bg-blue-900"
+>>>>>>> 6de418d1187d361fa82ffc9b88d217cc05ed9d16
                   
 
                 >

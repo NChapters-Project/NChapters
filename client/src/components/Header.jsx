@@ -332,7 +332,7 @@ const Header = () => {
                 <a href="/Events" class="block py-2 px-3 text-black text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">Events</a>
               </li>
               <li class="flex items-center mr-0">
-              {currentUser && currentUser.name !== 'AKM Perera' && (
+              {currentUser && currentUser.name !== 'OV Jayawardana' && (
   <span className="block py-2 px-3 text-black text-black md:text-m rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">
     Welcome, {currentUser.name}
   </span>
@@ -340,11 +340,11 @@ const Header = () => {
 
               </li> 
               
-              {currentUser?.name === 'AKM Perera' && (
+              {currentUser?.name === 'OV Jayawardana' && (
                  
         <>       <button
                   onClick={handleEventEdit}
-                  className="block py-2 px-3 text-white md:text-base rounded hover:bg-blue-900 md:hover:bg-transparent md:hover:text-green-600 md:p-0 bg-blue-800 hover:bg-blue-900"
+                  className="block py-2 px-3 text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600"
                   
 
                 >
@@ -352,7 +352,7 @@ const Header = () => {
                 </button>
                 <button
                   onClick={handleCreateListing}
-                  className="block py-2 px-3 text-white md:text-base rounded hover:bg-blue-900 md:hover:bg-transparent md:hover:text-green-600 md:p-0 bg-blue-800 hover:bg-blue-900"
+                  className="block py-2 px-3 text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600"
                   
 
                 >

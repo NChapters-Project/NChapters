@@ -94,11 +94,7 @@ const Contact = () => {
           </button>
         </form>
 
-<<<<<<< HEAD
-    
-=======
         
->>>>>>> be7da5cb7ee847e1862a8966c566e82e4f68f8af
       </div>
     </div>
   );

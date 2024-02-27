@@ -45,7 +45,7 @@ function FOC() {
         <p class="mb-3 text-xl font-normal text-gray-700 dark:text-gray-400">Provides opportunities to meet and learn from fellow IEEE Student and Graduate Student Members and engage with professional IEEE members locally.</p>
     </div>
     <img class="object-cover w-full h-96 md:h-[20rem] md:w-[35rem]" src="src/images/clubs/isaca.jpeg" alt=""/>
-</a>
+</a>1
 
 
 

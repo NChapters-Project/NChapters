@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, get } from 'firebase/database';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 const CreateListing = () => {
   const [formData, setFormData] = useState({
     eventName: '',
@@ -12,7 +15,9 @@ const CreateListing = () => {
     clubName: '' // Initialize club name state
   });
 
-   const clubNames = ['FOSS', 'IEEE', 'CSSL', 'ISACA'];// State to hold club names
+  const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const clubNames = ['FOSS', 'IEEE', 'CSSL', 'ISACA'];// State to hold club names
 
   useEffect(() => {
     // Fetch club names from the database when component mounts
@@ -70,6 +75,12 @@ const CreateListing = () => {
         console.error('Error submitting data: ', error);
       });
   };
+
+  // Redirect if currentUser is not the admin
+  if (!currentUser || currentUser.name !== 'OV Jayawardana') {
+    navigate('/');
+    return null; // or you can render a message or component indicating unauthorized access
+  }
 
   return (
     <div

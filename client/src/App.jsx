@@ -9,6 +9,7 @@ import Events from "./pages/Events";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import FOC from "./pages/clubs/FOC";
+import Clubadd from "./pages/clubs/Clubadd";
 import Comingsoon from "./pages/clubs/Comingsoon"
 import EventEdit from "./pages/EventEdit";
 import Leaders from "./pages/clubs/Leaders";
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/otp" element={<Otp />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/EventEdit" element={<EventEdit />} />
+        <Route path="/Clubadd" element={<Clubadd />}  />
         <Route path="/ContactList" element={<ContactList />} />
         <Route path="/createListing" element={<CreateListing />} />
         <Route path ="/leaders" element={<Leaders />} />

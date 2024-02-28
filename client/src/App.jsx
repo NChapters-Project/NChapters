@@ -18,7 +18,7 @@ import Otp from "./pages/Otp";
 import Contact from "./pages/Contact";
 import ContactList from "./pages/ContactList";
 import PrivateRoute from "./components/PrivateRoute";
-
+import EditLeaders from "./pages/clubs/EditLeaders";
 export default function App() {
   return (
     <BrowserRouter>
@@ -38,6 +38,7 @@ export default function App() {
         <Route path="/ContactList" element={<ContactList />} />
         <Route path="/createListing" element={<CreateListing />} />
         <Route path ="/leaders" element={<Leaders />} />
+        <Route path ="/editLeaders" element={<EditLeaders />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           {/* <Route path="/createListing" element={<CreateListing />} /> */}

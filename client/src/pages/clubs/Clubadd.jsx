@@ -71,9 +71,9 @@ function Clubadd() {
                       <option value="">Career Guidance</option>
                   </select>
               </div>
-          </div>
-          <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-          {loading ? (
+            </div>
+            <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4        focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+            {loading ? (
                                 <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 4.418 3.582 8 8 8v-4c-2.133 0-4.069-.836-5.542-2.209l1.554-1.5z"></path>
@@ -81,15 +81,15 @@ function Clubadd() {
                             ) : (
                                 'Add Club'
                             )}  
-          </button>
-      </form>
-      {success && (
-                        <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                            Data submitted successfully!
-                        </div>
-                    )}
-  </div>
-</section>
+            </button>
+            </form>
+            {success && (
+                <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                    Data submitted successfully!
+                </div>
+                )}
+            </div>
+            </section>
 
     </div>
   )

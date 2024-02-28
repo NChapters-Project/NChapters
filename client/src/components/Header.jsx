@@ -341,31 +341,29 @@ const Header = () => {
               </li> 
               
               {currentUser?.name === 'OV Jayawardana' && (
-                 
-        <>       <button
-                  onClick={handleEventEdit}
-                  className="block py-2 px-3 text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600"
-                  
+  <li className="flex items-center">
+    <a
+      href="/EventEdit"
+      className="block py-2 px-3 text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600"
+    >
+      Edit Events
+    </a>
+    <a
+      href="/CreateListing"
+      className="block py-2 px-3 text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600 ml-4" // Add ml-2 for additional margin
+    >
+      Add Events
+    </a>
+    <a
+      href="/ContactList"
+      className="block py-2 px-3 text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600 ml-4" // Add ml-2 for additional margin
+    >
+      Inquiries
+    </a>
+  </li>
+)}
 
-                >
-                  Edit Events
-                </button>
-                <button
-                  onClick={handleCreateListing}
-                  className="block py-2 px-3 text-black md:text-lg rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600"
-                  
 
-                >
-                    Add Events
-                  </button></>
-                  
-
-        
-        
-        
-        
-
-      )}
               {/* <form onSubmit={handleSubmit} className="flex flex-col gap-4"> */}
         <li className="mr-0">
         <button

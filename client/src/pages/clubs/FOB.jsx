@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
-function FOC() {
+function FOB() {
   const [clubs, setClubs] = useState([]);
 
   useEffect(() => {
@@ -17,9 +17,9 @@ function FOC() {
           id: key,
           ...clubsData[key]
         }));
-        // Filter clubs whose category is "FOC"
-        const focClubs = clubsArray.filter(club => club.category === "FOC");
-        setClubs(focClubs);
+        // Filter clubs whose category is "FOB"
+        const fobClubs = clubsArray.filter(club => club.category === "FOB");
+        setClubs(fobClubs);
       } else {
         setClubs([]);
       }
@@ -58,7 +58,7 @@ function FOC() {
                   <button type="button" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" style={{ maxWidth: '220px', marginTop: '1rem' }}>Turn on notifications</button>
                 </div>
               </div>
-              <img className="object-cover w-full h-96 md:h-[20rem] md:w-[35rem]" src={club.imageUrl} alt={club.clubName} />
+              <img className="object-cover w-full rounded-t-lg h-96 md:h-[20rem] md:w-[35rem] md:rounded-none md:rounded-s-lg" src={club.imageUrl} alt={club.clubName} />
             </>
           )}
         </a>
@@ -67,4 +67,4 @@ function FOC() {
   );
 }
 
-export default FOC;
+export default FOB;

@@ -77,7 +77,7 @@ const Feedback = ({ eventId }) => {
                     </div>
                 </form>
                 <div className="mb-5 ml-10 text-left pr-5">
-                    <div className="mb-5 mb-8">
+                    <div className="mt-5 mb-8">
                         <h1 className="text-green-700 text-2xl font-extrabold">View Feedbacks</h1>
                     </div>
                     {feedbackData.map((feedback) => (

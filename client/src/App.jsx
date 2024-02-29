@@ -21,6 +21,9 @@ import ContactList from "./pages/ContactList";
 import PrivateRoute from "./components/PrivateRoute";
 import EditLeaders from "./pages/clubs/EditLeaders";
 import Eview from "./pages/Eview.jsx";
+import FeedbackEdit from "./pages/Feedbackedit.jsx";
+
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -43,6 +46,8 @@ export default function App() {
         <Route path ="/leaders" element={<Leaders />} />
         <Route path ="/editLeaders" element={<EditLeaders />} />
         <Route path="/eview/:id/:img/:cname/:des" element={<Eview />} />
+        <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
+
 
 
         <Route element={<PrivateRoute />}>

@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
+import Feedback from "./Feedback"
 
 export default function Eview() {
     const params = useParams();
@@ -22,12 +23,11 @@ export default function Eview() {
     }, [params.id]);
 
     return (
-        <div className=" mt-20 mb-10 text-center shadow-md place-content-center">
-
+        <div className="mt-20 mb-10 text-center  place-content-center">
             {event && (
               <>
                 <section className="bg-center bg-green-800 bg-blend-multiply mt-5 mb-5 p-5">
-                    <h3 className=" text-xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-3xl">{event.eventName}</h3>
+                    <h3 className="text-xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-3xl">{event.eventName}</h3>
                 </section>
                 
                 <div key={event.id} className="rounded overflow-hidden flex flex-col pl-20 pr-20 mb-10">
@@ -35,10 +35,12 @@ export default function Eview() {
                       <img className="w-full" src={event.imageUrl} alt="Event" style={{ maxWidth: '100%', height: 'auto' }} />
                   </div>
                 </div>
-                <div className="text-xl mt-5 mb-20">
-                  <p className="pb-20">{event.description} </p>
+                <div className="text-xl mt-5 mb-5">
+                  <p className="pb-20">{event.description}</p>
                 </div>
-                
+                <div className="pb-10">
+                    <Feedback eventId={event.id} />
+                </div>
               </>
             )}
         </div>

@@ -12,13 +12,13 @@ import FOC from "./pages/clubs/FOC";
 import Clubadd from "./pages/clubs/Clubadd";
 import Comingsoon from "./pages/clubs/Comingsoon"
 import EventEdit from "./pages/EventEdit";
-
+import Leaders from "./pages/clubs/Leaders";
 import CreateListing from "./pages/CreateListing";
 import Otp from "./pages/Otp";
 import Contact from "./pages/Contact";
 import ContactList from "./pages/ContactList";
 import PrivateRoute from "./components/PrivateRoute";
-
+import EditLeaders from "./pages/clubs/EditLeaders";
 export default function App() {
   return (
     <BrowserRouter>
@@ -37,6 +37,8 @@ export default function App() {
         <Route path="/Clubadd" element={<Clubadd />}  />
         <Route path="/ContactList" element={<ContactList />} />
         <Route path="/createListing" element={<CreateListing />} />
+        <Route path ="/leaders" element={<Leaders />} />
+        <Route path ="/editLeaders" element={<EditLeaders />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           {/* <Route path="/createListing" element={<CreateListing />} /> */}

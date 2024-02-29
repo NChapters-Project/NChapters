@@ -46,6 +46,8 @@ export default function App() {
         <Route path ="/leaders" element={<Leaders />} />
         <Route path ="/editLeaders" element={<EditLeaders />} />
         <Route path="/eview/:id/:img/:cname/:des" element={<Eview />} />
+        <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
+
 
 
         <Route element={<PrivateRoute />}>

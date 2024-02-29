@@ -21,6 +21,9 @@ import ContactList from "./pages/ContactList";
 import PrivateRoute from "./components/PrivateRoute";
 import EditLeaders from "./pages/clubs/EditLeaders";
 import Eview from "./pages/Eview.jsx";
+import FeedbackEdit from "./pages/Feedbackedit.jsx";
+
+
 export default function App() {
   return (
     <BrowserRouter>

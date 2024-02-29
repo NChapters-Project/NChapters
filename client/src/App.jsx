@@ -19,6 +19,7 @@ import Contact from "./pages/Contact";
 import ContactList from "./pages/ContactList";
 import PrivateRoute from "./components/PrivateRoute";
 import EditLeaders from "./pages/clubs/EditLeaders";
+import Eview from "./pages/Eview.jsx";
 export default function App() {
   return (
     <BrowserRouter>
@@ -39,7 +40,13 @@ export default function App() {
         <Route path="/createListing" element={<CreateListing />} />
         <Route path ="/leaders" element={<Leaders />} />
         <Route path ="/editLeaders" element={<EditLeaders />} />
+        <Route path="/eview/:id/:img/:cname/:des" element={<Eview />} />
+
+
         <Route element={<PrivateRoute />}>
+
+
+
           <Route path="/profile" element={<Profile />} />
           {/* <Route path="/createListing" element={<CreateListing />} /> */}
         </Route>

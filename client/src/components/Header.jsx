@@ -164,7 +164,7 @@ const Header = () => {
                             <a href="/FOC" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Computing</a>
                           </li>
                           <li>
-                            <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Business</a>
+                            <a href="/FOB" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Business</a>
                           </li>
                           <li>
                             <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Engineering</a>

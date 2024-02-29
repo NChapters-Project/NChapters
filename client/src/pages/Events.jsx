@@ -43,8 +43,8 @@ function Events() {
                 </div>
                 <div className="px-6 py-4 mb-auto">
                   <a href="#" className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{event.eventName}</a>
-                  <p className="text-gray-500 text-sm">{event.description}</p>
-                  <Link className="text-green-700 font-extrabold mt-1" to={`/eview/${eventId}/${encodeURIComponent(eventImageUrl)}/${event.clubName}/${event.description}`}>See more details... </Link>
+                  <p className="text-gray-500 text-sm mb-2">{event.description}</p>
+                  <Link className="text-green-700 font-extrabold" to={`/eview/${eventId}/${encodeURIComponent(eventImageUrl)}/${event.clubName}/${event.description}`}>See more details... </Link>
                 </div>
                 <div className="flex justify-center mb-2">
                   <a href={event.participateLink} target="_blank" rel="noopener noreferrer" className="text-blue border-2 border-blue-500 bg-gradient-to-r from-white-500 via-white-600 to-white-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Participate</a>

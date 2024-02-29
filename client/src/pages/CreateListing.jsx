@@ -19,17 +19,17 @@ const CreateListing = () => {
 
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const clubNames = ['FOSS', 'IEEE', 'CSSL', 'ISACA']; // State to hold club names
+  const [clubNames, setClubNames] = useState([]);
 
   useEffect(() => {
     // Fetch club names from the database when component mounts
     const database = getDatabase();
-    const clubNamesRef = ref(database, 'clubNames');
+    const clubNamesRef = ref(database, 'clubs');
     get(clubNamesRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
           const clubNamesData = snapshot.val();
-          const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key]);
+          const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key].name);
           setClubNames(clubNamesList);
         }
       })
@@ -37,6 +37,7 @@ const CreateListing = () => {
         console.error('Error fetching club names: ', error);
       });
   }, []);
+  
 
   const handleChange = (e) => {
     if (e.target.type === 'file') {
@@ -117,16 +118,17 @@ const CreateListing = () => {
           <div>
             <label htmlFor="clubName" className="m-3">Club Name</label>
             <select
-              id="clubName"
-              value={formData.clubName}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Club</option>
-              {clubNames.map((clubName, index) => (
-                <option key={index} value={clubName}>{clubName}</option>
-              ))}
-            </select>
+  id="clubName"
+  value={formData.clubName}
+  onChange={handleChange}
+  required
+>
+  <option value="">Select Club</option>
+  {clubNames.map((clubName, index) => (
+    <option key={index} value={clubName}>{clubName}</option>
+  ))}
+</select>
+
           </div>
           <div>
             <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">Time</label>

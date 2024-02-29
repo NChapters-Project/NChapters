@@ -33,7 +33,7 @@
 .mainContainer .box{
     background: #fff;
     /* background:rgba(242, 242, 242,255); */
-    height: 60vh;
+    height: 65vh;
     text-align: center;
     transition:.3s ease-in-out;
     box-shadow: rgba(17, 12, 46, 0.09) 0px 48px 100px 0px;
@@ -206,7 +206,7 @@ i:hover{
 .mContainer .box2{
     background: #fff;
     /* background:rgba(242, 242, 242,255); */
-    height: 60vh;
+    height: 65vh;
     text-align: center;
     transition:.3s ease-in-out;
     box-shadow: rgba(17, 12, 46, 0.088) 0px 48px 100px 0px;

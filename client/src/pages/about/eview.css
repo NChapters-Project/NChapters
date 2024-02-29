@@ -1,0 +1,12 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@media (max-width: 768px) {
+    .w-full {
+        width: 90%; /* Adjust as needed */
+    }
+}
+

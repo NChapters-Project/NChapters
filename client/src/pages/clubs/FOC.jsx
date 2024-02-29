@@ -40,7 +40,7 @@ function FOC() {
             <>
               <img className="object-cover w-full rounded-t-lg h-96 md:h-[20rem] md:w-[35rem] md:rounded-none md:rounded-s-lg" src={club.imageUrl} alt={club.clubName} />
               <div className="flex flex-col justify-between p-4 leading-normal">
-                <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{club.clubName}</h5>
+                <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{club.name}</h5>
                 <p className="mb-3 text-xl font-normal text-gray-700 dark:text-gray-400">{club.description}</p>
                 <div className="flex">
                   <button type="button" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" style={{ maxWidth: '220px', marginTop: '1rem' }}>Explore More</button>
@@ -51,7 +51,7 @@ function FOC() {
           ) : (
             <>
               <div className="flex flex-col justify-between p-4 leading-normal">
-                <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{club.clubName}</h5>
+                <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{club.name}</h5>
                 <p className="mb-3 text-xl font-normal text-gray-700 dark:text-gray-400">{club.description}</p>
                 <div className="flex">
                   <button type="button" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" style={{ maxWidth: '220px', marginTop: '1rem' }}>Explore More</button>

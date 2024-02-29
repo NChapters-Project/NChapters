@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media screen and (min-width:500px){
+    .wid{
+        width: 100%;
+    }
+    .txt{
+        font-size: 2.25rem; /* 36px */
+        line-height: 2.5rem; /* 40px */
+        font-weight: 700;
+    }
+}

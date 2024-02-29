@@ -318,13 +318,16 @@ const Header = () => {
             <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
           </li>
           <li>
-            <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Clubs</a>
+            <a href="/Clubadd" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Clubs</a>
           </li>
           <li>
             <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Clubs</a>
           </li>
           <li>
-            <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Club Leader</a>
+            <a href="/Leaders" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Club Leader</a>
+          </li>
+          <li>
+            <a href="/Leaders" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Club Leader</a>
           </li>
         </ul>
       </div>

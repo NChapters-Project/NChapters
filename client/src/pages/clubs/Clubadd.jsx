@@ -1,51 +1,64 @@
 import React, { useState } from 'react';
 import { getDatabase, ref, push } from 'firebase/database';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 function Clubadd() {
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    image: null,
+    category: ''
+  });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    const newValue = value === "Select Club" ? null : value;
+    setFormData({ ...formData, [id]: newValue });
+  };
+  
+  
+  
 
-    // Validate form fields
-    const name = event.target.elements.name.value.trim();
-    const description = event.target.elements.description.value.trim();
-    const brand = event.target.elements.brand.value.trim();
+  const handleImageChange = (e) => {
+    setFormData({ ...formData, image: e.target.files[0] });
+  };
 
-    if (!name || !description || !brand) {
-      setErrorMessage('Please fill out all required fields.');
-      return; // Exit the function early if any required field is empty
-    }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
 
-    // Assuming you have collected club name, description, and brand from the form
-    const newClubData = {
-      clubName: name,
-      description: description,
-      brand: brand,
-      // Assuming other fields of your event data
-    };
+    try {
+      const storage = getStorage();
+      const database = getDatabase();
 
-    const database = getDatabase();
-    const clubsRef = ref(database, 'clubs');
+      const imagesRef = storageRef(storage, 'clubImages/' + formData.image.name);
 
-    // Push new club data to Firebase
-    push(clubsRef, newClubData)
-      .then((newClubRef) => {
-        console.log("New club added with ID: ", newClubRef.key);
-        setSuccess(true);
-        // Reset form fields
-        event.target.reset(); // This will reset all form fields
-      })
-      .catch((error) => {
-        console.error("Error adding new club: ", error);
-      })
-      .finally(() => {
-        setLoading(false);
+      const snapshot = await uploadBytes(imagesRef, formData.image);
+      const imageUrl = await getDownloadURL(snapshot.ref);
+
+      await push(ref(database, 'clubs'), {
+        name: formData.name,
+        description: formData.description,
+        imageUrl: imageUrl,
+        category: formData.category
       });
+
+      setSuccess(true);
+      setErrorMessage('');
+      setLoading(false);
+      setFormData({
+        name: '',
+        description: '',
+        image: null,
+        category: ''
+      });
+    } catch (error) {
+      setErrorMessage('Error submitting data: ' + error.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,29 +70,30 @@ function Clubadd() {
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div className="sm:col-span-2">
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Club Name</label>
-                <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type club name" required="" />
+                <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type club name" required />
               </div>
               <div className="sm:col-span-2">
                 <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                <textarea id="description" rows="8" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here"></textarea>
+                <textarea name="description" id="description" value={formData.description} onChange={handleChange} rows="8" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here"></textarea>
               </div>
               <div className="sm:col-span-2">
-                <label htmlFor="brand" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Club Image</label>
-                <input type="file" name="brand" id="brand" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-8 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Product brand" required="" />
+                <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Club Image</label>
+                <input type="file" name="image" id="image" onChange={handleImageChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-8 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" accept="image/*" required />
               </div>
               <div>
                 <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Club Category</label>
-                <select id="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                  <option disabled selected>Select Club</option>
-                  <option value="">FOC</option>
-                  <option value="">FOB</option>
-                  <option value="">FOE</option>
-                  <option value="">FOS</option>
-                  <option value="">International</option>
-                  <option value="">Religious</option>
-                  <option value="">Activity Based</option>
-                  <option value="">Career Guidance</option>
-                </select>
+                <select name="category" id="category" value={formData.category} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                    <option selected>Select Club</option>
+                    <option value="FOC">FOC</option>
+                    <option value="FOB">FOB</option>
+                    <option value="FOE">FOE</option>
+                    <option value="FOS">FOS</option>
+                    <option value="International">International</option>
+                    <option value="Religious">Religious</option>
+                    <option value="Activity Based">Activity Based</option>
+                    <option value="Career Guidance">Career Guidance</option>
+                  </select>
+
               </div>
             </div>
             <button type="submit" className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">

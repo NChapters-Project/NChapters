@@ -56,7 +56,7 @@ const Feedback = ({ eventId }) => {
 
     return (
         <>
-            <div className="mt-5 text-left ml-10 text-center ">
+            <div className="mt-5 text-left ml-2 mr-2 text-center ">
                 <div className="mb-5 mb-8">
                     <h1 className="text-green-700 text-4xl font-bold txt">Feedback Section</h1>
                 </div>
@@ -66,17 +66,17 @@ const Feedback = ({ eventId }) => {
                     </div>
                     <div className="mb-5 ml-6">
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1"></label>
-                        <input id="name" value={formData.name} onChange={handleChange} type="text" placeholder="Name" className="w-1/2 pr-4 wid" />
+                        <input id="name" value={formData.name} onChange={handleChange} type="text" placeholder="Name" className="w-1/2 wid" />
                     </div>
                     <div className="mb-5 ml-6">
                         <label htmlFor="feedback" className="block text-sm font-medium text-gray-700 mb-1"></label>
-                        <input id="feedback" value={formData.feedback} onChange={handleChange} type="text" placeholder="Feedback" className="w-1/2 pr-4 wid" />
+                        <input id="feedback" value={formData.feedback} onChange={handleChange} type="text" placeholder="Feedback" className="w-1/2 wid" />
                     </div>
                     <div className="mb-5 ml-2">
                         <button className="bg-green-700 text-white font-bold ml-2 pt-2 pb-2 rounded-md text-lg w-1/3 wid">Submit</button>
                     </div>
                 </form>
-                <div className="mb-5 ml-4 text-left pr-5">
+                <div className="mb-5 ml-10 text-left pr-5">
                     <div className="mb-5 mb-8">
                         <h1 className="text-green-700 text-2xl font-extrabold">View Feedbacks</h1>
                     </div>

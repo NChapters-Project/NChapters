@@ -31,6 +31,18 @@ body {
 
 
 
+.popup-container {
+  
+  z-index: 9999; /* Ensure the popup appears above other elements */
+ 
+ 
+  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup-container input {
+  /* Add any additional styling for input fields */
+}
 
 
 

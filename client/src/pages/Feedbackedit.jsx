@@ -83,7 +83,7 @@ function FeedbackEdit() {
 
             {!selectedFeedback && (
                 <div className="text-center">
-                    <h2>No feedback available to edit or delete</h2>
+                    <h2 className="mb-2 mt-5 ">No feedback available to edit or delete</h2>
                     <button className=" mr-3 pr-7 pl-7 pt-2 pb-2 bg-green-700 rounded-xl text-white shadow-xl font-extrabold" onClick={() => navigate(`/Events`)}>Back to Events Page</button>
                 </div>
             )}

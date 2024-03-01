@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, get } from 'firebase/database';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,19 +18,26 @@ const CreateListing = () => {
   });
 
   const [alertMessage, setAlertMessage] = useState('');
+  const [clubNames, setClubNames] = useState([]);
 
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const clubNames = ['FOSS', 'IEEE', 'CSSL', 'ISACA'];
+
+  useEffect(() => {
+    if (!currentUser || currentUser.name !== 'OV Jayawardana') {
+      navigate('/');
+    }
+  }, [currentUser, navigate]);
 
   useEffect(() => {
     const database = getDatabase();
-    const clubNamesRef = ref(database, 'clubNames');
+    const clubNamesRef = ref(database, 'clubs');
+
     get(clubNamesRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
           const clubNamesData = snapshot.val();
-          const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key]);
+          const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key].name);
           setClubNames(clubNamesList);
         }
       })
@@ -99,10 +105,6 @@ const CreateListing = () => {
       });
   };
 
-  if (!currentUser || currentUser.name !== 'JC Rashminda') {
-    navigate('/');
-    return null;
-  }
 
   return (
     <div
@@ -148,7 +150,7 @@ const CreateListing = () => {
                 <option key={index} value={clubName}>{clubName}</option>
               ))}
             </select>
-          </div>
+            </div>
           <div>
             <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">Time</label>
             <input
@@ -246,5 +248,4 @@ const CreateListing = () => {
     </div>
   );
 }
-
 export default CreateListing;

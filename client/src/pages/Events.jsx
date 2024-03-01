@@ -43,7 +43,7 @@ function Events() {
                 </div>
                 <div className="px-6 py-4 mb-auto">
                   <a href="#" className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{event.eventName}</a>
-                  <p className="text-gray-500 text-sm mb-2">{event.description}</p>
+                  <p className="text-gray-500 text-sm mb-2">{event.minidescription}</p>
                   <Link className="text-green-700 font-extrabold" to={`/eview/${eventId}/${encodeURIComponent(eventImageUrl)}/${event.clubName}/${event.description}`}>See more details... </Link>
                 </div>
                 <div className="flex justify-center mb-2">

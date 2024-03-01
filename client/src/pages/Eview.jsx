@@ -35,13 +35,15 @@ export default function Eview() {
                       <img className="w-full" src={event.imageUrl} alt="Event" style={{ maxWidth: '100%', height: 'auto' }} />
                   </div>
                 </div>
-                <div className="mb-5">
-                    <h1 className="text-green-700 text-xl font-extrabold">Event Description</h1>
+                <div className="">
+                    <div className="mb-5">
+                        <h1 className="text-green-700 text-3xl font-extrabold">Event Description</h1>
+                    </div>
+                    <div className="text-xl mt-5 mb-5 ">
+                    <p className="pb-20 pr-10 pl-10 text-justify font-medium ">{event.description}</p>
+                    </div>
                 </div>
-                <div className="text-xl mt-5 mb-5">
-                  <p className="pb-20">{event.description}</p>
-                </div>
-                <div className="pb-10">
+                <div className="pb-10 ">
                     <Feedback eventId={event.id} />
                 </div>
               </>

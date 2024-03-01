@@ -56,11 +56,11 @@ const Feedback = ({ eventId }) => {
 
     return (
         <>
-            <div className="mt-5 text-left ml-2 mr-2 text-center ">
-                <div className="mb-5 mb-8">
+            <div className="mt-5  ml-2 mr-2 text-left ">
+                <div className="mb-5 mb-8 ml-10">
                     <h1 className="text-green-700 text-4xl font-bold txt">Feedback Section</h1>
                 </div>
-                <form onSubmit={handleSubmit} className="">
+                <form onSubmit={handleSubmit} className="ml-6">
                     <div className="mb-5 ml-6">
                         <input id="eventid" value={eventId} onChange={handleChange} type="text" hidden />
                     </div>

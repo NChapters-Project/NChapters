@@ -327,7 +327,7 @@ const Header = () => {
             <a href="/Leaders" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Club Leader</a>
           </li>
           <li>
-            <a href="/Leaders" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Club Leader</a>
+            <a href="/Leaders" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Club Leader</a>
           </li>
         </ul>
       </div>

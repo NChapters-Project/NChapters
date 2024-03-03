@@ -10,26 +10,28 @@ const CreateListing = () => {
     eventName: '',
     time: '',
     date: '',
+    minidescription: '',
     description: '',
-    image: null, // Initialize image state to null
-    clubName: '', // Initialize club name state
-    volunteerLink: '', // Initialize volunteer link state
-    participateLink: '' // Initialize participate link state
+    image: null,
+    clubName: '',
+    volunteerLink: '',
+    participateLink: ''
   });
+
+  const [alertMessage, setAlertMessage] = useState('');
 
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const [clubNames, setClubNames] = useState([]);
+  const clubNames = ['FOSS', 'IEEE', 'CSSL', 'ISACA'];
 
   useEffect(() => {
-    // Fetch club names from the database when component mounts
     const database = getDatabase();
-    const clubNamesRef = ref(database, 'clubs');
+    const clubNamesRef = ref(database, 'clubNames');
     get(clubNamesRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
           const clubNamesData = snapshot.val();
-          const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key].name);
+          const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key]);
           setClubNames(clubNamesList);
         }
       })
@@ -37,11 +39,10 @@ const CreateListing = () => {
         console.error('Error fetching club names: ', error);
       });
   }, []);
-  
 
   const handleChange = (e) => {
     if (e.target.type === 'file') {
-      setFormData({ ...formData, image: e.target.files[0] }); // Store the selected file
+      setFormData({ ...formData, image: e.target.files[0] });
     } else {
       setFormData({ ...formData, [e.target.id]: e.target.value });
     }
@@ -49,7 +50,6 @@ const CreateListing = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted!"); // Check if form submission is triggered
 
     const database = getDatabase();
     const storage = getStorage();
@@ -65,6 +65,7 @@ const CreateListing = () => {
           eventName: formData.eventName,
           time: formData.time,
           date: formData.date,
+          minidescription: formData.minidescription,
           description: formData.description,
           imageUrl: imageUrl,
           clubName: formData.clubName,
@@ -73,18 +74,34 @@ const CreateListing = () => {
         });
       })
       .then(() => {
-        console.log('Data successfully submitted!');
-        setFormData({ eventName: '', time: '', date: '', description: '', image: null, clubName: '', volunteerLink: '', participateLink: '' });
+        console.log('Event added successfully!');
+        setAlertMessage('Event added successfully!');
+        alert('Event added successfully!');
+        setFormData({
+          eventName: '',
+          time: '',
+          date: '',
+          minidescription: '',
+          description: '',
+          image: null,
+          clubName: '',
+          volunteerLink: '',
+          participateLink: ''
+        });
+        setTimeout(() => {
+          setAlertMessage('');
+        }, 3000);
       })
       .catch((error) => {
         console.error('Error submitting data: ', error);
+        setAlertMessage('Error adding event. Please try again later.');
+        alert('Error adding event. Please try again later.');
       });
   };
 
-  // Redirect if currentUser is not the admin
-  if (!currentUser || currentUser.name !== 'OV Jayawardana') {
+  if (!currentUser || currentUser.name !== 'JC Rashminda') {
     navigate('/');
-    return null; // or you can render a message or component indicating unauthorized access
+    return null;
   }
 
   return (
@@ -100,7 +117,10 @@ const CreateListing = () => {
       <div className="bg-white p-8 md:p-12 rounded-lg shadow-lg mx-auto max-w-md md:max-w-4xl m-20">
         <h1 className="text-2xl md:text-4xl font-bold text-green-800 mb-6 text-center">Add an Event</h1>
 
-        {/* Form */}
+        {alertMessage && (
+          <div className="text-center text-green-600 mb-4">{alertMessage}</div>
+        )}
+
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="eventName" className="block text-sm font-medium text-gray-700 mb-1">Event Name</label>
@@ -118,17 +138,16 @@ const CreateListing = () => {
           <div>
             <label htmlFor="clubName" className="m-3">Club Name</label>
             <select
-  id="clubName"
-  value={formData.clubName}
-  onChange={handleChange}
-  required
->
-  <option value="">Select Club</option>
-  {clubNames.map((clubName, index) => (
-    <option key={index} value={clubName}>{clubName}</option>
-  ))}
-</select>
-
+              id="clubName"
+              value={formData.clubName}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Club</option>
+              {clubNames.map((clubName, index) => (
+                <option key={index} value={clubName}>{clubName}</option>
+              ))}
+            </select>
           </div>
           <div>
             <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">Time</label>
@@ -157,6 +176,19 @@ const CreateListing = () => {
             />
           </div>
           <div>
+            <label htmlFor="minidescription" className="block text-sm font-medium text-gray-700 mb-1">Mini Description</label>
+            <input
+              type="text"
+              id="minidescription"
+              value={formData.minidescription}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500"
+              style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }}
+              placeholder="Enter event mini description"
+              required
+            />
+          </div>
+          <div>
             <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
             <textarea
               id="description"
@@ -166,19 +198,19 @@ const CreateListing = () => {
               className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500"
               style={{ width: '100%', height: '187.5px', fontSize: '1.5rem', maxWidth: '100%' }}
               placeholder="Enter event description"
+              required
             ></textarea>
           </div>
           <div>
-            <label htmlFor="image" class="m-3">Image</label>
+            <label htmlFor="image" className="m-3">Image</label>
             <input
               type="file"
               id="image"
               onChange={handleChange}
-              accept="image/*" // Limit to only image files
+              accept="image/*"
               required
             />
           </div>
-          {/* New input fields for volunteer and participate links */}
           <div>
             <label htmlFor="volunteerLink" className="block text-sm font-medium text-gray-700 mb-1">Volunteer Link</label>
             <input
@@ -210,7 +242,6 @@ const CreateListing = () => {
             Add Event
           </button>
         </form>
-
       </div>
     </div>
   );

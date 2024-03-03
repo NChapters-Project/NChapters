@@ -26,6 +26,12 @@ body {
   border-radius: 0 !important;
 }
 
+/* Add this CSS to your stylesheet */
+#dropdownNavbar {
+  position: absolute;
+  top: calc(100% + 5px); /* Adjust the distance from the top */
+  left: 0;
+}
 
 
 

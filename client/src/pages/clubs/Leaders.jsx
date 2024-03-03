@@ -4,6 +4,7 @@ const Leaders = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        username: '',
         club: 'Select Club'
     });
     const [loading, setLoading] = useState(false);
@@ -45,12 +46,13 @@ const Leaders = () => {
         push(ref(database, 'leaders'), {
             name: formData.name,
             email: formData.email,
+            username: formData.username,
             club: formData.club
         })
         .then(() => {
             console.log('Data successfully submitted!');
             setSuccess(true);
-            setFormData({ name: '', email: '', club: '' });
+            setFormData({ name: '', email: '', username: '', club: '' });
         })
         .catch((error) => {
             console.error('Error submitting data: ', error);
@@ -74,6 +76,10 @@ const Leaders = () => {
                             <div className="sm:col-span-2">
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Leader's Email</label>
                                 <input type="email" id="email" value={formData.email} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Club Leader's NSBM Email" required="" />
+                            </div>
+                            <div className="sm:col-span-2">
+                                <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Leader's NSBM Student Username</label>
+                                <input type="username" id="username" value={formData.username} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Club Leader's Username" required="" />
                             </div>
                             <div>
                                 <label htmlFor="club" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Club</label>

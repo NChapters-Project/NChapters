@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
-import { getDatabase, ref, push } from 'firebase/database';
-
+import React, { useState, useEffect } from 'react';
+import { getDatabase, ref, push, get } from 'firebase/database';
 const Leaders = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        username: '',
         club: 'Select Club'
     });
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-
+    const [clubNames, setClubNames] = useState([]);
+    useEffect(() => {
+        const database = getDatabase();
+        const clubNamesRef = ref(database, 'clubs');
+    
+        get(clubNamesRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    const clubNamesData = snapshot.val();
+                    console.log("clubNamesData:", clubNamesData); // Log the fetched data
+                    const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key].name);
+                    console.log("clubNamesList:", clubNamesList); // Log the processed club names
+                    setClubNames(clubNamesList);
+                } else {
+                    console.log("No clubs data found");
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching club names: ', error);
+            });
+    }, []);
+    
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
     };
@@ -25,12 +46,13 @@ const Leaders = () => {
         push(ref(database, 'leaders'), {
             name: formData.name,
             email: formData.email,
+            username: formData.username,
             club: formData.club
         })
         .then(() => {
             console.log('Data successfully submitted!');
             setSuccess(true);
-            setFormData({ name: '', email: '', club: 'Select Club' });
+            setFormData({ name: '', email: '', username: '', club: '' });
         })
         .catch((error) => {
             console.error('Error submitting data: ', error);
@@ -55,14 +77,17 @@ const Leaders = () => {
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Leader's Email</label>
                                 <input type="email" id="email" value={formData.email} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Club Leader's NSBM Email" required="" />
                             </div>
+                            <div className="sm:col-span-2">
+                                <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Leader's NSBM Student Username</label>
+                                <input type="username" id="username" value={formData.username} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Club Leader's Username" required="" />
+                            </div>
                             <div>
                                 <label htmlFor="club" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Club</label>
                                 <select id="club" value={formData.club} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option disabled>Select Club</option>
-                                    <option value="FOSS">FOSS</option>
-                                    <option value="CSSL">CSSL</option>
-                                    <option value="IEEE">IEEE</option>
-                                    <option value="ISACA">ISACA</option>
+                                <option value="">Select Club</option>
+  {clubNames.map((clubName, index) => (
+    <option key={index} value={clubName}>{clubName}</option>
+  ))}
                                 </select>
                             </div>
                         </div>

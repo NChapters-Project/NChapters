@@ -40,7 +40,7 @@ export default function Eview() {
                         <h1 className="text-green-700 text-3xl font-extrabold">Event Description</h1>
                     </div>
                     <div className="text-xl mt-5 mb-5 ">
-                    <p className="pb-20 pr-10 pl-10 text-justify font-medium ">{event.description}</p>
+                    <p className="pb-20 pr-10 pl-10 text-center font-medium ">{event.description}</p>
                     </div>
                 </div>
                 <div className="pb-10 ">

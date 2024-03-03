@@ -47,7 +47,7 @@ function Events() {
       {/* Dropdown to select club */}
       <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 ">
         <div className="mb-9">
-          <label htmlFor="clubSelect" className="block text-lg font-medium text-gray-700">Select Club:</label>
+          <label htmlFor="clubSelect" className="block text-lg font-medium text-green-700">Select Club:</label>
           <select id="clubSelect" name="clubSelect" onChange={handleClubChange} value={selectedClub} className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <option value="">All Clubs</option>
             {/* Populate dropdown with unique club names */}

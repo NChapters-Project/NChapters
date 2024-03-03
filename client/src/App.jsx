@@ -22,6 +22,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import EditLeaders from "./pages/clubs/EditLeaders";
 import Eview from "./pages/Eview.jsx";
 import FeedbackEdit from "./pages/Feedbackedit.jsx";
+import Clubview from "./pages/clubs/Clubview.jsx"
 
 
 export default function App() {
@@ -47,7 +48,7 @@ export default function App() {
         <Route path ="/editLeaders" element={<EditLeaders />} />
         <Route path="/eview/:id/:img/:cname/:des" element={<Eview />} />
         <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
-
+        <Route path="/clubview/:id" component={Clubview} />
 
 
         <Route element={<PrivateRoute />}>

@@ -1,112 +1,162 @@
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, push, get } from 'firebase/database';
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDatabase, ref, onValue, get } from 'firebase/database';
+
+
 
 const CreateListing = () => {
-  const [formData, setFormData] = useState({
-    eventName: '',
-    time: '',
-    date: '',
-    minidescription: '',
-    description: '',
-    image: null,
-    clubName: '',
-    volunteerLink: '',
-    participateLink: ''
-  });
+    const [formData, setFormData] = useState({
+        eventName: '',
+        time: '',
+        date: '',
+        minidescription: '',
+        description: '',
+        image: null,
+        clubName: '',
+        volunteerLink: '',
+        participateLink: ''
+    });
 
-  const [alertMessage, setAlertMessage] = useState('');
-  const [clubNames, setClubNames] = useState([]);
+    const [alertMessage, setAlertMessage] = useState('');
+    const [clubNames, setClubNames] = useState([]);
+    const [isLeader, setIsLeader] = useState(false);
+    const { currentUser } = useSelector((state) => state.user);
+    const [isDataFetched, setIsDataFetched] = useState(false);
+    
+   
+    const navigate = useNavigate(); // Use useNavigate
 
-  const { currentUser } = useSelector((state) => state.user);
-  const navigate = useNavigate();
+    useEffect(() => {
+      const database = getDatabase();
+      const leadersRef = ref(database, 'leaders');
+  
+     
+  
+      
+      const fetchLeaderUsernames = () => {
+        onValue(leadersRef, (snapshot) => {
+          console.log('Snapshot:', snapshot.val());
+          if (snapshot.exists()) {
+            const leaderData = snapshot.val();
+            const leaderUsernames = Object.values(leaderData).map((leader) => leader.username.trim());
+      
+            console.log('Leader Usernames:', leaderUsernames);
+            console.log('Current User:', currentUser.name);
+            
+          const currentUserNormalized = currentUser.name.replace(/\s+/g, ' ').trim();
+  
+  
+            let isLeader = false;
+            leaderUsernames.forEach((leaderUsername) => {
+              if (currentUserNormalized && currentUserNormalized.toLowerCase() === leaderUsername.toLowerCase()) {
+                isLeader = true;
+              }
+            });
+            console.log('Is Leader:', isLeader);
+            setIsLeader(isLeader);
+  
+          }
+        });
+      };
+      
+      
+    
+    
+      if (!isDataFetched) {
+        fetchLeaderUsernames();
+        setIsDataFetched(true);
+      }
+  
+      return () => {
+        // Cleanup code if necessary
+      };
+    }, [currentUser,isLeader,isDataFetched,]);
+    
+      
+    
+    
+   
+   
+    useEffect(() => {
+        const database = getDatabase();
+        const clubNamesRef = ref(database, 'clubs');
 
-  useEffect(() => {
-    if (!currentUser || currentUser.name !== 'OV Jayawardana') {
-      navigate('/');
-    }
-  }, [currentUser, navigate]);
+        get(clubNamesRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    const clubNamesData = snapshot.val();
+                    const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key].name);
+                    setClubNames(clubNamesList);
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching club names: ', error);
+            });
+    }, []);
 
-  useEffect(() => {
-    const database = getDatabase();
-    const clubNamesRef = ref(database, 'clubs');
-
-    get(clubNamesRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const clubNamesData = snapshot.val();
-          const clubNamesList = Object.keys(clubNamesData).map((key) => clubNamesData[key].name);
-          setClubNames(clubNamesList);
+    const handleChange = (e) => {
+        if (e.target.type === 'file') {
+            setFormData({ ...formData, image: e.target.files[0] });
+        } else {
+            setFormData({ ...formData, [e.target.id]: e.target.value });
         }
-      })
-      .catch((error) => {
-        console.error('Error fetching club names: ', error);
-      });
-  }, []);
+    };
 
-  const handleChange = (e) => {
-    if (e.target.type === 'file') {
-      setFormData({ ...formData, image: e.target.files[0] });
-    } else {
-      setFormData({ ...formData, [e.target.id]: e.target.value });
-    }
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+        const database = getDatabase();
+        const storage = getStorage();
 
-    const database = getDatabase();
-    const storage = getStorage();
+        const imagesRef = storageRef(storage, 'images/' + formData.image.name);
 
-    const imagesRef = storageRef(storage, 'images/' + formData.image.name);
-
-    uploadBytes(imagesRef, formData.image)
-      .then((snapshot) => {
-        return getDownloadURL(snapshot.ref);
-      })
-      .then((imageUrl) => {
-        return push(ref(database, 'events'), {
-          eventName: formData.eventName,
-          time: formData.time,
-          date: formData.date,
-          minidescription: formData.minidescription,
-          description: formData.description,
-          imageUrl: imageUrl,
-          clubName: formData.clubName,
-          volunteerLink: formData.volunteerLink,
-          participateLink: formData.participateLink
-        });
-      })
-      .then(() => {
-        console.log('Event added successfully!');
-        setAlertMessage('Event added successfully!');
-        alert('Event added successfully!');
-        setFormData({
-          eventName: '',
-          time: '',
-          date: '',
-          minidescription: '',
-          description: '',
-          image: null,
-          clubName: '',
-          volunteerLink: '',
-          participateLink: ''
-        });
-        setTimeout(() => {
-          setAlertMessage('');
-        }, 3000);
-      })
-      .catch((error) => {
-        console.error('Error submitting data: ', error);
-        setAlertMessage('Error adding event. Please try again later.');
-        alert('Error adding event. Please try again later.');
-      });
-  };
-
+        uploadBytes(imagesRef, formData.image)
+            .then((snapshot) => {
+                return getDownloadURL(snapshot.ref);
+            })
+            .then((imageUrl) => {
+                return push(ref(database, 'events'), {
+                    eventName: formData.eventName,
+                    time: formData.time,
+                    date: formData.date,
+                    minidescription: formData.minidescription,
+                    description: formData.description,
+                    imageUrl: imageUrl,
+                    clubName: formData.clubName,
+                    volunteerLink: formData.volunteerLink,
+                    participateLink: formData.participateLink
+                });
+            })
+            .then(() => {
+                console.log('Event added successfully!');
+                setAlertMessage('Event added successfully!');
+                alert('Event added successfully!');
+                setFormData({
+                    eventName: '',
+                    time: '',
+                    date: '',
+                    minidescription: '',
+                    description: '',
+                    image: null,
+                    clubName: '',
+                    volunteerLink: '',
+                    participateLink: ''
+                });
+                setTimeout(() => {
+                    setAlertMessage('');
+                }, 3000);
+            })
+            .catch((error) => {
+                console.error('Error submitting data: ', error);
+                setAlertMessage('Error adding event. Please try again later.');
+                alert('Error adding event. Please try again later.');
+            });
+    };
 
   return (
+    <div>
+     {(isLeader || currentUser.name === 'OV Jayawardana') && (
     <div
       style={{
         backgroundImage: `url("https://www.nsbm.ac.lk/wp-content/uploads/2021/08/About-Tab-1.jpg")`,
@@ -245,6 +295,8 @@ const CreateListing = () => {
           </button>
         </form>
       </div>
+    </div>
+    )}
     </div>
   );
 }

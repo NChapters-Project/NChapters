@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 function Events() {
   const [events, setEvents] = useState([]);
+  const [selectedClub, setSelectedClub] = useState(''); // State to store selected club
+  const [clubNames, setClubNames] = useState([]); // State to store unique club names
 
   useEffect(() => {
     const database = getDatabase();
@@ -12,12 +14,27 @@ function Events() {
     onValue(eventsRef, (snapshot) => {
       const eventData = snapshot.val();
       const eventList = [];
+      const uniqueClubNames = new Set(); // Using Set to store unique club names
+
       for (let id in eventData) {
         eventList.push({ id, ...eventData[id] });
+        uniqueClubNames.add(eventData[id].clubName); // Adding club names to Set
       }
+
       setEvents(eventList);
+      setClubNames(Array.from(uniqueClubNames)); // Converting Set to Array and setting club names
     });
   }, []);
+
+  // Function to handle club selection
+  const handleClubChange = (event) => {
+    setSelectedClub(event.target.value); // Set selected club
+  };
+
+  // Filter events based on selected club
+  const filteredEvents = selectedClub
+    ? events.filter((event) => event.clubName === selectedClub)
+    : events;
 
   return (
     <div>
@@ -26,11 +43,25 @@ function Events() {
           <h3 className="mt-8 text-3xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Events</h3>
         </div>
       </section>
-      <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+
+      {/* Dropdown to select club */}
+      <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 ">
+        <div className="mb-9">
+          <label htmlFor="clubSelect" className="block text-lg font-medium text-green-700">Select Club:</label>
+          <select id="clubSelect" name="clubSelect" onChange={handleClubChange} value={selectedClub} className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option value="">All Clubs</option>
+            {/* Populate dropdown with unique club names */}
+            {clubNames.map((club) => (
+              <option key={club} value={club}>{club}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Display filtered events */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-          {events.map((event) => {
-            const eventId = event.id; // Storing event id in a variable
-            const eventImageUrl = event.imageUrl; // Storing event imageUrl in a variable
+          {filteredEvents.map((event) => {
+            const eventId = event.id;
+            const eventImageUrl = event.imageUrl;
 
             return (
               <div key={eventId} className="rounded overflow-hidden shadow-lg flex flex-col">
@@ -42,7 +73,7 @@ function Events() {
                   </div>
                 </div>
                 <div className="px-6 py-4 mb-auto">
-                  <a href="#" className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{event.eventName}</a>
+                  <Link to={`/eview/${eventId}/${encodeURIComponent(eventImageUrl)}/${event.clubName}/${event.description}`} className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{event.eventName}</Link>
                   <p className="text-gray-500 text-sm mb-2">{event.minidescription}</p>
                   <Link className="text-green-700 font-extrabold" to={`/eview/${eventId}/${encodeURIComponent(eventImageUrl)}/${event.clubName}/${event.description}`}>See more details... </Link>
                 </div>

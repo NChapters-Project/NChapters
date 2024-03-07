@@ -7,7 +7,7 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 
 const Header = () => {
   const [isDataFetched, setIsDataFetched] = useState(false);
-  const [leaderEmails, setLeaderEmails] = useState([]);
+  
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isAdditionalDropdownVisible, setIsAdditionalDropdownVisible] = useState(false);
   const [isLeader, setIsLeader] = useState(false); // New state for leader check
@@ -32,35 +32,58 @@ const Header = () => {
     const database = getDatabase();
     const leadersRef = ref(database, 'leaders');
 
-    // Initialize MSAL instance
     const initializeMsal = async () => {
-      await msalInstance.initialize(); // Initialize MSAL instance
+      await msalInstance.initialize();
     };
     initializeMsal();
 
-    // Fetch leader email addresses from Firebase database
+    
     const fetchLeaderUsernames = () => {
       onValue(leadersRef, (snapshot) => {
-          if (snapshot.exists()) {
-              const leaderData = snapshot.val();
-              const usernames = Object.values(leaderData).map((leader) => leader.username);
-              // Check if the current user's username is in the leader usernames
-              if (currentUser && usernames.includes(currentUser.username)) {
-                  setIsLeader(true);
-              }
-          }
-      });
-  };
-  
-  // Fetch data only if it hasn't been fetched yet
-  if (!isDataFetched) {
-      fetchLeaderUsernames();
+        console.log('Snapshot:', snapshot.val());
+        if (snapshot.exists()) {
+          const leaderData = snapshot.val();
+          const leaderUsernames = Object.values(leaderData).map((leader) => leader.username.trim());
+    
+          console.log('Leader Usernames:', leaderUsernames);
+          console.log('Current User:', currentUser.name);
+          
+          
+// Normalize whitespace in currentUser.name
+const currentUserNormalized = currentUser.name.replace(/\s+/g, ' ').trim();
+
+// Check if the current user's name matches any leader's username
+let isLeader = false;
+leaderUsernames.forEach((leaderUsername) => {
+  if (currentUserNormalized && currentUserNormalized.toLowerCase() === leaderUsername.toLowerCase()) {
+    isLeader = true;
   }
-    // Unsubscribe from Firebase listener when component unmounts
-    return () => {
-      // Detach Firebase listener
+});
+console.log('Is Leader:', isLeader);
+setIsLeader(isLeader);
+
+
+// Check if the current user's name matches any leader's username
+
+
+        }
+      });
     };
-  }, [msalInstance, isDataFetched, currentUser]); // Add currentUser to the dependency array
+    
+    
+  
+  
+    if (!isDataFetched) {
+      fetchLeaderUsernames();
+      setIsDataFetched(true);
+    }
+
+    return () => {
+      // Cleanup code if necessary
+    };
+  }, [msalInstance, isDataFetched, currentUser,isLeader]);
+  
+
 
   const handleMicrosoftLogin = async () => {
     try {
@@ -299,34 +322,32 @@ const Header = () => {
                     )}
                   </li>
                     )}
-                    {isLeader && currentUser?.name !== 'OV Jayawardana' && (
-                      <li className="flex items-center relative">
-   
-                        <button
-                          onClick={handleAdditionalDropdownToggle}
-                          className="flex items-center justify-between w-full py-2 px-3 text-black text-black md:text-lg hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-600 md:p-0 md:w-auto text-black md:hover:text-green-600 focus:text-black md:hover:bg-transparent hover:text-green-600">
-                          Clubs & Events
-                          <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
-                          </svg>
-                        </button>
-                        {isAdditionalDropdownVisible && (
-                          
-                          <div className="absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-2">
-                          
-                            <ul className="py-2 text-sm text-gray-700" aria-labelledby="doubleDropdownButton82">
-                              <li>
-                                <a href="/createListing" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Events</a>
-                              </li>
-                              <li>
-                                <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
-                              </li>
-                              
-                            </ul>
-                          </div>
-                        )}
-                      </li>
-                      )}
+                  {isLeader && (
+  <li className="flex items-center relative">
+    {/* Render additional links for leaders */}
+    <button
+      onClick={handleAdditionalDropdownToggle}
+      className="flex items-center justify-between w-full py-2 px-3 text-black text-black md:text-lg hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-600 md:p-0 md:w-auto text-black md:hover:text-green-600 focus:text-black md:hover:bg-transparent hover:text-green-600">
+      Clubs & Events
+      <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
+      </svg>
+    </button>
+    {isAdditionalDropdownVisible && (
+      <div className="absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-2">
+        <ul className="py-2 text-sm text-gray-700" aria-labelledby="doubleDropdownButton82">
+          <li>
+            <a href="/createListing" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Events</a>
+          </li>
+          <li>
+            <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
+          </li>
+        </ul>
+      </div>
+    )}
+  </li>
+)}
+
                       <li class="flex items-center mr-0">
                                     {currentUser && currentUser.name !== 'OV Jayawardana' && (
                         <span className="block py-2 px-3 text-black text-black md:text-m rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 text-black md:hover:text-green-600">

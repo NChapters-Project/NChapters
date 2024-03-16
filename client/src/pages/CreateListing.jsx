@@ -59,7 +59,7 @@ const CreateListing = () => {
                       const currentLeaderData = Object.values(leaderData).find((leader) => leader.username.trim().toLowerCase() === currentUserNormalized.toLowerCase());
                       setFormData((prevFormData) => ({
                           ...prevFormData,
-                          clubName: currentLeaderData.club // Set clubName in formData
+                          clubName: currentLeaderData.club
                       }));
                   }
               }
@@ -72,7 +72,7 @@ const CreateListing = () => {
       }
 
       return () => {
-          // Cleanup code if necessary
+         
       };
   }, [currentUser, isLeader, isDataFetched]);
     
@@ -108,7 +108,7 @@ const CreateListing = () => {
       // Fetch subscribed emails from Firebase
       onValue(subscribersRef, (snapshot) => {
         const subscribedData = snapshot.val();
-        console.log('Subscribed Data:', subscribedData); // Add this line
+        console.log('Subscribed Data:', subscribedData); 
         if (subscribedData) {
           setSubscribedEmails(subscribedData);
         } else {
@@ -163,7 +163,7 @@ const CreateListing = () => {
       
             onValue(clubSubscribersQuery, (snapshot) => {
               const subscribedData = snapshot.val();
-              console.log('Subscribed Data:', subscribedData); // Add this line
+              console.log('Subscribed Data:', subscribedData);
               if (subscribedData) {
                 const subscriberEmails = Object.values(subscribedData).map(subscriber => subscriber.email);
       
@@ -172,12 +172,12 @@ const CreateListing = () => {
                 const EMAILJS_TEMPLATE_ID = 'template_3chyey3';
                 const EMAILJS_USER_ID = 'GLteqOVgIa1pN5Mul';
       
-                subscriberEmails.forEach((email) => { // Use 'email' instead of 'subscriber'
+                subscriberEmails.forEach((email) => { 
                   const template_params = {
-                    email: email, // Use the recipient's email address here
-                    eventName: formData.eventName, // Pass event name
-                    clubName: formData.clubName, // Pass club name
-                    description: formData.description // Pass event description
+                    email: email,
+                    eventName: formData.eventName,
+                    clubName: formData.clubName,
+                    description: formData.description
                     
                   };
                 
@@ -248,95 +248,34 @@ const CreateListing = () => {
                               </select>
                           </div>
                           <div>
-            <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">Time</label>
-            <input
-              type="time"
-              id="time"
-              value={formData.time}
-              onChange={handleChange}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500"
-              style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }}
-              placeholder="Enter event time"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Date</label>
-            <input
-              type="date"
-              id="date"
-              value={formData.date}
-              onChange={handleChange}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500"
-              style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }}
-              placeholder="Enter event date"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="minidescription" className="block text-sm font-medium text-gray-700 mb-1">Mini Description</label>
-            <input
-              type="text"
-              id="minidescription"
-              value={formData.minidescription}
-              onChange={handleChange}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500"
-              style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }}
-              placeholder="Enter event mini description"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-            <textarea
-              id="description"
-              value={formData.description}
-              onChange={handleChange}
-              rows="4"
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500"
-              style={{ width: '100%', height: '187.5px', fontSize: '1.5rem', maxWidth: '100%' }}
-              placeholder="Enter event description"
-              required
-            ></textarea>
-          </div>
-          <div>
-            <label htmlFor="image" className="m-3">Image</label>
-            <input
-              type="file"
-              id="image"
-              onChange={handleChange}
-              accept="image/*"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="volunteerLink" className="block text-sm font-medium text-gray-700 mb-1">Volunteer Link</label>
-            <input
-              type="url"
-              id="volunteerLink"
-              value={formData.volunteerLink}
-              onChange={handleChange}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500"
-              style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }}
-              placeholder="Enter volunteer link"
-            />
-          </div>
-          <div>
-            <label htmlFor="participateLink" className="block text-sm font-medium text-gray-700 mb-1">Participate Link</label>
-            <input
-              type="url"
-              id="participateLink"
-              value={formData.participateLink}
-              onChange={handleChange}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500"
-              style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }}
-              placeholder="Enter participate link"
-            />
-          </div>
-          <button
-    type="submit"
-    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition duration-300"
-  >
+                              <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">Time</label>
+                              <input type="time" id="time" value={formData.time} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter event time" required />
+                          </div>
+                          <div>
+                              <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                              <input type="date" id="date" value={formData.date} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter event date" required/>
+                          </div>
+                          <div>
+                              <label htmlFor="minidescription" className="block text-sm font-medium text-gray-700 mb-1">Mini Description</label>
+                              <input type="text" id="minidescription" value={formData.minidescription} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter event mini description" required />
+                          </div>
+                          <div>
+                              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                              <textarea id="description" value={formData.description} onChange={handleChange} rows="4" className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '187.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter event description" required></textarea>
+                          </div>
+                          <div>
+                              <label htmlFor="image" className="m-3">Image</label>
+                              <input type="file" id="image" onChange={handleChange} accept="image/*" required/>
+                          </div>
+                          <div>
+                              <label htmlFor="volunteerLink" className="block text-sm font-medium text-gray-700 mb-1">Volunteer Link</label>
+                              <input type="url" id="volunteerLink" value={formData.volunteerLink} onChange={handleChange}className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }}placeholder="Enter volunteer link"/>
+                          </div>
+                          <div>
+                              <label htmlFor="participateLink" className="block text-sm font-medium text-gray-700 mb-1">Participate Link</label>
+                               <input type="url" id="participateLink" value={formData.participateLink} onChange={handleChange}className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter participate link"/>
+                          </div>
+                          <button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition duration-300">
                               {loading ? (
                                   <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
                                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -347,20 +286,19 @@ const CreateListing = () => {
                               )}
                           </button>
                       </form>
-        {errorMessage && (
-            <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-              {errorMessage}
-            </div>
-          )}
-          {success && (
-            <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-              Event Added Successfully & Notifications sent to Subscribers!
-            </div>
-          )}
-      </div>
-                </div>
-            )}
-        </div>
+                            {errorMessage && (
+                              <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                              {errorMessage}</div>
+                            )}
+                            {success && (
+                              <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                                    Event Added Successfully & Notifications sent to Subscribers!
+                              </div>
+                            )}
+                            </div>
+                          </div>
+                            )}
+    </div>
     );
 }
 export default CreateListing;

@@ -14,7 +14,10 @@ function EventEdit() {
     minidescription: '',
     description: '',
     image: null,
-    clubName: ''
+    clubName: '',
+    volunteerLink: '',
+    participateLink: '',
+
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -66,6 +69,8 @@ function EventEdit() {
       description: event.description,
       clubName: event.clubName,
       image: null,
+      volunteerLink: event.volunteerLink,
+      participateLink: event.participateLink,
     });
     setIsModalOpen(true);
   };
@@ -90,6 +95,8 @@ function EventEdit() {
       minidescription: formData.minidescription,
       description: formData.description,
       clubName: formData.clubName,
+      volunteerLink: formData.volunteerLink,
+      participateLink: formData.participateLink,
     };
   
     if (formData.image) {
@@ -162,6 +169,12 @@ function EventEdit() {
               Description
             </th>
             <th scope="col" className="px-6 py-3">
+              Volunteer Link
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Participate Link
+            </th>
+            <th scope="col" className="px-6 py-3">
               Image
             </th>
             <th scope="col" className="px-6 py-3">
@@ -194,6 +207,12 @@ function EventEdit() {
                 {event.description}
               </td>
               <td className="px-6 py-4">
+                {event.volunteerLink}
+              </td>
+              <td className="px-6 py-4">
+                {event.participateLink}
+              </td>
+              <td className="px-6 py-4">
                 <img src={event.imageUrl} alt={event.eventName} className="w-20 h-20 object-cover rounded-full" />
               </td>
               <td className="px-6 py-4">
@@ -224,6 +243,11 @@ function EventEdit() {
               <input type="text" className="m-3" id="clubName" value={formData.clubName} onChange={handleChange} placeholder="Club Name" required />
               <input type="text" className="m-3" id="minidescription" value={formData.minidescription} onChange={handleChange} placeholder="Mini Description" required />
               <input type="text" className="m-3" id="description" value={formData.description} onChange={handleChange} placeholder="Description" required />
+
+              <input type="text" className="m-3" id="volunteerLink" value={formData.volunteerLink} onChange={handleChange} placeholder="Description" required />
+
+              <input type="text" className="m-3" id="participateLink" value={formData.participateLink} onChange={handleChange} placeholder="Description" required />
+
               <input type="file" className="m-3" id="image" onChange={handleChange} accept="image/*" />
               <button type="submit" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Save Changes</button>
               <button type="button" onClick={closeModal} className="bg-gray-400 hover:bg-gray-500 text-white font-medium py-2 px-4 rounded-lg transition duration-300 ml-2">Cancel</button>

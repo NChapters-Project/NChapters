@@ -153,7 +153,7 @@ function EventEdit() {
             <th scope="col" className="px-6 py-3">
               Event Name
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-12">
               Date
             </th>
             <th scope="col" className="px-6 py-3">
@@ -165,9 +165,9 @@ function EventEdit() {
             <th scope="col" className="px-6 py-3">
               Mini Description
             </th>
-            <th scope="col" className="px-6 py-3">
-              Description
-            </th>
+            <th scope="col" className="px-6 py-3 w-12"> {/* Adjust the width as needed */}
+  Description
+</th>
             <th scope="col" className="px-6 py-3">
               Volunteer Link
             </th>
@@ -191,8 +191,8 @@ function EventEdit() {
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {event.eventName}
               </td>
-              <td className="px-6 py-4">
-                {event.date}
+              <td className="px-6 py-4 w-12">
+              <div className="truncate">{event.date}</div>
               </td>
               <td className="px-6 py-4">
                 {event.time}
@@ -203,9 +203,9 @@ function EventEdit() {
               <td className="px-6 py-4">
                 {event.minidescription}
               </td>
-              <td className="px-6 py-4">
-                {event.description}
-              </td>
+              <td className="px-6 py-4 w-12"> {/* Adjust the width as needed */}
+  <div className="truncate">{event.description}</div>
+</td>
               <td className="px-6 py-4">
                 {event.volunteerLink}
               </td>

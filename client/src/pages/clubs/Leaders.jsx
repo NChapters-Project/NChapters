@@ -66,7 +66,7 @@ const Leaders = () => {
         <div>
             <section className="bg-white dark:bg-gray-900 mt-12">
                 <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-                    <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a Club Leader</h2>
+                    <h2 className="mb-4 text-xl text-center font-bold text-gray-900 dark:text-white">Add a Club Leader</h2>
                     <form className="space-y-4" onSubmit={handleSubmit}>
                         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div className="sm:col-span-2">

@@ -1,11 +1,13 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
-import Feedback from "./Feedback"
+import Feedback from "./Feedback";
+import { useSelector } from 'react-redux';
 
 export default function Eview() {
     const params = useParams();
     const [event, setEvent] = useState(null);
+    const currentUser = useSelector((state) => state.user.currentUser);
 
     useEffect(() => {
         const database = getDatabase();
@@ -23,7 +25,7 @@ export default function Eview() {
     }, [params.id]);
 
     return (
-        <div className="mt-20 mb-10 text-center  place-content-center">
+        <div className="mt-20 mb-10 text-center place-content-center">
             {event && (
               <>
                 <section className="bg-center bg-green-800 bg-blend-multiply mt-5 mb-5 p-5">
@@ -44,7 +46,12 @@ export default function Eview() {
                     </div>
                 </div>
                 <div className="pb-10 ">
-                    <Feedback eventId={event.id} />
+                    {currentUser ? (
+                      <Feedback eventId={event.id} eventName={event.eventName} clubName={event.clubName} />
+
+                    ) : (
+                      <p class="text-center text-bold text-xl text-blue-700">We value your Feedback. Please log in to leave feedback for the event!</p>
+                    )}
                 </div>
               </>
             )}

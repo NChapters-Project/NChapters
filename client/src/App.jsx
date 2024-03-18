@@ -24,6 +24,10 @@ import Eview from "./pages/Eview.jsx";
 import FeedbackEdit from "./pages/Feedbackedit.jsx";
 import Clubview from "./pages/clubs/Clubview.jsx"
 import FeedbacksEdit from "./pages/FeedbacksEdit.jsx";
+import Clubview from "./pages/clubs/Clubview.jsx";
+import CEvents from "./pages/clubs/CEvents.jsx";
+
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -40,15 +44,16 @@ export default function App() {
         <Route path="/otp" element={<Otp />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/EventEdit" element={<EventEdit />} />
-        <Route path="/Clubadd" element={<Clubadd />}  />
+        <Route path="/Clubadd" element={<Clubadd />} />
         <Route path="/ContactList" element={<ContactList />} />
         <Route path="/createListing" element={<CreateListing />} />
-        <Route path ="/leaders" element={<Leaders />} />
-        <Route path ="/editLeaders" element={<EditLeaders />} />
+        <Route path="/leaders" element={<Leaders />} />
+        <Route path="/editLeaders" element={<EditLeaders />} />
         <Route path="/eview/:id/:img/:cname/:des" element={<Eview />} />
         <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
         <Route path="/clubview/:id" component={Clubview} />
         <Route path="/feedbacksedit" element={<FeedbacksEdit />} />
+        <Route path="/cevent/:clubId/:clubName" element={<CEvents />} />
 
         <Route element={<PrivateRoute />}>
 

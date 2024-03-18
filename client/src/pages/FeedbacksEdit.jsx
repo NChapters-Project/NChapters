@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, remove, update } from 'firebase/database';
 import ConfirmationModal from '../components/ConfirmationModel';
 
-function FeedbacksEdit() {
+function FeedbacksEdit({ loggedInLeaderClub }) {
   const [feedbacks, setFeedbacks] = useState([]);
   const [editFeedback, setEditFeedback] = useState(null);
   const [deleteFeedbackId, setDeleteFeedbackId] = useState(null);
@@ -12,32 +12,39 @@ function FeedbacksEdit() {
     clubName: '',
     name: '',
     feedback: '',
-    // Add more fields as needed for feedback editing
+    
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const database = getDatabase();
-    const feedbacksRef = ref(database, 'feedback');
-
+    const feedbacksRef = ref(database, 'feedbacks');
+  
     onValue(feedbacksRef, (snapshot) => {
       const feedbackData = snapshot.val();
       if (feedbackData) {
-        const feedbackList = Object.keys(feedbackData).map((key) => ({
-          id: key,
-          ...feedbackData[key],
-        }));
-        setFeedbacks(feedbackList);
+        const feedbackList = Object.keys(feedbackData)
+          .map((key) => ({
+            id: key,
+            ...feedbackData[key],
+          }));
+        // Filter feedbacks based on the leader's club if loggedInLeaderClub is available
+        if (loggedInLeaderClub) {
+          const filteredFeedbacks = feedbackList.filter((feedback) => feedback.clubName === loggedInLeaderClub);
+          setFeedbacks(filteredFeedbacks);
+        } else {
+          setFeedbacks(feedbackList); // Set all feedbacks if loggedInLeaderClub is not available
+        }
       } else {
         setFeedbacks([]);
       }
     });
-  }, []);
-
+  }, [loggedInLeaderClub]); // Update when the loggedInLeaderClub changes
+  
   const handleDelete = (id) => {
     setDeleteFeedbackId(id);
   };
-
+  
   const confirmDelete = () => {
     const database = getDatabase();
     const feedbackRef = ref(database, `feedback/${deleteFeedbackId}`); // Corrected path

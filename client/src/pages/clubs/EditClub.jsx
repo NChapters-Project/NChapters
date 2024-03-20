@@ -8,6 +8,7 @@ function EditClub() {
   const [editedClubData, setEditedClubData] = useState({
     name: "",
     description: "",
+    imageUrl: "", // New state to store the selected image
   });
 
   useEffect(() => {
@@ -31,7 +32,11 @@ function EditClub() {
 
   const handleEditClub = (club) => {
     setEditingClub(club);
-    setEditedClubData({ name: club.name, description: club.description });
+    setEditedClubData({
+      name: club.name,
+      description: club.description,
+      imageUrl: club.imageUrl, // Set the initial image URL
+    });
   };
 
   const handleSaveEdit = () => {
@@ -60,6 +65,15 @@ function EditClub() {
       .catch((error) => {
         console.error("Error deleting club:", error);
       });
+  };
+
+  // Function to handle image change
+  const handleImageChange = (event) => {
+    const selectedImage = event.target.files[0];
+    if (selectedImage) {
+      const imageUrl = URL.createObjectURL(selectedImage);
+      setEditedClubData({ ...editedClubData, imageUrl }); // Update imageUrl in state
+    }
   };
 
   return (
@@ -105,6 +119,12 @@ function EditClub() {
                   rows={4}
                   style={{ resize: "none" }}
                 ></textarea>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />{" "}
+                {/* Input field for selecting a new image */}
                 <div className="flex">
                   <button
                     type="button"
@@ -144,7 +164,8 @@ function EditClub() {
                   <button
                     type="button"
                     onClick={() => handleDeleteClub(club.id)}
-                    className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                    className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg
+                    -gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                     style={{ maxWidth: "220px", marginTop: "1rem" }}
                   >
                     Delete Club
@@ -155,8 +176,8 @@ function EditClub() {
           </div>
           <img
             className="object-cover w-full h-96 md:h-[20rem] md:w-[35rem]"
-            src={club.imageUrl}
-            alt={club.clubName}
+            src={editingClub === club ? editedClubData.imageUrl : club.imageUrl}
+            alt={club.name}
           />
         </div>
       ))}

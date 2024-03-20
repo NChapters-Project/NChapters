@@ -236,6 +236,9 @@ setIsLeader(isLeader);
                               <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
                             </li>
                             <li>
+                              <a href="/feedbacksedit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Feedbacks</a>
+                            </li>
+                            <li>
                               <a href="/Clubadd" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Clubs</a>
                             </li>
                             <li>
@@ -271,6 +274,9 @@ setIsLeader(isLeader);
           </li>
           <li>
             <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
+          </li>
+          <li>
+            <a href="/feedbacksedit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Feedbacks</a>
           </li>
         </ul>
       </div>

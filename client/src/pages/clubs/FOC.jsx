@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, push } from 'firebase/database';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 function FOC() {
   const [clubs, setClubs] = useState([]);
@@ -27,14 +28,14 @@ function FOC() {
       }
     });
   }, []); // Empty dependency array ensures this effect runs only once
-  
+
   const subscribeToNotifications = (event, clubId, clubName) => {
     event.preventDefault(); // Prevent default behavior of the button
     const email = prompt('Enter your email:');
     if (email) {
       const database = getDatabase();
       const subscribersRef = ref(database, 'subscribers');
-  
+
       // Push the subscriber email along with the club ID and name to Firebase
       push(subscribersRef, { email, clubId, clubName })
         .then(() => {
@@ -57,7 +58,6 @@ function FOC() {
         });
     }
   };
-  
 
   return (
     <div>
@@ -74,7 +74,7 @@ function FOC() {
         </div>
       </section>
       {clubs.map((club, index) => (
-        <a key={club.id} href={`/clubs/${club.id}`} className={`flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 ml-3 mr-3 ${index % 2 === 0 ? '' : 'md:ml-auto'}`}>
+        <a key={club.id} href={`/cevent/${club.id}/${club.name}`} className={`flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl min-h-[20rem] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mt-20 ml-3 mr-3 ${index % 2 === 0 ? '' : 'md:ml-auto'}`} hiidden>
           {index % 2 === 0 ? (
             <>
               <img className="object-cover w-full rounded-t-lg h-96 md:h-[20rem] md:w-[35rem] md:rounded-none md:rounded-s-lg" src={club.imageUrl} alt={club.clubName} />
@@ -82,11 +82,10 @@ function FOC() {
                 <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{club.name}</h5>
                 <p className="mb-3 text-xl font-normal text-gray-700 dark:text-gray-400">{club.description}</p>
                 <div className="flex">
-                  <button type="button" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" style={{ maxWidth: '220px', marginTop: '1rem' }}>Explore More</button>
+                  <Link to={`/cevent/${club.id}/${club.name}`} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" style={{ maxWidth: '220px', marginTop: '1rem' }}>Explore More</Link>
                   <button
                     type="button"
                     onClick={(event) => subscribeToNotifications(event, club.id, club.name)}
-
                     className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                     style={{ maxWidth: '220px', marginTop: '1rem' }}
                   >
@@ -105,7 +104,6 @@ function FOC() {
                   <button
                     type="button"
                     onClick={(event) => subscribeToNotifications(event, club.id, club.name)}
-
                     className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                     style={{ maxWidth: '220px', marginTop: '1rem' }}
                   >

@@ -17,7 +17,6 @@ function EventEdit() {
     clubName: '',
     volunteerLink: '',
     participateLink: '',
-
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -76,11 +75,11 @@ function EventEdit() {
   };
 
   const handleChange = (e) => {
-    if (e.target.type === 'file') {
-      setFormData({ ...formData, image: e.target.files[0] });
-    } else {
-      setFormData({ ...formData, [e.target.id]: e.target.value });
-    }
+    const { id, value, type } = e.target;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [id]: type === 'file' ? e.target.files[0] : value
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -88,16 +87,7 @@ function EventEdit() {
     const database = getDatabase();
     const eventRef = ref(database, `events/${editEvent.id}`);
   
-    const updatedEventData = {
-      eventName: formData.eventName,
-      time: formData.time,
-      date: formData.date,
-      minidescription: formData.minidescription,
-      description: formData.description,
-      clubName: formData.clubName,
-      volunteerLink: formData.volunteerLink,
-      participateLink: formData.participateLink,
-    };
+    const updatedEventData = { ...formData }; // Spread formData directly
   
     if (formData.image) {
       const storage = getStorage();
@@ -153,7 +143,7 @@ function EventEdit() {
             <th scope="col" className="px-6 py-3">
               Event Name
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-12">
               Date
             </th>
             <th scope="col" className="px-6 py-3">
@@ -165,7 +155,7 @@ function EventEdit() {
             <th scope="col" className="px-6 py-3">
               Mini Description
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-12">
               Description
             </th>
             <th scope="col" className="px-6 py-3">
@@ -191,8 +181,8 @@ function EventEdit() {
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {event.eventName}
               </td>
-              <td className="px-6 py-4">
-                {event.date}
+              <td className="px-6 py-4 w-12">
+              <div className="truncate">{event.date}</div>
               </td>
               <td className="px-6 py-4">
                 {event.time}
@@ -203,8 +193,8 @@ function EventEdit() {
               <td className="px-6 py-4">
                 {event.minidescription}
               </td>
-              <td className="px-6 py-4">
-                {event.description}
+              <td className="px-6 py-4 w-12">
+                <div className="truncate">{event.description}</div>
               </td>
               <td className="px-6 py-4">
                 {event.volunteerLink}
@@ -213,47 +203,56 @@ function EventEdit() {
                 {event.participateLink}
               </td>
               <td className="px-6 py-4">
-                <img src={event.imageUrl} alt={event.eventName} className="w-20 h-20 object-cover rounded-full" />
+                {event.imageUrl && <img src={event.imageUrl} alt="Event" className="h-10 w-10 rounded-full" />}
               </td>
-              <td className="px-6 py-4">
-                <button onClick={() => handleEdit(event)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <button onClick={() => handleEdit(event)} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400">
+                  Edit
+                </button>
               </td>
-              <td className="px-6 py-4">
-                <button onClick={() => handleDelete(event.id)} className="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <button onClick={() => handleDelete(event.id)} className="text-red-600 hover:text-red-900 dark:text-red-400">
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <ConfirmationModal
-        isOpen={!!deleteEventId}
-        title="Delete Event"
-        message="Are you sure you want to delete this event?"
-        onConfirm={confirmDelete}
-        onCancel={cancelDelete}
-      />
-      {isModalOpen && editEvent && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold mb-4">Edit Event</h2>
-            <form onSubmit={handleSubmit} className="mt-4">
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+         <div className="bg-white p-6 dark:bg-gray-800 dark:text-white w-full sm:w-96 overflow-y-auto max-h-full">
+            <h2 className="text-2xl text-center font-semibold mb-4">Edit Event</h2>
+            <form onSubmit={handleSubmit}>
               <input type="text" className="m-3" id="eventName" value={formData.eventName} onChange={handleChange} placeholder="Event Name" required />
-              <input type="text" className="m-3" id="date" value={formData.date} onChange={handleChange} placeholder="Date" required />
               <input type="text" className="m-3" id="time" value={formData.time} onChange={handleChange} placeholder="Time" required />
-              <input type="text" className="m-3" id="clubName" value={formData.clubName} onChange={handleChange} placeholder="Club Name" required />
+              <input type="date" className="m-3" id="date" value={formData.date} onChange={handleChange} placeholder="Date" required />
               <input type="text" className="m-3" id="minidescription" value={formData.minidescription} onChange={handleChange} placeholder="Mini Description" required />
-              <input type="text" className="m-3" id="description" value={formData.description} onChange={handleChange} placeholder="Description" required />
-
-              <input type="text" className="m-3" id="volunteerLink" value={formData.volunteerLink} onChange={handleChange} placeholder="Description" required />
-
-              <input type="text" className="m-3" id="participateLink" value={formData.participateLink} onChange={handleChange} placeholder="Description" required />
-
+              <textarea className="m-3" id="description" value={formData.description} onChange={handleChange} placeholder="Description" required />
+              <input type="text" className="m-3" id="clubName" value={formData.clubName} onChange={handleChange} placeholder="Club Name" required />
+              <input type="url" className="m-3" id="volunteerLink" value={formData.volunteerLink} onChange={handleChange} placeholder="Volunteer Link" required />
+              <input type="url" className="m-3" id="participateLink" value={formData.participateLink} onChange={handleChange} placeholder="Participate Link" required />
               <input type="file" className="m-3" id="image" onChange={handleChange} accept="image/*" />
-              <button type="submit" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Save Changes</button>
-              <button type="button" onClick={closeModal} className="bg-gray-400 hover:bg-gray-500 text-white font-medium py-2 px-4 rounded-lg transition duration-300 ml-2">Cancel</button>
+              <div className="flex justify-end">
+                <button type="submit" className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700 mr-2">
+                  Save
+                </button>
+                <button type="button" onClick={closeModal} className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:outline-none focus:bg-gray-400">
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         </div>
+      )}
+      {deleteEventId && (
+        <ConfirmationModal
+          isOpen={true}
+          title="Delete Event"
+          message="Are you sure you want to delete this event?"
+          onConfirm={confirmDelete}
+          onCancel={cancelDelete}
+        />
       )}
     </div>
   );

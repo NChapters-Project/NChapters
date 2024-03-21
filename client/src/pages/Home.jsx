@@ -99,15 +99,15 @@ useEffect(() => {
     </div>
 
     <div class="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow bg-gray-800 dark:border-gray-700 mb-4 lg:ml-12 md:mb-0">
-        <a href="#">
+        <a href="/FOB">
             <img class="rounded-t-lg" src="src/images/fob1.jpg"  alt="" />
         </a>
         <div class="p-5">
-            <a href="#">
+            <a href="/FOB">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOB Clubs & Societies</h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
-            <a href="/Comingsoon" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <a href="/FOB" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                 Explore Now
                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -116,15 +116,15 @@ useEffect(() => {
         </div>
     </div>
     <div class="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow bg-gray-800 dark:border-gray-700 mb-4 lg:ml-12 md:mb-0">
-        <a href="#">
+        <a href="/FOE">
             <img class="rounded-t-lg" src="src/images/engi.jpg"  alt="" />
         </a>
         <div class="p-5">
-            <a href="#">
+            <a href="/FOE">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOE Clubs & Societies</h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
-            <a href="/Comingsoon" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <a href="/FOE" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                 Explore Now
                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -133,15 +133,15 @@ useEffect(() => {
         </div>
     </div>
     <div class="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow bg-gray-800 dark:border-gray-700 mb-4 lg:ml-12 md:mb-0">
-        <a href="#">
+        <a href="/FOS">
             <img class="rounded-t-lg" src="src/images/fos.jpg"  alt="" />
         </a>
         <div class="p-5">
-            <a href="#">
+            <a href="/FOS">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOS Clubs & Societies</h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
-            <a href="/Comingsoon" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ">
+            <a href="/FOS" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ">
                 Explore Now
                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -152,15 +152,15 @@ useEffect(() => {
     </div>
     <div class="flex flex-col items-center md:flex-row justify-center mx-auto mt-12">
     <div class="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow bg-gray-800 dark:border-gray-700 mb-4 md:mb-0">
-        <a href="#">
+        <a href="/international">
             <img class="rounded-t-lg" src="src/images/aie.jpg"  alt="" />
         </a>
         <div class="p-5">
-            <a href="#">
+            <a href="/international">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">International Clubs & Societies</h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
-            <a href="/Comingsoon" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <a href="/international" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                 Explore Now
                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -169,15 +169,15 @@ useEffect(() => {
         </div>
     </div>
     <div class="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow bg-gray-800 dark:border-gray-700 mb-4 lg:ml-12 md:mb-0">
-        <a href="#">
+        <a href="/Religous">
             <img class="rounded-t-lg" src="src/images/bud.jpg"  alt="" />
         </a>
         <div class="p-5">
-            <a href="#">
+            <a href="/Religous">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Religious Clubs & Societies</h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
-            <a href="/Comingsoon" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <a href="/Religous" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                 Explore Now
                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -186,15 +186,15 @@ useEffect(() => {
         </div>
     </div>
     <div class="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow bg-gray-800 dark:border-gray-700 mb-4 lg:ml-12 md:mb-0">
-        <a href="#">
+        <a href="/activitybased">
             <img class="rounded-t-lg" src="src/images/act.jpg"  alt="" />
         </a>
         <div class="p-5">
-            <a href="#">
+            <a href="/activitybased">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Activity Based Clubs & Societies</h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
-            <a href="/Comingsoon" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <a href="/activitybased" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                 Explore Now
                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -203,15 +203,15 @@ useEffect(() => {
         </div>
     </div>
     <div class="w-64 h-80 bg-white border border-gray-200 rounded-lg shadow bg-gray-800 dark:border-gray-700 mb-4 lg:ml-12 md:mb-0">
-        <a href="#">
+        <a href="/careerguidance">
             <img class="rounded-t-lg" src="src/images/career.webp"  alt="" />
         </a>
         <div class="p-5">
-            <a href="#">
+            <a href="/careerguidance">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Career Guidance Unit (NForce) </h5>
             </a>
             {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
-            <a href="/Comingsoon" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <a href="/careerguidance" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                 Explore Now
                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>

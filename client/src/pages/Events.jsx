@@ -60,7 +60,7 @@ function Events() {
         </div>
 
         {/* Display loading animation if events are still loading */}
-        {loading && <div className="flex justify-center items-center text-2xl h-32">Loading...</div>}
+        {loading && <div className="flex justify-center items-center text-2xl h-32">Loading Events...</div>}
 
         {/* Display filtered events */}
         {!loading && (

@@ -54,7 +54,7 @@ function CEvents() {
      {/* Dropdown to select club */}
      <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 ">
         {/* Display loading animation if events are still loading */}
-        {loading && <div className="flex justify-center items-center text-2xl h-32">Loading...</div>}
+        {loading && <div className="flex justify-center items-center text-2xl h-32">Loading Events...</div>}
 
 
         {/* Display filtered events */}

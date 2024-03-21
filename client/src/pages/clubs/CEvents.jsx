@@ -6,6 +6,7 @@ function CEvents() {
   const [events, setEvents] = useState([]);
   const [selectedClub, setSelectedClub] = useState(''); // State to store selected club
   const [clubNames, setClubNames] = useState([]); // State to store unique club names
+  const [loading, setLoading] = useState(true); // State to track loading state
   const { clubName } = useParams(); // Extract clubName from URL
 
   useEffect(() => {
@@ -24,6 +25,7 @@ function CEvents() {
 
       setEvents(eventList);
       setClubNames(Array.from(uniqueClubNames)); // Converting Set to Array and setting club names
+      setLoading(false); // Set loading state to false once events are loaded
     });
 
     // Set selected club to the one from URL
@@ -48,13 +50,18 @@ function CEvents() {
         </div>
       </section>
 
-      {/* Dropdown to select club */}
-      <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 ">
+
+     {/* Dropdown to select club */}
+     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 ">
+        {/* Display loading animation if events are still loading */}
+        {loading && <div className="flex justify-center items-center text-2xl h-32">Loading...</div>}
 
 
         {/* Display filtered events */}
-
+        {!loading && (
+          <div>
         {filteredEvents.length === 0 ? (
+           
           <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 text-center">
             <p className="text-2xl font-bold text-green-800">No events at the moment.</p>
           </div>
@@ -110,7 +117,10 @@ function CEvents() {
           </div>
         )}
       </div>
+      )}
     </div>
+    </div>
+    
   );
 }
 

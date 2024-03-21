@@ -1,9 +1,8 @@
-// Feedback Component
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, onValue } from 'firebase/database';
 import { Link } from 'react-router-dom';
 
-const Feedback = ({ eventId, eventName, clubName }) => {
+const Feedback = ({ eventId, eventName, clubName, leaderClub }) => {
     const [formData, setFormData] = useState({
         name: '',
         feedback: '',
@@ -47,14 +46,14 @@ const Feedback = ({ eventId, eventName, clubName }) => {
             const data = snapshot.val();
             if (data) {
                 const feedbackArray = Object.entries(data)
-                    .filter(([_, feedback]) => feedback.eventId === eventId)
+                    .filter(([_, feedback]) => feedback.eventId === eventId && feedback.clubName === leaderClub)
                     .map(([feedbackId, feedback]) => ({ ...feedback, id: feedbackId }));
                 setFeedbackData(feedbackArray);
             } else {
                 setFeedbackData([]);
             }
         });
-    }, [eventId]);
+    }, [eventId, leaderClub]);
 
     return (
         <>

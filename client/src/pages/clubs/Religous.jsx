@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, push } from 'firebase/database';
 import { Link } from 'react-router-dom';
 
-function FOB() {
+function Religous() {
   const [clubs, setClubs] = useState([]);
   const [loading, setLoading] = useState(true); // Track loading state
   const [subscribedEmails, setSubscribedEmails] = useState({});
@@ -22,8 +22,8 @@ function FOB() {
           ...clubsData[key]
         }));
         // Filter clubs whose category is "FOC"
-        const fobClubs = clubsArray.filter(club => club.category === "FOB");
-        setClubs(fobClubs);
+        const religousClubs = clubsArray.filter(club => club.category === "Religous");
+        setClubs(religousClubs);
         setLoading(false); // Update loading state after data fetch
       } else {
         setClubs([]);
@@ -72,7 +72,7 @@ function FOB() {
       )}
       <section className="bg-center bg-no-repeat bg-[url(src/images/com.jpg)] bg-gray-700 bg-blend-multiply mt-12">
         <div className="px-4 mx-auto max-w-screen-xl md:h-[20rem] sm:h-[15rem] text-center py-12 lg:py-20">
-          <h3 className="mt-8 text-2xl font-extrabold tracking-tight leading-none text-white md:text-2xl lg:text-5xl">Faculty of Business</h3>
+          <h3 className="mt-8 text-2xl font-extrabold tracking-tight leading-none text-white md:text-2xl lg:text-5xl">Religous</h3>
           <p className="mt-6 text-lg font-normal text-gray-300 lg:text-3xl sm:px-16 lg:px-48">Clubs & Societies</p>
         </div>
       </section>
@@ -129,4 +129,4 @@ function FOB() {
   );
 }
 
-export default FOB;
+export default Religous;

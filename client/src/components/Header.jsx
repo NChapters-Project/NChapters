@@ -122,6 +122,8 @@ setIsLeader(isLeader);
   };
   return (
     <div>
+     
+
         <nav class="bg-white border-gray-600 fixed w-full z-20 top-0 start-0 border-gray-600 bg-white mt-0 shadow-md">
           <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3 ">
             <h1 class="flex flex-wrap text-xl font-bold cursor-pointer sm:text-2xl md:text-3xl">
@@ -236,9 +238,6 @@ setIsLeader(isLeader);
                               <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
                             </li>
                             <li>
-                              <a href="/feedbacksedit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Feedbacks</a>
-                            </li>
-                            <li>
                               <a href="/Clubadd" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Clubs</a>
                             </li>
                             <li>
@@ -276,7 +275,7 @@ setIsLeader(isLeader);
             <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
           </li>
           <li>
-            <a href="/feedbacksedit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Feedbacks</a>
+            <a href="/feedbacksEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
           </li>
         </ul>
       </div>

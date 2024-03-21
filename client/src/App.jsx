@@ -56,13 +56,14 @@ export default function App() {
         <Route path="/editLeaders" element={<EditLeaders />} />
         <Route path="/eview/:id/:img/:cname/:des" element={<Eview />} />
         <Route path="/editclubs" element={<EditClubs />} />
+
         <Route path="/feedbackedit/:feedbackId/:eventId"element={<FeedbackEdit />}/>
         <Route path="/clubview/:id" component={Clubview} />
         <Route path="/editclub" element={<EditClub />} />
         <Route path="/foe" element={<FOE />} />
         <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
         <Route path="/clubview/:id" element={<Clubview />} />
-        <Route path="/feedbacksedit" element={<FeedbacksEdit />} />
+        <Route path="/feedbacksedit/:clubName" element={<FeedbacksEdit />} />
         <Route path="/cevent/:clubId/:clubName" element={<CEvents />} />
         <Route path="/fos" element={<FOS />} />
         <Route path="/religous" element={<Religous />} />

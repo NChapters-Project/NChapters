@@ -6,6 +6,7 @@ function Events() {
   const [events, setEvents] = useState([]);
   const [selectedClub, setSelectedClub] = useState(''); // State to store selected club
   const [clubNames, setClubNames] = useState([]); // State to store unique club names
+  const [loading, setLoading] = useState(true); // State to track loading state
 
   useEffect(() => {
     const database = getDatabase();
@@ -23,6 +24,7 @@ function Events() {
 
       setEvents(eventList);
       setClubNames(Array.from(uniqueClubNames)); // Converting Set to Array and setting club names
+      setLoading(false); // Set loading state to false once events are loaded
     });
   }, []);
 
@@ -57,30 +59,34 @@ function Events() {
           </select>
         </div>
 
-        {/* Display filtered events */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-          {filteredEvents.map((event) => {
-            const eventId = event.id;
-            const eventImageUrl = event.imageUrl;
+        {/* Display loading animation if events are still loading */}
+        {loading && <div className="flex justify-center items-center text-2xl h-32">Loading Events...</div>}
 
-            return (
-              <div key={eventId} className="rounded overflow-hidden shadow-lg flex flex-col">
-                <div className="relative">
-                  <img className="w-full" src={eventImageUrl} alt="Event" />
-                  <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
-                  <div className="text-xs absolute top-0 right-0 bg-indigo-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
-                    {event.clubName}
+        {/* Display filtered events */}
+        {!loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+            {filteredEvents.map((event) => {
+              const eventId = event.id;
+              const eventImageUrl = event.imageUrl;
+
+              return (
+                <div key={eventId} className="rounded overflow-hidden shadow-lg flex flex-col">
+                  <div className="relative">
+                    <img className="w-full" src={eventImageUrl} alt="Event" />
+                    <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
+                    <div className="text-xs absolute top-0 right-0 bg-indigo-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
+                      {event.clubName}
+                    </div>
                   </div>
-                </div>
-                <div className="px-6 py-4 mb-auto">
-                  <Link to={`/eview/${eventId}/${encodeURIComponent(eventImageUrl)}/${event.clubName}/${event.description}`} className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{event.eventName}</Link>
-                  <p className="text-gray-500 text-sm mb-2">{event.minidescription}</p>
-                  <Link className="text-green-700 font-extrabold" to={`/eview/${eventId}/${encodeURIComponent(eventImageUrl)}/${event.clubName}/${event.description}`}>See more details... </Link>
-                </div>
-                <div className="flex justify-center mb-2">
-                  <a href={event.participateLink} target="_blank" rel="noopener noreferrer" className="text-blue border-2 border-blue-500 bg-gradient-to-r from-white-500 via-white-600 to-white-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Participate</a>
-                  <a href={event.volunteerLink} target="_blank" rel="noopener noreferrer" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2  ">Volunteer</a>
-                </div>
+                  <div className="px-6 py-4 mb-auto">
+                    <Link to={`/eview/${eventId}/${encodeURIComponent(eventImageUrl)}/${event.clubName}/${event.description}`} className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{event.eventName}</Link>
+                    <p className="text-gray-500 text-sm mb-2">{event.minidescription}</p>
+                    <Link className="text-green-700 font-extrabold" to={`/eview/${eventId}/${encodeURIComponent(eventImageUrl)}/${event.clubName}/${event.description}`}>See more details... </Link>
+                  </div>
+                  <div className="flex justify-center mb-2">
+                    <a href={event.participateLink} target="_blank" rel="noopener noreferrer" className="text-blue border-2 border-blue-500 bg-gradient-to-r from-white-500 via-white-600 to-white-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Participate</a>
+                    <a href={event.volunteerLink} target="_blank" rel="noopener noreferrer" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2  ">Volunteer</a>
+                  </div>
                 <div className="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
                   <span className="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
                     <svg className="h-6 mr-3" version="1.1" id="Capa_1" viewBox="0 0 512 512" style={{ enableBackground: "new 0 0 455.005 455.005" }} xmlSpace="preserve">
@@ -107,9 +113,11 @@ function Events() {
             );
           })}
         </div>
-      </div>
+        )}</div>
     </div>
   );
+  
 }
+
 
 export default Events;

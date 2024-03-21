@@ -177,23 +177,23 @@ setIsLeader(isLeader);
                             <a href="/FOB" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Business</a>
                           </li>
                           <li>
-                            <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Engineering</a>
+                            <a href="/FOE" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Engineering</a>
                           </li>
                           <li>
-                            <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Science</a>
+                            <a href="/FOS" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Faculty of Science</a>
                           </li>
                           
                         </ul>
                       </div>
                     </li>
                     <li>
-                        <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Religous Clubs</a>
+                        <a href="/Religous" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Religous Clubs</a>
                     </li>
                     <li>
-                        <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sports Clubs</a>
+                        <a href="/activitybased" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Activity Based Clubs</a>
                     </li>
                     <li>
-                        <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Other Clubs</a>
+                        <a href="/international" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">International Clubs</a>
                     </li>
                   </ul>
                   

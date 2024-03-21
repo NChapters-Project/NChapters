@@ -22,8 +22,7 @@ function EditClub() {
           id: key,
           ...clubsData[key],
         }));
-        const focClubs = clubsArray.filter((club) => club.category === "FOC");
-        setClubs(focClubs);
+        setClubs(clubsArray);
       } else {
         setClubs([]);
       }
@@ -68,8 +67,8 @@ function EditClub() {
   };
 
   // Function to handle image change
-  const handleImageChange = (event) => {
-    const selectedImage = event.target.files[0];
+  const handleImageChange = (clubs) => {
+    const selectedImage = clubs.target.files[0];
     if (selectedImage) {
       const imageUrl = URL.createObjectURL(selectedImage);
       setEditedClubData({ ...editedClubData, imageUrl }); // Update imageUrl in state

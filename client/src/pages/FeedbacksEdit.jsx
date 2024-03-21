@@ -18,7 +18,7 @@ function FeedbacksEdit({ loggedInLeaderClub }) {
 
   useEffect(() => {
     const database = getDatabase();
-    const feedbacksRef = ref(database, 'feedbacks');
+    const feedbacksRef = ref(database, 'feedback');
   
     onValue(feedbacksRef, (snapshot) => {
       const feedbackData = snapshot.val();

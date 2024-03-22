@@ -76,6 +76,7 @@ function EditLeaders() {
         const updatedLeadersData = {
             name: formData.name,
             email: formData.email,
+            username: formData.username,
             club: formData.club
         };
 

@@ -79,16 +79,6 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-
-
-
-
-        </div> 
-    </div>
-</section>
-        
-        
-
    
 
     <div class="flex flex-col items-center md:flex-row justify-center mx-auto mt-8">

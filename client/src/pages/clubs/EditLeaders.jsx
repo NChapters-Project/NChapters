@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getDatabase, ref, onValue,remove,update, set } from 'firebase/database';
-import {getStorage, ref as storageRef, getDownloadURL, uploadBytes} from 'firebase/storage';
+import { getDatabase, ref, onValue, remove, update, set } from 'firebase/database';
+import { getStorage, ref as storageRef, getDownloadURL, uploadBytes } from 'firebase/storage';
 import ConfirmationModal from '../../components/ConfirmationModel';
-function EditLeaders () {
+function EditLeaders() {
     const [leaders, setLeaders] = useState([]);
     const [editLeaders, setEditLeaders] = useState(null);
     const [deleteLeadersId, setDeleteLeadersId] = useState(null);
@@ -47,83 +47,83 @@ function EditLeaders () {
                 setDeleteLeadersId(null);
             });
     };
-        const cancelDelete = () => {
-            setDeleteLeadersId(null);
+    const cancelDelete = () => {
+        setDeleteLeadersId(null);
+    };
+
+    const handleEdit = (leaders) => {
+        setEditLeaders(leaders);
+        setFormData({
+            name: leaders.name,
+            email: leaders.email,
+            club: leaders.club
+        });
+        setIsModalOpen(true);
+    };
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [id]: value
+        }));
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const database = getDatabase();
+        const leadersRef = ref(database, `leaders/${editLeaders.id}`);
+
+        const updatedLeadersData = {
+            name: formData.name,
+            email: formData.email,
+            club: formData.club
         };
 
-        const handleEdit = (leaders) => {
-            setEditLeaders(leaders);
-            setFormData({
-                name: leaders.name,
-                email: leaders.email,
-                club: leaders.club
-            });
-            setIsModalOpen(true);
-        };
+        // Check if an image was uploaded
+        if (formData.image) {
+            const storage = getStorage();
+            const imagesRef = storageRef(storage, `images/${formData.image.name}`);
 
-        const handleChange = (e) => {
-            const { id, value } = e.target;
-            setFormData(prevFormData => ({
-                ...prevFormData,
-                [id]: value
-            }));
-        };
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            const database = getDatabase();
-            const leadersRef = ref(database, `leaders/${editLeaders.id}`);
-        
-            const updatedLeadersData = {
-                name: formData.name,
-                email: formData.email,
-                club: formData.club
-            };
-        
-            // Check if an image was uploaded
-            if (formData.image) {
-                const storage = getStorage();
-                const imagesRef = storageRef(storage, `images/${formData.image.name}`);
-        
-                // Upload the image to Firebase Storage
-                uploadBytes(imagesRef, formData.image)
-                    .then((snapshot) => {
-                        return getDownloadURL(snapshot.ref);
-                    })
-                    .then((imageUrl) => {
-                        // Once the image is uploaded, update the event data with the image URL
-                        updatedLeadersData.imageUrl = imageUrl;
-        
-                        // Update the event data in the Firebase Realtime Database
-                        update(leadersRef, updatedLeadersData)
-                            .then(() => {
-                                console.log('Leader updated successfully!');
-                                setIsModalOpen(false); // Close the modal
-                                setEditLeaders(null); // Reset editLeaders state
-                            })
-                            .catch((error) => {
-                                console.error('Error updating leader: ', error);
-                            });
-                    })
-                    .catch((error) => {
-                        console.error('Error uploading image: ', error);
-                    });
-            } else {
-                // If no image was uploaded, update the leader data directly
-                update(leadersRef, updatedLeadersData)
-                    .then(() => {
-                        console.log('Leader updated successfully!');
-                        setIsModalOpen(false); // Close the modal
-                        setEditLeaders(null); // Reset editLeaders state
-                    })
-                    .catch((error) => {
-                        console.error('Error updating leader: ', error);
-                    });
-            }
-        };
-        
-const closeModal = () => {
-    setIsModalOpen(false);
-  };
+            // Upload the image to Firebase Storage
+            uploadBytes(imagesRef, formData.image)
+                .then((snapshot) => {
+                    return getDownloadURL(snapshot.ref);
+                })
+                .then((imageUrl) => {
+                    // Once the image is uploaded, update the event data with the image URL
+                    updatedLeadersData.imageUrl = imageUrl;
+
+                    // Update the event data in the Firebase Realtime Database
+                    update(leadersRef, updatedLeadersData)
+                        .then(() => {
+                            console.log('Leader updated successfully!');
+                            setIsModalOpen(false); // Close the modal
+                            setEditLeaders(null); // Reset editLeaders state
+                        })
+                        .catch((error) => {
+                            console.error('Error updating leader: ', error);
+                        });
+                })
+                .catch((error) => {
+                    console.error('Error uploading image: ', error);
+                });
+        } else {
+            // If no image was uploaded, update the leader data directly
+            update(leadersRef, updatedLeadersData)
+                .then(() => {
+                    console.log('Leader updated successfully!');
+                    setIsModalOpen(false); // Close the modal
+                    setEditLeaders(null); // Reset editLeaders state
+                })
+                .catch((error) => {
+                    console.error('Error updating leader: ', error);
+                });
+        }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-32 ml-12 mr-12">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -135,6 +135,9 @@ const closeModal = () => {
                         </th>
                         <th scope="col" className="px-6 py-3">
                             Leader's Email
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Leader's Username
                         </th>
                         <th scope="col" className="px-6 py-3">
                             Club
@@ -158,6 +161,9 @@ const closeModal = () => {
                                 {leader.email}
                             </td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {leader.username}
+                            </td>
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {leader.club}
                             </td>
                             <td className="px-6 py-4">
@@ -171,28 +177,28 @@ const closeModal = () => {
                 </tbody>
             </table>
             <ConfirmationModal
-        isOpen={!!deleteLeadersId}
-        title="Delete Event"
-        message="Are you sure you want to delete this event?"
-        onConfirm={confirmDelete}
-        onCancel={cancelDelete}
-      />
-     {isModalOpen && editLeaders && (
-      <div className="popup-container fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold mb-4">Edit Event</h2>
-            {/* Form for editing event */}
-            <form onSubmit={handleSubmit} className="mt-4">
-              <input type="text" className="m-3" id="name" value={formData.name} onChange={handleChange} placeholder="Leader's Name" required />
-<input type="email" className="m-3" id="email" value={formData.email} onChange={handleChange} placeholder="Leader's Email" required />
-<input type="text" className="m-3" id="club" value={formData.club} onChange={handleChange} placeholder="Club" required />
-              
-              <button type="submit" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Save Changes</button>
-              <button type="button" onClick={closeModal} className="bg-gray-400 hover:bg-gray-500 text-white font-medium py-2 px-4 rounded-lg transition duration-300 ml-2">Cancel</button>
-            </form>
-          </div>
-        </div>
-      )}
+                isOpen={!!deleteLeadersId}
+                title="Delete Event"
+                message="Are you sure you want to delete this event?"
+                onConfirm={confirmDelete}
+                onCancel={cancelDelete}
+            />
+            {isModalOpen && editLeaders && (
+                <div className="popup-container fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-8 rounded-lg shadow-md">
+                        <h2 className="text-lg font-semibold mb-4">Edit Event</h2>
+                        {/* Form for editing event */}
+                        <form onSubmit={handleSubmit} className="mt-4">
+                            <input type="text" className="m-3" id="name" value={formData.name} onChange={handleChange} placeholder="Leader's Name" required />
+                            <input type="email" className="m-3" id="email" value={formData.email} onChange={handleChange} placeholder="Leader's Email" required />
+                            <input type="text" className="m-3" id="club" value={formData.club} onChange={handleChange} placeholder="Club" required />
+
+                            <button type="submit" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Save Changes</button>
+                            <button type="button" onClick={closeModal} className="bg-gray-400 hover:bg-gray-500 text-white font-medium py-2 px-4 rounded-lg transition duration-300 ml-2">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

@@ -28,14 +28,14 @@ const Feedback = ({ eventId, eventName, clubName, leaderClub }) => {
             name: formData.name,
             feedback: formData.feedback
         })
-        .then(() => {
-            console.log('Data successfully submitted!');
-            setFormData({ name: '', feedback: '' });
-            alert('Feedback submitted successfully!');
-        })
-        .catch((error) => {
-            console.error('Error submitting data: ', error);
-        });
+            .then(() => {
+                console.log('Data successfully submitted!');
+                setFormData({ name: '', feedback: '' });
+                alert('Feedback submitted successfully!');
+            })
+            .catch((error) => {
+                console.error('Error submitting data: ', error);
+            });
     };
 
     useEffect(() => {
@@ -46,18 +46,18 @@ const Feedback = ({ eventId, eventName, clubName, leaderClub }) => {
             const data = snapshot.val();
             if (data) {
                 const feedbackArray = Object.entries(data)
-                    .filter(([_, feedback]) => feedback.eventId === eventId && feedback.clubName === leaderClub)
+                    .filter(([_, feedback]) => feedback.eventId === eventId && feedback.eventName === eventName)
                     .map(([feedbackId, feedback]) => ({ ...feedback, id: feedbackId }));
                 setFeedbackData(feedbackArray);
             } else {
                 setFeedbackData([]);
             }
         });
-    }, [eventId, leaderClub]);
+    }, [eventId, eventName]);
 
     return (
         <>
-            <div className="mt-5  ml-2 mr-2 text-left ">
+            <div className="mt-5  ml-2 mr-2 text-left">
                 <div className="mb-5 mb-8 ml-10">
                     <h1 className="text-green-700 text-4xl font-bold txt">Feedback Section</h1>
                 </div>
@@ -85,7 +85,6 @@ const Feedback = ({ eventId, eventName, clubName, leaderClub }) => {
                         <div className="text-left mb-4 shadow-md p-5 pr-20" key={feedback.id}>
                             <h1><span className="text-green-700 font-extrabold">User : </span> {feedback.name}</h1>
                             <p><span className="text-green-700 font-extrabold">Feedback : </span>{feedback.feedback}</p>
-                           
                         </div>
                     ))}
                 </div>

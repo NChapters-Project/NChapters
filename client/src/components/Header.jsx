@@ -228,16 +228,9 @@ const Header = () => {
                         </ul>
                       </div>
                     </li>
+                    
+                    
                     <li>
-
-                      <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Religous Clubs</a>
-                    </li>
-                    <li>
-                      <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sports Clubs</a>
-                    </li>
-                    <li>
-                      <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Other Clubs</a>
-
                         <a href="/Religous" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Religous Clubs</a>
                     </li>
                     <li>

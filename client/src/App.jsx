@@ -33,6 +33,7 @@ import Religous from "./pages/clubs/Religous.jsx";
 import ActivityBased from "./pages/clubs/ActivityBased.jsx";
 import International from "./pages/clubs/International.jsx";
 import CareerGuidance from "./pages/clubs/CareerGuidance.jsx";
+import CEventEdit from "./pages/CEventEdit";
 export default function App() {
   return (
     <BrowserRouter>
@@ -56,8 +57,9 @@ export default function App() {
         <Route path="/editLeaders" element={<EditLeaders />} />
         <Route path="/eview/:id/:img/:cname/:des" element={<Eview />} />
         <Route path="/editclubs" element={<EditClubs />} />
+        <Route path="/cEventEdit/:clubName" element={<CEventEdit />} />
 
-        <Route path="/feedbackedit/:feedbackId/:eventId"element={<FeedbackEdit />}/>
+        <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
         <Route path="/clubview/:id" component={Clubview} />
         <Route path="/editclub" element={<EditClub />} />
         <Route path="/foe" element={<FOE />} />

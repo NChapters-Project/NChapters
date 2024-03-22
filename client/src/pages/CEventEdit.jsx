@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { getDatabase, ref, onValue, remove, update } from 'firebase/database';
 import { getStorage, ref as storageRef, getDownloadURL, uploadBytes } from 'firebase/storage';
 import ConfirmationModal from '../components/ConfirmationModel';
 
 function EventEdit() {
+  const { clubName } = useParams();
   const [events, setEvents] = useState([]);
   const [editEvent, setEditEvent] = useState(null);
   const [deleteEventId, setDeleteEventId] = useState(null);
@@ -28,11 +30,13 @@ function EventEdit() {
       const eventData = snapshot.val();
       const eventList = [];
       for (let id in eventData) {
-        eventList.push({ id, ...eventData[id] });
+        if (eventData[id].clubName === clubName) {
+          eventList.push({ id, ...eventData[id] });
+        }
       }
       setEvents(eventList);
     });
-  }, []);
+  }, [clubName]);
 
   const handleDelete = (id) => {
     setDeleteEventId(id);
@@ -87,7 +91,7 @@ function EventEdit() {
     const database = getDatabase();
     const eventRef = ref(database, `events/${editEvent.id}`);
 
-    const updatedEventData = { ...formData }; // Spread formData directly
+    const updatedEventData = { ...formData };
 
     if (formData.image) {
       const storage = getStorage();
@@ -138,6 +142,7 @@ function EventEdit() {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-32">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        {/* Table headers */}
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3">

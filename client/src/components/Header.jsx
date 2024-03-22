@@ -231,13 +231,16 @@ const Header = () => {
                     
                     
                     <li>
+
                         <a href="/Religous" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Religous Clubs</a>
+
+                    </li>
+                    
+                    <li>
+                      <a href="/activitybased" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Activity Based Clubs</a>
                     </li>
                     <li>
-                        <a href="/activitybased" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Activity Based Clubs</a>
-                    </li>
-                    <li>
-                        <a href="/international" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">International Clubs</a>
+                      <a href="/international" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">International Clubs</a>
 
                     </li>
                   </ul>
@@ -326,7 +329,7 @@ const Header = () => {
                           <a href="/createListing" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Events</a>
                         </li>
                         <li>
-                          <a href={`/EventEdit/${clubName}`} className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
+                          <a href={`/cEventEdit/${clubName}`} className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
                         </li>
                         <li>
                           <a href={`/feedbacksedit/${clubName}`} className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Feedbacks</a>

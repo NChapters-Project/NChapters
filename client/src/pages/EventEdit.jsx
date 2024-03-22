@@ -86,20 +86,20 @@ function EventEdit() {
     e.preventDefault();
     const database = getDatabase();
     const eventRef = ref(database, `events/${editEvent.id}`);
-  
+
     const updatedEventData = { ...formData }; // Spread formData directly
-  
+
     if (formData.image) {
       const storage = getStorage();
       const imagesRef = storageRef(storage, `images/${formData.image.name}`);
-  
+
       uploadBytes(imagesRef, formData.image)
         .then((snapshot) => {
           return getDownloadURL(snapshot.ref);
         })
         .then((imageUrl) => {
           updatedEventData.imageUrl = imageUrl;
-  
+
           update(eventRef, updatedEventData)
             .then(() => {
               console.log('Event updated successfully!');
@@ -182,7 +182,7 @@ function EventEdit() {
                 {event.eventName}
               </td>
               <td className="px-6 py-4 w-12">
-              <div className="truncate">{event.date}</div>
+                <div className="truncate">{event.date}</div>
               </td>
               <td className="px-6 py-4">
                 {event.time}
@@ -221,7 +221,7 @@ function EventEdit() {
       </table>
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
-         <div className="bg-white p-6 dark:bg-gray-800 dark:text-white w-full sm:w-96 overflow-y-auto max-h-full">
+          <div className="bg-white p-6 dark:bg-gray-800 dark:text-white w-full sm:w-96 overflow-y-auto max-h-full">
             <h2 className="text-2xl text-center font-semibold mb-4">Edit Event</h2>
             <form onSubmit={handleSubmit}>
               <input type="text" className="m-3" id="eventName" value={formData.eventName} onChange={handleChange} placeholder="Event Name" required />

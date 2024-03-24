@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, get } from 'firebase/database';
+import { useSelector } from 'react-redux';
 const Leaders = () => {
     const [formData, setFormData] = useState({
         name: '',
@@ -10,6 +11,8 @@ const Leaders = () => {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [clubNames, setClubNames] = useState([]);
+    const isLeader = useSelector((state) => state.user.isLeader);
+    const currentUser = useSelector((state) => state.user.currentUser);
     useEffect(() => {
         const database = getDatabase();
         const clubNamesRef = ref(database, 'clubs');
@@ -61,7 +64,13 @@ const Leaders = () => {
             setLoading(false);
         });
     };
-
+    if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+        return (
+          <div>
+            <p class="mt-64 text-3xl text-center">You do not have access to this page.</p>
+          </div>
+        );
+      }
     return (
         <div>
             <section className="bg-white dark:bg-gray-900 mt-12">

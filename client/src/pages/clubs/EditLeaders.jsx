@@ -2,15 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue, remove, update, set } from 'firebase/database';
 import { getStorage, ref as storageRef, getDownloadURL, uploadBytes } from 'firebase/storage';
 import ConfirmationModal from '../../components/ConfirmationModel';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 function EditLeaders() {
     const [leaders, setLeaders] = useState([]);
+    const { clubName } = useParams();
     const [editLeaders, setEditLeaders] = useState(null);
     const [deleteLeadersId, setDeleteLeadersId] = useState(null);
+    const [isDataFetched, setIsDataFetched] = useState(false);
+    const [isLeader, setIsLeader] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         club: ''
     });
+    
+    const currentUser = useSelector((state) => state.user.currentUser);
     const [isModalOpen, setIsModalOpen] = useState(false);
     useEffect(() => {
         const database = getDatabase();
@@ -125,6 +132,40 @@ function EditLeaders() {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+    useEffect(() => {
+        const database = getDatabase();
+        const leadersRef = ref(database, 'leaders');
+    
+        const fetchLeaderUsernames = () => {
+          onValue(leadersRef, (snapshot) => {
+            if (snapshot.exists()) {
+              const leaderData = snapshot.val();
+              
+              const currentUserLeader = Object.values(leaderData).find(leader => leader.username === currentUser?.name);
+              if (currentUserLeader) {
+                setIsLeader(true); 
+              } else {
+                setIsLeader(false);
+              }
+            }
+            setIsDataFetched(true);
+          });
+        };
+    
+        if (!isDataFetched) {
+          fetchLeaderUsernames(); 
+        }
+        return () => {
+          
+        };
+      }, [currentUser, clubName, isDataFetched]);
+      if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+        return (
+          <div>
+            <p class="mt-56 text-3xl text-center">You do not have access to this page.</p>
+          </div>
+        );
+      }
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-32 ml-12 mr-12">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -62,7 +62,7 @@ const currentUser = useSelector((state) => state.user.currentUser);
       setLoading(false);
     }
   };
-  if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+  if (currentUser?.name !== 'OV Jayawardana') {
     return (
       <div>
         <p class="mt-64 text-3xl text-center">You do not have access to this page.</p>

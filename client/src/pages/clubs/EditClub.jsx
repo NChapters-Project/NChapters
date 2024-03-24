@@ -75,7 +75,7 @@ function EditClub() {
       setEditedClubData({ ...editedClubData, imageUrl }); // Update imageUrl in state
     }
   };
-  if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+  if (!isLeader || currentUser?.name !== 'OV Jayawardana') {
     return (
       <div>
         <p class="mt-64 text-3xl text-center">You do not have access to this page.</p>

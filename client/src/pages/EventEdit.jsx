@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, remove, update } from 'firebase/database';
 import { getStorage, ref as storageRef, getDownloadURL, uploadBytes } from 'firebase/storage';
 import ConfirmationModal from '../components/ConfirmationModel';
-
+import { useParams } from 'react-router-dom'; // Removed useHistory import
+import { useSelector } from 'react-redux';
 function EventEdit() {
   const [events, setEvents] = useState([]);
   const [editEvent, setEditEvent] = useState(null);
   const [deleteEventId, setDeleteEventId] = useState(null);
+  const [isLeader, setIsLeader] = useState(false);
+  const [isDataFetched, setIsDataFetched] = useState(false);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const { clubName } = useParams();
   const [formData, setFormData] = useState({
     eventName: '',
     time: '',
@@ -134,7 +139,40 @@ function EventEdit() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  useEffect(() => {
+    const database = getDatabase();
+    const leadersRef = ref(database, 'leaders');
 
+    const fetchLeaderUsernames = () => {
+      onValue(leadersRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const leaderData = snapshot.val();
+          
+          const currentUserLeader = Object.values(leaderData).find(leader => leader.username === currentUser?.name);
+          if (currentUserLeader) {
+            setIsLeader(true); 
+          } else {
+            setIsLeader(false);
+          }
+        }
+        setIsDataFetched(true);
+      });
+    };
+
+    if (!isDataFetched) {
+      fetchLeaderUsernames(); 
+    }
+    return () => {
+      
+    };
+  }, [currentUser, clubName, isDataFetched]);
+  if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+    return (
+      <div>
+        <p class="mt-56 text-3xl text-center">You do not have access to this page.</p>
+      </div>
+    );
+  }
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-32">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

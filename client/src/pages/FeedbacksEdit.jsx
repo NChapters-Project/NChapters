@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, remove, update } from 'firebase/database';
 import ConfirmationModal from '../components/ConfirmationModel';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; 
+import { useSelector } from 'react-redux';
 
 function FeedbacksEdit() {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -16,6 +17,10 @@ function FeedbacksEdit() {
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { clubName } = useParams();
+  
+  // Get isLeader state from redux store
+  const isLeader = useSelector((state) => state.user.isLeader);
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   useEffect(() => {
     const database = getDatabase();
@@ -100,10 +105,14 @@ function FeedbacksEdit() {
       });
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
+  // Show a message if not leader or current user is not 'OV Jayawardana'
+  if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+    return (
+      <div>
+        <p class="mt-64 text-3xl text-center">You do not have access to this page.</p>
+      </div>
+    );
+  }
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-32">
       {feedbacks.length === 0 ? (

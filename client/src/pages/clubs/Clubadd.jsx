@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, remove, update } from 'firebase/database';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useParams } from 'react-router-dom'; 
 import { useSelector } from 'react-redux';
 function Clubadd() {
   const [formData, setFormData] = useState({

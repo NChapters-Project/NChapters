@@ -231,21 +231,11 @@ const Header = () => {
                     
                     
                     <li>
-<<<<<<< HEAD
+
                         <a href="/Religous" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Religous Clubs</a>
-=======
 
-                      <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Religous Clubs</a>
                     </li>
-                    <li>
-                      <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sports Clubs</a>
-                    </li>
-                    <li>
-                      <a href="/Comingsoon" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Other Clubs</a>
-
-                      <a href="/Religous" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Religous Clubs</a>
->>>>>>> a75a16a2ecef8e3118d3216972235767c7055ea9
-                    </li>
+                    
                     <li>
                       <a href="/activitybased" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Activity Based Clubs</a>
                     </li>

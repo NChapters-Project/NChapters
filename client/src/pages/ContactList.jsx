@@ -1,9 +1,11 @@
 // ContactList.jsx
 import React, { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
-
+import { useSelector } from 'react-redux';
 const ContactList = () => {
   const [contacts, setContacts] = useState([]);
+  
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     // Fetch contact data from Firebase Realtime Database
@@ -17,7 +19,13 @@ const ContactList = () => {
       }
     });
   }, []);
-
+  if (currentUser?.name !== 'OV Jayawardana') {
+    return (
+      <div>
+        <p class="mt-56 text-3xl text-center">You do not have access to this page.</p>
+      </div>
+    );
+  }
   return (
     
     <div class="mt-32">

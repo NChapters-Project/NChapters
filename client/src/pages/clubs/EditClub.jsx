@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getDatabase, ref, onValue, update, remove } from "firebase/database";
-
+import { useSelector } from 'react-redux';
 function EditClub() {
   const [clubs, setClubs] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -10,7 +10,8 @@ function EditClub() {
     description: "",
     imageUrl: "", // New state to store the selected image
   });
-
+  const isLeader = useSelector((state) => state.user.isLeader);
+  const currentUser = useSelector((state) => state.user.currentUser);
   useEffect(() => {
     const database = getDatabase();
     const clubsRef = ref(database, "clubs");
@@ -74,7 +75,13 @@ function EditClub() {
       setEditedClubData({ ...editedClubData, imageUrl }); // Update imageUrl in state
     }
   };
-
+  if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+    return (
+      <div>
+        <p class="mt-64 text-3xl text-center">You do not have access to this page.</p>
+      </div>
+    );
+  }
   return (
     <div>
       {showPopup && (

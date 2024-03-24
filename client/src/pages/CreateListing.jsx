@@ -5,7 +5,7 @@ import { getDatabase, ref, push, onValue, get } from 'firebase/database';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { query, orderByChild, equalTo } from 'firebase/database';
 import emailjs from 'emailjs-com'; // Import EmailJS library
-
+import { useParams } from 'react-router-dom';
 const CreateListing = () => {
   const [subscribedEmails, setSubscribedEmails] = useState({});
   const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ const CreateListing = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState(false);
-
+  const { clubName } = useParams();
   useEffect(() => {
     const database = getDatabase();
     const leadersRef = ref(database, 'leaders');
@@ -221,7 +221,40 @@ const CreateListing = () => {
       </select>
     );
   };
+  useEffect(() => {
+    const database = getDatabase();
+    const leadersRef = ref(database, 'leaders');
 
+    const fetchLeaderUsernames = () => {
+      onValue(leadersRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const leaderData = snapshot.val();
+          
+          const currentUserLeader = Object.values(leaderData).find(leader => leader.username === currentUser?.name);
+          if (currentUserLeader) {
+            setIsLeader(true); 
+          } else {
+            setIsLeader(false);
+          }
+        }
+        setIsDataFetched(true);
+      });
+    };
+
+    if (!isDataFetched) {
+      fetchLeaderUsernames(); 
+    }
+    return () => {
+      
+    };
+  }, [currentUser, clubName, isDataFetched]);
+  if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+    return (
+      <div>
+        <p class="mt-56 text-3xl text-center">You do not have access to this page.</p>
+      </div>
+    );
+  }
   return (
     <div>
       {(isLeader || currentUser.name === 'OV Jayawardana') && (

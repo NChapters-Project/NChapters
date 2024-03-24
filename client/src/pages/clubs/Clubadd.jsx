@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { getDatabase, ref, push } from 'firebase/database';
+import React, { useState, useEffect } from 'react';
+import { getDatabase, ref, onValue, remove, update } from 'firebase/database';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-
+import { useParams } from 'react-router-dom'; 
+import { useSelector } from 'react-redux';
 function Clubadd() {
   const [formData, setFormData] = useState({
     name: '',
@@ -12,7 +13,9 @@ function Clubadd() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState(false);
-
+// Get isLeader state from redux store
+const isLeader = useSelector((state) => state.user.isLeader);
+const currentUser = useSelector((state) => state.user.currentUser);
   const handleChange = (e) => {
     const { id, value } = e.target;
     const newValue = value === "Select Club" ? null : value;
@@ -60,7 +63,13 @@ function Clubadd() {
       setLoading(false);
     }
   };
-
+  if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+    return (
+      <div>
+        <p class="mt-64 text-3xl text-center">You do not have access to this page.</p>
+      </div>
+    );
+  }
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, remove, update } from 'firebase/database';
 import ConfirmationModal from '../components/ConfirmationModel';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; // Removed useHistory import
+import { useSelector } from 'react-redux';
 
 function FeedbacksEdit() {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -16,7 +17,10 @@ function FeedbacksEdit() {
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { clubName } = useParams();
-
+  const [isLeader, setIsLeader] = useState(false);
+  const [isDataFetched, setIsDataFetched] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
+  
   useEffect(() => {
     const database = getDatabase();
     const feedbacksRef = ref(database, 'feedback');
@@ -100,10 +104,40 @@ function FeedbacksEdit() {
       });
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  useEffect(() => {
+    const database = getDatabase();
+    const leadersRef = ref(database, 'leaders');
 
+    const fetchLeaderUsernames = () => {
+      onValue(leadersRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const leaderData = snapshot.val();
+          
+          const currentUserLeader = Object.values(leaderData).find(leader => leader.username === currentUser?.name);
+          if (currentUserLeader) {
+            setIsLeader(true); 
+          } else {
+            setIsLeader(false);
+          }
+        }
+        setIsDataFetched(true);
+      });
+    };
+
+    if (!isDataFetched) {
+      fetchLeaderUsernames(); 
+    }
+    return () => {
+      
+    };
+  }, [currentUser, clubName, isDataFetched]);
+  if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
+    return (
+      <div>
+        <p class="mt-56 text-3xl text-center">You do not have access to this page.</p>
+      </div>
+    );
+  }
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-32">
       {feedbacks.length === 0 ? (

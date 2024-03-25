@@ -294,7 +294,7 @@ const Header = () => {
                           <a href="/EventEdit" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Events</a>
                         </li>
                         <li>
-                          <a href={`/feedbacksedit/${clubName}`} className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Feedbacks</a>
+                          <a href={`/feedbackseditmain`} className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Feedbacks</a>
                         </li>
                         <li>
                           <a href="/Clubadd" className="block px-4 py-2 hover:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Clubs</a>

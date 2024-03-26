@@ -65,18 +65,7 @@ function FeedbacksEdit() {
     setDeleteFeedbackId(null);
   };
 
-  const handleEdit = (feedback) => {
-    setEditFeedback(feedback);
-    setFormData({
-      eventId: feedback.eventId,
-      eventName: feedback.eventName,
-      clubName: feedback.clubName,
-      name: feedback.name,
-      feedback: feedback.feedback,
-    });
-    setIsModalOpen(true);
-  };
-
+  
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevFormData) => ({
@@ -161,9 +150,7 @@ function FeedbacksEdit() {
               <th scope="col" className="px-6 py-3">
                 Feedback
               </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
+              
               <th scope="col" className="px-6 py-3">
                 Action
               </th>
@@ -179,11 +166,7 @@ function FeedbacksEdit() {
                 <td className="px-6 py-4">{feedback.clubName}</td>
                 <td className="px-6 py-4">{feedback.name}</td>
                 <td className="px-6 py-4">{feedback.feedback}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <button onClick={() => handleEdit(feedback)} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400">
-                    Edit
-                  </button>
-                </td>
+               
                 <td className="px-6 py-4 whitespace-nowrap">
                   <button onClick={() => handleDelete(feedback.id)} className="text-red-600 hover:text-red-900 dark:text-red-400">
                     Delete

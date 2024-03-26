@@ -2,10 +2,11 @@ import React from "react";
 import { Carousel } from 'flowbite-react';
 import Header from "../components/Header";
 import { useEffect, useState } from 'react';
-// Assuming the Header component is in a file named Header.js inside a directory named components
+
 
 
 export default function Home() {
+    //check windows width
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     useEffect(() => {
         const handleResize = () => {
@@ -16,12 +17,13 @@ export default function Home() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    //carousel slider height in mobile view
     const getHeightStyle = () => {
         if (windowWidth < 640) {
-            // Set the height for mobile view
+            
             return { height: '15rem' };
         } else {
-            // Set the height for larger screens
             return { height: '35rem' };
         }
     };
@@ -29,7 +31,7 @@ export default function Home() {
 
     return (
         <div className="relative">
-            <div className="relative z-0 mt-14" style={getHeightStyle()}>{/* Set a lower z-index for the carousel */}
+            <div className="relative z-0 mt-14" style={getHeightStyle()}>
                 <Carousel slideInterval={5000} theme={{
                     "item": {
                         "base": "absolute top-1/2 left-1/2 block w-full -translate-x-1/2 -translate-y-1/2",
@@ -90,7 +92,7 @@ export default function Home() {
                         <a href="/clubs">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOC Clubs & Societies</h5>
                         </a>
-                        {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
+                       
                         <a href="/FOC" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             Explore Now
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -108,7 +110,7 @@ export default function Home() {
                         <a href="/FOB">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOB Clubs & Societies</h5>
                         </a>
-                        {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
+                       
                         <a href="/FOB" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             Explore Now
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -125,7 +127,7 @@ export default function Home() {
                         <a href="/FOE">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOE Clubs & Societies</h5>
                         </a>
-                        {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
+                        
                         <a href="/FOE" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             Explore Now
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -142,7 +144,7 @@ export default function Home() {
                         <a href="/FOS">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOS Clubs & Societies</h5>
                         </a>
-                        {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
+                        
                         <a href="/FOS" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ">
                             Explore Now
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -161,7 +163,7 @@ export default function Home() {
                         <a href="/international">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">International Clubs & Societies</h5>
                         </a>
-                        {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
+                       
                         <a href="/international" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             Explore Now
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -178,7 +180,7 @@ export default function Home() {
                         <a href="/Religous">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Religious Clubs & Societies</h5>
                         </a>
-                        {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
+                        
                         <a href="/Religous" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             Explore Now
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -195,7 +197,7 @@ export default function Home() {
                         <a href="/activitybased">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Activity Based Clubs & Societies</h5>
                         </a>
-                        {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
+                        
                         <a href="/activitybased" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             Explore Now
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -212,7 +214,7 @@ export default function Home() {
                         <a href="/careerguidance">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Career Guidance Unit (NForce) </h5>
                         </a>
-                        {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> */}
+                        
                         <a href="/careerguidance" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             Explore Now
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

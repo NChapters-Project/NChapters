@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 function FOC() {
   const [clubs, setClubs] = useState([]);
-  const [loading, setLoading] = useState(true); // Track loading state
-  const [subscribedEmails, setSubscribedEmails] = useState({});
-  const [showPopup, setShowPopup] = useState(false); // State to manage the visibility of the popup
+  const [loading, setLoading] = useState(true); // loading text
+  const [subscribedEmails, setSubscribedEmails] = useState({}); //subscription emails
+  const [showPopup, setShowPopup] = useState(false); // popup to enter email
 
   useEffect(() => {
     const database = getDatabase();

@@ -34,6 +34,8 @@ import ActivityBased from "./pages/clubs/ActivityBased.jsx";
 import International from "./pages/clubs/International.jsx";
 import CareerGuidance from "./pages/clubs/CareerGuidance.jsx";
 import CEventEdit from "./pages/CEventEdit";
+import FeedbackMainEdit from "./pages/FeedbackEditMain.jsx";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -66,6 +68,7 @@ export default function App() {
         <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
         <Route path="/clubview/:id" element={<Clubview />} />
         <Route path="/feedbacksedit/:clubName" element={<FeedbacksEdit />} />
+        <Route path="/feedbackseditmain" element={<FeedbackMainEdit />} />
         <Route path="/cevent/:clubId/:clubName" element={<CEvents />} />
         <Route path="/fos" element={<FOS />} />
         <Route path="/religous" element={<Religous />} />

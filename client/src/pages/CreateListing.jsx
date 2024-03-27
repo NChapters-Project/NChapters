@@ -258,19 +258,13 @@ const CreateListing = () => {
   return (
     <div>
       {(isLeader || currentUser.name === 'OV Jayawardana') && (
-        <div
-          style={{
-            backgroundImage: `url("https://www.nsbm.ac.lk/wp-content/uploads/2021/08/About-Tab-1.jpg")`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-          className="min-h-screen flex flex-col justify-center py-8">
-          <div className="bg-white p-8 md:p-12 rounded-lg shadow-lg mx-auto max-w-md md:max-w-4xl m-20">
-            <h1 className="text-2xl md:text-4xl font-bold text-green-800 mb-6 text-center">Add an Event</h1>
+        <section className="bg-white dark:bg-gray-900">
+          <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+          <h1 className="mb-4 text-xl text-center font-bold text-gray-900 dark:text-white mt-24">Add a New Event</h1>
 
-            <form className="space-y-4" onSubmit={(e) => handleSubmit(e)}>
-              <div>
+            <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+            <div className="sm:col-span-2">
                 <label htmlFor="eventName" className="block text-sm font-medium text-gray-700 mb-1">Event Name</label>
                 <input
                   type="text"
@@ -282,39 +276,40 @@ const CreateListing = () => {
                   placeholder="Enter event name"
                   required />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="clubName" className="m-3">Club Name</label>
                 {renderClubSelection()}
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">Time</label>
                 <input type="time" id="time" value={formData.time} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter event time" required />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Date</label>
                 <input type="date" id="date" value={formData.date} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter event date" required />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="minidescription" className="block text-sm font-medium text-gray-700 mb-1">Mini Description</label>
                 <input type="text" id="minidescription" value={formData.minidescription} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter event mini description" required />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                 <textarea id="description" value={formData.description} onChange={handleChange} rows="4" className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '187.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter event description" required></textarea>
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="image" className="m-3">Image</label>
                 <input type="file" id="image" onChange={handleChange} accept="image/*" required />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="volunteerLink" className="block text-sm font-medium text-gray-700 mb-1">Volunteer Link</label>
                 <input type="url" id="volunteerLink" value={formData.volunteerLink} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter volunteer link" />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="participateLink" className="block text-sm font-medium text-gray-700 mb-1">Participate Link</label>
                 <input type="url" id="participateLink" value={formData.participateLink} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" style={{ width: '100%', height: '62.5px', fontSize: '1.5rem', maxWidth: '100%' }} placeholder="Enter participate link" />
               </div>
-              <button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition duration-300">
+              </div>
+              <button type="submit" className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-lg focus:ring-4 focus:ring-green-200 dark:focus:ring-green-900 hover:bg-green-800">
                 {loading ? (
                   <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -335,7 +330,7 @@ const CreateListing = () => {
               </div>
             )}
           </div>
-        </div>
+          </section>
       )}
     </div>
   );

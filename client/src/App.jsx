@@ -61,7 +61,7 @@ export default function App() {
         <Route path="/editclubs" element={<EditClubs />} />
         <Route path="/cEventEdit/:clubName" element={<CEventEdit />} />
 
-        <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
+        <Route path="/feedbackedit" element={<FeedbackEdit />} />
         <Route path="/clubview/:id" component={Clubview} />
         <Route path="/editclub" element={<EditClub />} />
         <Route path="/foe" element={<FOE />} />

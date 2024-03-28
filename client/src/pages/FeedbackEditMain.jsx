@@ -15,6 +15,7 @@ function FeedbacksEdit() {
         feedback: '',
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(true); // State for loading indicator
     const { clubName } = useParams();
 
     useEffect(() => {
@@ -33,6 +34,7 @@ function FeedbacksEdit() {
             } else {
                 setFeedbacks([]);
             }
+            setIsLoading(false); // Set loading to false when data is loaded
         });
     }, []);
 
@@ -105,7 +107,9 @@ function FeedbacksEdit() {
 
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-32">
-            {feedbacks.length === 0 ? (
+             {isLoading ? ( // Render loading text if isLoading is true
+                <p className="text-center mt-4 text-xl p-5 text-green-900 font-bold ">Loading...</p>
+            ) : feedbacks.length === 0 ? (
                 <p className="text-center mt-4 text-xl p-5 text-green-900 font-bold ">No Feedbacks At The Moment</p>
             ) : (
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

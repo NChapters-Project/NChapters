@@ -126,7 +126,7 @@ function FeedbacksEdit() {
                             <th scope="col" className="px-6 py-3">
                                 Feedback
                             </th>
-                            <th scope="col" className="px-6 py-3">
+                            <th scope="col" className="px-6 py-3" hidden>
                                 Action
                             </th>
                             <th scope="col" className="px-6 py-3">
@@ -144,7 +144,7 @@ function FeedbacksEdit() {
                                 <td className="px-6 py-4">{feedback.clubName}</td>
                                 <td className="px-6 py-4">{feedback.name}</td>
                                 <td className="px-6 py-4">{feedback.feedback}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">
+                                <td className="px-6 py-4 whitespace-nowrap" hidden>
                                     <button onClick={() => handleEdit(feedback)} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400">
                                         Edit
                                     </button>

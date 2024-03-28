@@ -20,7 +20,7 @@ function FeedbacksEdit() {
   const [isLeader, setIsLeader] = useState(false);
   const [isDataFetched, setIsDataFetched] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
-  
+
   useEffect(() => {
     const database = getDatabase();
     const feedbacksRef = ref(database, 'feedback');
@@ -112,10 +112,10 @@ function FeedbacksEdit() {
       onValue(leadersRef, (snapshot) => {
         if (snapshot.exists()) {
           const leaderData = snapshot.val();
-          
+
           const currentUserLeader = Object.values(leaderData).find(leader => leader.username === currentUser?.name);
           if (currentUserLeader) {
-            setIsLeader(true); 
+            setIsLeader(true);
           } else {
             setIsLeader(false);
           }
@@ -125,10 +125,10 @@ function FeedbacksEdit() {
     };
 
     if (!isDataFetched) {
-      fetchLeaderUsernames(); 
+      fetchLeaderUsernames();
     }
     return () => {
-      
+
     };
   }, [currentUser, clubName, isDataFetched]);
   if (!isLeader && currentUser?.name !== 'OV Jayawardana') {
@@ -161,10 +161,10 @@ function FeedbacksEdit() {
               <th scope="col" className="px-6 py-3">
                 Feedback
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3" hidden>
                 Action
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3" >
                 Action
               </th>
             </tr>
@@ -179,8 +179,8 @@ function FeedbacksEdit() {
                 <td className="px-6 py-4">{feedback.clubName}</td>
                 <td className="px-6 py-4">{feedback.name}</td>
                 <td className="px-6 py-4">{feedback.feedback}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <button onClick={() => handleEdit(feedback)} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400">
+                <td className="px-6 py-4 whitespace-nowrap" hidden>
+                  <button onClick={() => handleEdit(feedback)} className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400" >
                     Edit
                   </button>
                 </td>

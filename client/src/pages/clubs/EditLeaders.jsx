@@ -63,6 +63,7 @@ function EditLeaders() {
         setFormData({
             name: leaders.name,
             email: leaders.email,
+            username: leaders.username,
             club: leaders.club
         });
         setIsModalOpen(true);
@@ -77,21 +78,22 @@ function EditLeaders() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+    
         const database = getDatabase();
         const leadersRef = ref(database, `leaders/${editLeaders.id}`);
-
+    
         const updatedLeadersData = {
             name: formData.name,
             email: formData.email,
             username: formData.username,
             club: formData.club
         };
-
+    
         // Check if an image was uploaded
         if (formData.image) {
             const storage = getStorage();
             const imagesRef = storageRef(storage, `images/${formData.image.name}`);
-
+    
             // Upload the image to Firebase Storage
             uploadBytes(imagesRef, formData.image)
                 .then((snapshot) => {
@@ -100,7 +102,7 @@ function EditLeaders() {
                 .then((imageUrl) => {
                     // Once the image is uploaded, update the event data with the image URL
                     updatedLeadersData.imageUrl = imageUrl;
-
+    
                     // Update the event data in the Firebase Realtime Database
                     update(leadersRef, updatedLeadersData)
                         .then(() => {
@@ -128,7 +130,7 @@ function EditLeaders() {
                 });
         }
     };
-
+    
     const closeModal = () => {
         setIsModalOpen(false);
     };

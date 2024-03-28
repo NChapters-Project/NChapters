@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, onValue, remove, update } from 'firebase/database';
+import { getDatabase, ref, push, onValue, remove, update } from 'firebase/database';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useSelector } from 'react-redux';
 function Clubadd() {
@@ -12,8 +12,7 @@ function Clubadd() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState(false);
-// Get isLeader state from redux store
-const isLeader = useSelector((state) => state.user.isLeader);
+
 const currentUser = useSelector((state) => state.user.currentUser);
   const handleChange = (e) => {
     const { id, value } = e.target;

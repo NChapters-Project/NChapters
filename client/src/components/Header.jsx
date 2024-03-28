@@ -10,7 +10,7 @@ const Header = () => {
 
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   let [isAdditionalDropdownVisible, setIsAdditionalDropdownVisible] = useState(false);
-  let [isLeader, setIsLeader] = useState(false); // New state for leader check
+  let [isLeader, setIsLeader] = useState(false); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
@@ -61,17 +61,9 @@ const Header = () => {
           });
           console.log('Is Leader:', isLeader);
           setIsLeader(isLeader);
-
-
-          // Check if the current user's name matches any leader's username
-
-
         }
       });
     };
-
-
-
 
     if (!isDataFetched) {
       fetchLeaderUsernames();
@@ -79,7 +71,7 @@ const Header = () => {
     }
 
     return () => {
-      // Cleanup code if necessary
+     
     };
   }, [msalInstance, isDataFetched, currentUser, isLeader]);
 
@@ -90,9 +82,9 @@ const Header = () => {
       dispatch(signInStart());
       await msalInstance.handleRedirectPromise();
       const loginResponse = await msalInstance.loginPopup();
-      // Assuming loginResponse contains user's email and name
+      
       const { email, name } = loginResponse.account;
-      // Dispatch signInSuccess with both email and name
+      
       dispatch(signInSuccess({ email, name }));
       navigate("/");
     } catch (error) {
@@ -104,12 +96,12 @@ const Header = () => {
     try {
       dispatch(signOutUserSuccess());
       await msalInstance.logout();
-      localStorage.removeItem('user'); // Replace with specific keys if needed
+      localStorage.removeItem('user'); 
       dispatch({ type: 'USER_LOGOUT_SUCCESS' });
-      navigate("/"); // Navigate to home or login page
+      navigate("/"); 
     } catch (error) {
       console.error('Error logging out:', error);
-      // Optionally, dispatch failure action or handle the error
+     
     }
   };
 
@@ -159,9 +151,7 @@ const Header = () => {
     };
   }, [msalInstance, isDataFetched, currentUser]);
 
-  // Now you can use `clubName` state in your component
-  // console.log('Current Club Name:', clubName);
-
+  
   return (
     < div >
       <nav class="bg-white border-gray-600 fixed w-full z-20 top-0 start-0 border-gray-600 bg-white mt-0 shadow-md">

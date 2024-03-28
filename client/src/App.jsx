@@ -25,7 +25,7 @@ import Eview from "./pages/Eview.jsx";
 import FeedbackEdit from "./pages/Feedbackedit.jsx";
 import Clubview from "./pages/clubs/Clubview.jsx";
 import EditClubs from "./pages/clubs/EditClubs.jsx";
-import EditClub from "./pages/clubs/EditClub.jsx";
+
 import FOE from "./pages/clubs/FOE.jsx";
 import FeedbacksEdit from "./pages/FeedbacksEdit.jsx";
 import CEvents from "./pages/clubs/CEvents.jsx";
@@ -63,7 +63,7 @@ export default function App() {
 
         <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
         <Route path="/clubview/:id" component={Clubview} />
-        <Route path="/editclub" element={<EditClub />} />
+        
         <Route path="/foe" element={<FOE />} />
         <Route path="/feedbackedit/:feedbackId/:eventId" element={<FeedbackEdit />} />
         <Route path="/clubview/:id" element={<Clubview />} />

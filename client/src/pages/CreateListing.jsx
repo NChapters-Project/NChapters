@@ -167,7 +167,7 @@ const CreateListing = () => {
               const subscriberEmails = Object.values(subscribedData).map(subscriber => subscriber.email);
 
               // Send emails to subscribers
-              const EMAILJS_SERVICE_ID = 'service_ztak55x';
+              const EMAILJS_SERVICE_ID = 'service_clqpoal';
               const EMAILJS_TEMPLATE_ID = 'template_3chyey3';
               const EMAILJS_USER_ID = 'GLteqOVgIa1pN5Mul';
 

@@ -37,7 +37,7 @@ const Header = () => {
     };
     initializeMsal();
 
-
+    
     const fetchLeaderUsernames = () => {
       onValue(leadersRef, (snapshot) => {
         console.log('Snapshot:', snapshot.val());

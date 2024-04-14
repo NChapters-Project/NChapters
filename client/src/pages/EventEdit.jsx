@@ -31,9 +31,9 @@ function EventEdit() {
 
     onValue(eventsRef, (snapshot) => {
       const eventData = snapshot.val();
-      const eventList = [];
+      const eventList = []; //defined a new array to store the events
       for (let id in eventData) {
-        eventList.push({ id, ...eventData[id] });
+        eventList.push({ id, ...eventData[id] }); //pushing the events to the array
       }
       setEvents(eventList);
     });

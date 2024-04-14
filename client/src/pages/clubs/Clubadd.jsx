@@ -72,7 +72,7 @@ const currentUser = useSelector((state) => state.user.currentUser);
     <div>
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-          <h1 className="mb-4 text-xl font-bold text-gray-900 dark:text-white mt-24">Add a new Club</h1>
+          <h1 className="mb-4 text-xl text-center font-bold text-gray-900 dark:text-white mt-16">Add a new Club</h1>
           <form onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div className="sm:col-span-2">

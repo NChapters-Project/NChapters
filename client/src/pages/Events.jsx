@@ -24,7 +24,7 @@ function Events() {
 
       setEvents(eventList);
       setClubNames(Array.from(uniqueClubNames)); // Converting Set to Array and setting club names
-      setLoading(false); // Set loading state to false once events are loaded
+      setLoading(false); 
     });
   }, []);
 
